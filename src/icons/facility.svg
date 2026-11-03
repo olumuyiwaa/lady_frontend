@@ -1,0 +1,22 @@
+<?xml version="1.0" ?>
+
+<svg fill="currentColor"
+     stroke="currentColor"
+     stroke-width="1.2"
+     width="24" height="24"
+     viewBox="0 0 64 64"
+     xmlns="http://www.w3.org/2000/svg">
+
+<title/>
+
+<g data-name="Ka'bah" id="Ka_bah">
+
+<path d="M60,59H57V12a1,1,0,0,0-1-1H8a1,1,0,0,0-1,1V59H4a1,1,0,0,0,0,2H60a1,1,0,0,0,0-2ZM9,19H55v8H9Zm46-6v4H9V13ZM23,59V45H33V59Zm12,0V44a1,1,0,0,0-1-1H22a1,1,0,0,0-1,1V59H9V29H55V59Z"/>
+
+<path d="M52,33H40a1,1,0,0,0-1,1v4a1,1,0,0,0,1,1H52a1,1,0,0,0,1-1V34A1,1,0,0,0,52,33Zm-1,4H41V35H51Z"/>
+
+<path d="M14,33a3,3,0,1,0,3,3A3,3,0,0,0,14,33Zm0,4a1,1,0,1,1,1-1A1,1,0,0,1,14,37Z"/>
+
+</g>
+
+</svg>

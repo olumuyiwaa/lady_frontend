@@ -1,0 +1,32 @@
+name: CI
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      # Fails if a tenant slug collides with a real route.
+      - run: npm run check:slugs
+      - run: npm run test:unit
+      - run: npx tsc --noEmit
+      - name: Build
+        run: |
+          cp env.local.example .env.local
+          npx next build
+        env:
+          NEXT_TELEMETRY_DISABLED: 1
+      # Informational for now: the codebase predates the newer React lint rules
+      # (100+ existing errors), so this reports but does not block. Tighten it
+      # once that backlog is cleared.
+      - name: Lint (informational)
+        run: npx eslint src
+        continue-on-error: true
