@@ -1,5 +1,5 @@
 import { authFetch } from "./authFetch";
-import { AvailabilitySlot, Cleaner, CleanerStatus } from "./cleansera-types";
+import { AvailabilitySlot, Cleaner, CleanerStatus } from "./app-types";
 
 export async function listCleaners(status?: CleanerStatus) {
     const qs = status ? `?status=${status}` : "";

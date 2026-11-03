@@ -2,7 +2,7 @@
 
 import { useLocale, useTranslations } from "next-intl";
 import { Modal } from "@/components/ui/modal";
-import type { Booking } from "@/app/api/cleansera-types";
+import type { Booking } from "@/app/api/app-types";
 import { formatAnswer } from "@/lib/bookingQuestions";
 
 type Props = { booking: Booking | null; onClose: () => void };

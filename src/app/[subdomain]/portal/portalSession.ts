@@ -9,9 +9,9 @@ import type { PortalBooking, PortalCustomer } from "@/app/api/portal.api";
  * one origin between businesses: without it, signing in to one business would
  * look signed in to another.
  */
-const tokenKey = (slug: string) => `cleansera_portal_token_${slug}`;
-const customerKey = (slug: string) => `cleansera_portal_customer_${slug}`;
-const tipPendingKey = (slug: string) => `cleansera_portal_tip_pending_${slug}`;
+const tokenKey = (slug: string) => `ladygreener_portal_token_${slug}`;
+const customerKey = (slug: string) => `ladygreener_portal_customer_${slug}`;
+const tipPendingKey = (slug: string) => `ladygreener_portal_tip_pending_${slug}`;
 
 export type StoredSession = { token: string; customer: PortalCustomer };
 

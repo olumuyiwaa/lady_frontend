@@ -28,7 +28,7 @@ export function buildIcs(ev: IcsEvent): string {
     "PRODID:-//Lady Greener//Portal//EN",
     "CALSCALE:GREGORIAN",
     "BEGIN:VEVENT",
-    `UID:${ev.uid}@cleansera`,
+    `UID:${ev.uid}@ladygreener.nl`,
     `DTSTAMP:${stamp(new Date().toISOString())}`,
     `DTSTART:${stamp(ev.start)}`,
     `DTEND:${stamp(ev.end)}`,

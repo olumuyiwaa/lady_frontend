@@ -1,5 +1,5 @@
 import { authFetch } from "./authFetch";
-import { Booking, Cleaner } from "./cleansera-types";
+import { Booking, Cleaner } from "./app-types";
 
 export type DispatchAssignment = {
     id: string;

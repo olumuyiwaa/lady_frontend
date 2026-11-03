@@ -45,9 +45,9 @@ export async function authFetch(
         const code = result?.errors?.code;
         if (typeof window !== "undefined") {
             if (response.status === 402 && code === "SUBSCRIPTION_REQUIRED") {
-                window.dispatchEvent(new CustomEvent("cleansera:subscription-required", { detail: { message: result.message } }));
+                window.dispatchEvent(new CustomEvent("ladygreener:subscription-required", { detail: { message: result.message } }));
             } else if (response.status === 403 && code === "BUSINESS_SUSPENDED") {
-                window.dispatchEvent(new CustomEvent("cleansera:business-suspended", { detail: { message: result.message } }));
+                window.dispatchEvent(new CustomEvent("ladygreener:business-suspended", { detail: { message: result.message } }));
             }
         }
         throw new ApiError(

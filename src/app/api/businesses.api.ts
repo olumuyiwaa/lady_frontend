@@ -1,5 +1,5 @@
 import { authFetch } from "./authFetch";
-import { Business } from "./cleansera-types";
+import { Business } from "./app-types";
 
 export type BusinessAddress = {
     id: string;

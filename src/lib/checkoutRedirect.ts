@@ -23,13 +23,13 @@ export function redirectToCheckout(url: string): void {
   let acked = false;
   const onMessage = (event: MessageEvent) => {
     const data = event.data as { source?: string; type?: string } | null;
-    if (event.source === window.parent && data?.source === "cleansera-embed" && data.type === "redirect-ack") {
+    if (event.source === window.parent && data?.source === "ladygreener-embed" && data.type === "redirect-ack") {
       acked = true;
     }
   };
   window.addEventListener("message", onMessage);
 
-  window.parent.postMessage({ source: "cleansera-widget", type: "redirect", url }, "*");
+  window.parent.postMessage({ source: "ladygreener-widget", type: "redirect", url }, "*");
 
   window.setTimeout(() => {
     window.removeEventListener("message", onMessage);

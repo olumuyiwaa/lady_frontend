@@ -15,7 +15,7 @@ import {
 import { listDispatchItems, createAssignment, suggestCleaners, getCleanerDayRoute, DispatchAssignment, DayRoute } from "@/app/api/dispatch.api";
 import { listBookings } from "@/app/api/bookings.api";
 import { listCleaners } from "@/app/api/cleaners.api";
-import { Booking, Cleaner, cleanerDisplayName } from "@/app/api/cleansera-types";
+import { Booking, Cleaner, cleanerDisplayName } from "@/app/api/app-types";
 
 export default function DispatchPage() {
   const t = useTranslations("Dashboard.dispatch");

@@ -1,5 +1,5 @@
 import { authFetch } from "./authFetch";
-import { Booking, BookingStatus, RecurrenceFrequency, RecurringSchedule } from "./cleansera-types";
+import { Booking, BookingStatus, RecurrenceFrequency, RecurringSchedule } from "./app-types";
 export type ManualPaymentMethod = "CASH" | "BANK_TRANSFER" | "INVOICE" | "OTHER";
 
 export async function listBookings(status?: BookingStatus) {

@@ -14,7 +14,7 @@ import {
   markPaymentReceived,
   ManualPaymentMethod,
 } from "@/app/api/bookings.api";
-import { Booking, formatMoney } from "@/app/api/cleansera-types";
+import { Booking, formatMoney } from "@/app/api/app-types";
 
 type Props = {
   booking: Booking | null;

@@ -37,7 +37,7 @@ export default function AuthProvider({ children }: { children: React.ReactNode }
       return { status: "select_business", affiliations: envelope.data.affiliations };
     }
 
-    // cleansera_sass nests tokens inside data — never at the envelope root
+    // ladygreener nests tokens inside data — never at the envelope root
     const { accessToken, refreshToken } = envelope.data;
     sessionService.setTokens(accessToken, refreshToken);
     socketService.connect(accessToken);

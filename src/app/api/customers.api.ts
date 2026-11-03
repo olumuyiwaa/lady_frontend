@@ -1,5 +1,5 @@
 import { authFetch } from "./authFetch";
-import { Customer, CustomerAddress } from "./cleansera-types";
+import { Customer, CustomerAddress } from "./app-types";
 
 export async function listCustomersForBooking(q?: string) {
     const qs = q ? `?q=${encodeURIComponent(q)}` : "";

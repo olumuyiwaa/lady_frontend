@@ -9,7 +9,7 @@ import {
   type GiftCard,
 } from "@/app/api/giftCards.api";
 import RowActionsMenu from "@/components/tables/RowActionsMenu";
-import { formatMoney } from "@/app/api/cleansera-types";
+import { formatMoney } from "@/app/api/app-types";
 import { currencySymbol } from "@/app/services/currency";
 
 function centsToDollars(cents: number) {

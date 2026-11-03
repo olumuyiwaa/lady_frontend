@@ -77,7 +77,7 @@ export interface AdminProfile {
 // }
 
 // NOTE: User is now defined above as an alias to CurrentUser (from auth.api),
-// matching cleansera_sass's actual /auth/me response — no adminProfile/
+// matching ladygreener's actual /auth/me response — no adminProfile/
 // nurseProfile/facilityMember sub-objects; firstName/lastName/role sit
 // directly on the user (businessRole), since Lady Greener users don't have the
 // per-role profile split Trabajo Hub's model had.

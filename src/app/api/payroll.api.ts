@@ -1,5 +1,5 @@
 import { authFetch } from "./authFetch";
-import { CleanerCompensation, CleanerEarning, CompensationType, Payout } from "./cleansera-types";
+import { CleanerCompensation, CleanerEarning, CompensationType, Payout } from "./app-types";
 
 export async function listCompensations() {
     const result = await authFetch(`/payroll/compensation`, { method: "GET" });

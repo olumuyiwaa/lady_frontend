@@ -17,7 +17,7 @@ import {
     RecurrenceFrequency,
     Customer,
     Service,
-} from "@/app/api/cleansera-types";
+} from "@/app/api/app-types";
 
 export default function RecurringSchedulesPage() {
   const t = useTranslations("Dashboard.recurringSchedules");

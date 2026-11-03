@@ -19,7 +19,7 @@ import {
 } from "@/app/api/calendar";
 import { useAuth } from "@/app/auth/useAuth";
 import { useRouter } from "next/navigation";
-import { formatMoney } from "@/app/api/cleansera-types";
+import { formatMoney } from "@/app/api/app-types";
 
 const EVENT_TYPE_CONFIG: Record<
     CalendarEventType,

@@ -29,7 +29,7 @@ import { createPaymentLink } from "@/app/api/bookings.api.paymentLink";
 import { issueInvoice, openInvoice, issueAndDownloadUbl } from "@/app/api/invoices.api";
 import { listCustomersForBooking, createCustomer } from "@/app/api/customers.api";
 import { listServices } from "@/app/api/services.api";
-import { Booking, BookingStatus, Customer, Service, formatMoney } from "@/app/api/cleansera-types";
+import { Booking, BookingStatus, Customer, Service, formatMoney } from "@/app/api/app-types";
 import MarkPaymentReceivedModal from "@/components/booking/MarkPaymentReceivedModal";
 import { BookingDetailsModal } from "@/components/booking/BookingDetailsModal";
 

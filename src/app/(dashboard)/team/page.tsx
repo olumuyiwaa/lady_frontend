@@ -18,7 +18,7 @@ import RowActionsMenu from "@/components/tables/RowActionsMenu";
 import Select from "@/components/form/Select";
 import { useAuth } from "@/app/auth/useAuth";
 import { listStaff, inviteStaff, updateStaffRole, removeStaff } from "@/app/api/staff.api";
-import { StaffMember, StaffRole, staffDisplayName } from "@/app/api/cleansera-types";
+import { StaffMember, StaffRole, staffDisplayName } from "@/app/api/app-types";
 
 const ROLE_COLOR: Record<StaffRole, "success" | "warning" | "light"> = {
   BUSINESS_OWNER: "success",

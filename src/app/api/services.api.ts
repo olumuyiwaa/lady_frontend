@@ -1,5 +1,5 @@
 import { authFetch } from "./authFetch";
-import { PricingModel, Service } from "./cleansera-types";
+import { PricingModel, Service } from "./app-types";
 
 export async function listServices() {
     const result = await authFetch(`/services`, { method: "GET" });

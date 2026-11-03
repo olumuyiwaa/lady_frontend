@@ -37,7 +37,7 @@ import {
   cleanerDisplayName,
   compensationLabel,
   formatMoney,
-} from "@/app/api/cleansera-types";
+} from "@/app/api/app-types";
 
 const PAYOUT_STATUS_COLOR: Record<Payout["status"], "warning" | "success" | "light"> = {
   PENDING: "warning",

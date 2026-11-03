@@ -20,7 +20,7 @@ import {
   onboardCleaner,
   offboardCleaner,
 } from "@/app/api/cleaners.api";
-import { Cleaner, CleanerStatus, cleanerDisplayName } from "@/app/api/cleansera-types";
+import { Cleaner, CleanerStatus, cleanerDisplayName } from "@/app/api/app-types";
 
 const STATUS_COLOR: Record<CleanerStatus, "success" | "warning" | "error" | "light"> = {
   ACTIVE: "success",

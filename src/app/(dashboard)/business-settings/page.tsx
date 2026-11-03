@@ -23,7 +23,7 @@ import {
   getStripeConnectStatus,
   startStripeConnectOnboarding,
 } from "@/app/api/businesses.api";
-import { Business } from "@/app/api/cleansera-types";
+import { Business } from "@/app/api/app-types";
 import StripeConnectOptionalCard from "@/components/business/StripeConnectOptionalCard";
 const DAY_COUNT = 7;
 

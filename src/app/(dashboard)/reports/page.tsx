@@ -11,7 +11,7 @@ import {
   RevenueDay,
   CleanerPerfRow,
 } from "@/app/api/reports.api";
-import { formatMoney } from "@/app/api/cleansera-types";
+import { formatMoney } from "@/app/api/app-types";
 import {
   Table,
   TableBody,
@@ -25,7 +25,6 @@ import Button from "@/components/ui/button/Button";
 import MonthlySalesChart from "@/components/overview/MonthlySalesChart";
 import StatisticsChart from "@/components/overview/StatisticsChart";
 import MonthlyTarget from "@/components/overview/MonthlyTarget";
-import { EcommerceMetrics } from "@/components/overview/EcommerceMetrics";
 
 function defaultRange() {
   const to = new Date();

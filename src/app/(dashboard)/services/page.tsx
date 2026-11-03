@@ -11,7 +11,7 @@ import {
   updateServiceAddOn,
   deleteServiceAddOn,
 } from "@/app/api/services.api";
-import { PricingModel, Service, ServiceAddOn, formatMoney } from "@/app/api/cleansera-types";
+import { PricingModel, Service, ServiceAddOn, formatMoney } from "@/app/api/app-types";
 import { currencySymbol } from "@/app/services/currency";
 
 const PRICING_MODELS: PricingModel[] = ["FLAT", "PER_SQFT", "PER_ROOM", "HOURLY"];

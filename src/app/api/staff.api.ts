@@ -1,5 +1,5 @@
 import { authFetch } from "./authFetch";
-import { StaffMember, StaffRole } from "./cleansera-types";
+import { StaffMember, StaffRole } from "./app-types";
 
 export async function listStaff() {
     const result = await authFetch(`/businesses/staff`, { method: "GET" });
