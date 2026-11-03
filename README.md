@@ -3,13 +3,12 @@
 Website and staff dashboard for **Lady Greener**, a cleaning company in the
 Netherlands (Next.js 16, App Router, next-intl `nl`/`en`, Tailwind).
 
-It started from the multi-tenant CleanSera frontend and keeps its features:
-public storefront with online booking and postcode check, customer portal
-(email OTP), and the dashboard for bookings, calendar, dispatch, recurring
-schedules, cleaners and documents, payroll, invoices, coupons, gift cards,
-inventory, compliance, reviews, waitlist, reports, messages and the
-transaction log. It runs **one business**: no signup, subscriptions, platform
-admin, marketing pages or custom domains.
+Features: public storefront with online booking and postcode check, customer
+portal (email OTP), and the dashboard for bookings, calendar, dispatch,
+recurring schedules, cleaners and documents, payroll, invoices, coupons, gift
+cards, inventory, compliance, reviews, waitlist, reports, messages and the
+transaction log. Runs **one business**: no signup, subscriptions, platform
+admin or custom domains.
 
 Backend: [lady](https://github.com/olumuyiwaa/lady)
 
@@ -44,7 +43,5 @@ the `lady` repo). Staff sign in at `/signin`.
 
 ## Still to do
 
-- Logos in `public/images/logo` are still the CleanSera artwork; replace them
-  with Lady Greener's.
-- Privacy policy and terms pages were part of the CleanSera marketing site and
-  were removed; add Lady Greener's own text before launch.
+- Replace `public/images/logo/ladygreener-logo.png` with the final high-resolution logo file before launch (the current file was added as a placeholder from the chat conversation).
+- Confirm the `effectiveDate` strings on the Terms and Privacy pages (`"March 2021 — Updated for 2025"`) match the actual dates before publishing.

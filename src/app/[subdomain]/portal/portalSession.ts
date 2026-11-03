@@ -1,15 +1,21 @@
 import type { PortalBooking, PortalCustomer } from "@/app/api/portal.api";
 
 /**
- * Where the customer portal keeps its signed-in session. Everything that
- * touches browser storage lives here so the storage strategy (today
- * localStorage, per business slug) can be changed in ONE place.
+ * Customer portal session storage.
+ *
+ * The auth token lives in sessionStorage (tab-scoped, not persisted to disk,
+ * inaccessible to other tabs). Customer profile data also lives in
+ * sessionStorage — it is low-sensitivity but keeping it alongside the token
+ * avoids an extra API call on tab reload and ensures both are cleared together.
  *
  * The key includes the slug because path-based tenancy on the app host shares
  * one origin between businesses: without it, signing in to one business would
- * look signed in to another.
+ * appear signed in to another.
+ *
+ * Long-term: replace with httpOnly cookies set by the API, which would remove
+ * the token from JS-readable storage entirely.
  */
-const tokenKey = (slug: string) => `ladygreener_portal_token_${slug}`;
+const tokenKey    = (slug: string) => `ladygreener_portal_token_${slug}`;
 const customerKey = (slug: string) => `ladygreener_portal_customer_${slug}`;
 const tipPendingKey = (slug: string) => `ladygreener_portal_tip_pending_${slug}`;
 
@@ -18,8 +24,8 @@ export type StoredSession = { token: string; customer: PortalCustomer };
 /** Saved session for this business, or null. A corrupt entry is discarded. */
 export function readSession(slug: string): StoredSession | null {
   if (typeof window === "undefined" || !slug) return null;
-  const token = localStorage.getItem(tokenKey(slug));
-  const raw = localStorage.getItem(customerKey(slug));
+  const token = sessionStorage.getItem(tokenKey(slug));
+  const raw   = sessionStorage.getItem(customerKey(slug));
   if (!token || !raw) return null;
   try {
     return { token, customer: JSON.parse(raw) as PortalCustomer };
@@ -30,13 +36,13 @@ export function readSession(slug: string): StoredSession | null {
 }
 
 export function saveSession(slug: string, session: StoredSession) {
-  localStorage.setItem(tokenKey(slug), session.token);
-  localStorage.setItem(customerKey(slug), JSON.stringify(session.customer));
+  sessionStorage.setItem(tokenKey(slug), session.token);
+  sessionStorage.setItem(customerKey(slug), JSON.stringify(session.customer));
 }
 
 export function clearSession(slug: string) {
-  localStorage.removeItem(tokenKey(slug));
-  localStorage.removeItem(customerKey(slug));
+  sessionStorage.removeItem(tokenKey(slug));
+  sessionStorage.removeItem(customerKey(slug));
 }
 
 /** The booking a customer was tipping when they left for Stripe Checkout. */

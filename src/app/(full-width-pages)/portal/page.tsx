@@ -49,8 +49,8 @@ export default function CustomerPortalHostPage() {
   const [tipCents, setTipCents] = useState(500);
 
   useEffect(() => {
-    const t = typeof window !== "undefined" ? localStorage.getItem(TOKEN_KEY) : null;
-    const c = typeof window !== "undefined" ? localStorage.getItem(CUSTOMER_KEY) : null;
+    const t = typeof window !== "undefined" ? sessionStorage.getItem(TOKEN_KEY) : null;
+    const c = typeof window !== "undefined" ? sessionStorage.getItem(CUSTOMER_KEY) : null;
     if (t && c) {
       try {
         setToken(t);
@@ -71,8 +71,8 @@ export default function CustomerPortalHostPage() {
         setBookings(await listPortalBookings(null, token));
       } catch (e) {
         setError(e instanceof Error ? e.message : t("errors.failedToLoadBookings"));
-        localStorage.removeItem(TOKEN_KEY);
-        localStorage.removeItem(CUSTOMER_KEY);
+        sessionStorage.removeItem(TOKEN_KEY);
+        sessionStorage.removeItem(CUSTOMER_KEY);
         setStep("phone");
       } finally {
         setLoading(false);
@@ -102,8 +102,8 @@ export default function CustomerPortalHostPage() {
     setError("");
     try {
       const data = await verifyPortalAccess(null, phone, code);
-      localStorage.setItem(TOKEN_KEY, data.token);
-      localStorage.setItem(CUSTOMER_KEY, JSON.stringify(data.customer));
+      sessionStorage.setItem(TOKEN_KEY, data.token);
+      sessionStorage.setItem(CUSTOMER_KEY, JSON.stringify(data.customer));
       setToken(data.token);
       setCustomer(data.customer);
       setStep("bookings");
@@ -115,8 +115,8 @@ export default function CustomerPortalHostPage() {
   };
 
   const logout = () => {
-    localStorage.removeItem(TOKEN_KEY);
-    localStorage.removeItem(CUSTOMER_KEY);
+    sessionStorage.removeItem(TOKEN_KEY);
+    sessionStorage.removeItem(CUSTOMER_KEY);
     setToken(null);
     setCustomer(null);
     setBookings([]);

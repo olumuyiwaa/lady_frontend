@@ -1,4 +1,5 @@
 import axios from "axios";
+import { sessionService } from "@/app/services/session.service";
 
 // Not currently wired into any page — authFetch.ts (fetch-based, with
 // refresh-token rotation) is the client actually in use. Kept consistent
@@ -8,11 +9,10 @@ const api = axios.create({
 });
 
 api.interceptors.request.use((config) => {
-    const token = localStorage.getItem("accessToken");
+    const token = sessionService.getAccessToken();
 
     if (token) {
         config.headers = config.headers ?? {};
-
         config.headers.Authorization = `Bearer ${token}`;
     }
 
