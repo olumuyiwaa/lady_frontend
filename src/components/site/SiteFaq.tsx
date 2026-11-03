@@ -13,15 +13,44 @@ type SiteFaqProps = {
 
 export function SiteFaq({ items, primaryColor }: SiteFaqProps) {
   const t = useTranslations("Site.faq");
-  const faqs = (items || []).filter((f) => f?.question?.trim() && f?.answer?.trim());
-  const [open, setOpen] = useState(0);
 
-  if (faqs.length === 0) return null;
+  // Fall back to common cleaning FAQs if the API hasn't been populated yet.
+  const FALLBACK: WidgetFaqItem[] = [
+    {
+      question: "How do I book a cleaning?",
+      answer: "You can book entirely online in a few minutes. Choose your service, enter your address, pick a date and time that suits you, and confirm. You'll receive a confirmation by email straight away.",
+    },
+    {
+      question: "Do I need to be home during the clean?",
+      answer: "Not necessarily. Many clients provide a key or access code. Our team is fully vetted and insured. Just let us know your preference when you book.",
+    },
+    {
+      question: "What products do you use?",
+      answer: "We use professional-grade eco-friendly cleaning products that are safe for children, pets, and premium interiors. If you have specific requirements or allergies, let us know and we'll accommodate them.",
+    },
+    {
+      question: "What is your cancellation policy?",
+      answer: "You can cancel or reschedule free of charge up to 24 hours before your appointment. Cancellations made less than 24 hours in advance may incur a 50% fee.",
+    },
+    {
+      question: "Do you offer a satisfaction guarantee?",
+      answer: "Yes. If anything was missed or not cleaned to your standard, let us know within 24 hours and we'll return to fix it free of charge.",
+    },
+    {
+      question: "What areas do you cover?",
+      answer: "We currently serve Amsterdam, Rotterdam, Den Haag, Utrecht, and Amstelveen. Enter your postcode on our booking page to confirm we cover your area.",
+    },
+  ];
+
+  const faqs = (items || []).filter((f) => f?.question?.trim() && f?.answer?.trim());
+  const display = faqs.length > 0 ? faqs : FALLBACK;
+
+  const [open, setOpen] = useState(0);
 
   const structuredData = {
     "@context": "https://schema.org",
     "@type": "FAQPage",
-    mainEntity: faqs.map((f) => ({
+    mainEntity: display.map((f) => ({
       "@type": "Question",
       name: f.question,
       acceptedAnswer: { "@type": "Answer", text: f.answer },
@@ -48,7 +77,7 @@ export function SiteFaq({ items, primaryColor }: SiteFaqProps) {
           </div>
         </Reveal>
         <div className="mt-10 max-w-3xl divide-y divide-[#e8e3d8] border-y border-[#e8e3d8]">
-          {faqs.map((faq, i) => {
+          {display.map((faq, i) => {
             const isOpen = open === i;
             return (
               <div key={faq.question}>

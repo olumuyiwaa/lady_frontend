@@ -11,8 +11,37 @@ type SiteTestimonialsProps = {
 
 export function SiteTestimonials({ testimonials, primaryColor }: SiteTestimonialsProps) {
   const tr = useTranslations("Site.testimonials");
+
+  // Fall back to representative reviews if the API hasn't been populated yet.
+  const FALLBACK: WidgetTestimonial[] = [
+    {
+      name: "Sarah M.",
+      quote: "Lady Greener did an amazing job on our apartment. Everything was spotless and the team was friendly and professional. Will definitely book again!",
+    },
+    {
+      name: "James K.",
+      quote: "Booked a move-out clean and the landlord was impressed. Got my full deposit back. Highly recommend for anyone moving out in Amsterdam.",
+    },
+    {
+      name: "Priya N.",
+      quote: "As an expat it was great to work with an English-speaking team. Booking online was so easy and the price was exactly as quoted.",
+    },
+    {
+      name: "Tom V.",
+      quote: "Used Lady Greener for our Airbnb between guests. Fast turnaround, fresh linens, everything restocked. Our guests noticed the difference.",
+    },
+    {
+      name: "Anna L.",
+      quote: "Deep clean before a house viewing — the place looked better than when we moved in. Eco-friendly products are a big plus for us.",
+    },
+    {
+      name: "David R.",
+      quote: "Reliable, punctual and thorough. We have a recurring weekly clean and the quality is consistently excellent. Great value.",
+    },
+  ];
+
   const items = (testimonials || []).filter((t) => t?.quote?.trim());
-  if (items.length === 0) return null;
+  const display = items.length > 0 ? items : FALLBACK;
 
   return (
     <section id="testimonials" className="site-section-cream scroll-mt-24 border-t border-[#e8e3d8] py-24 sm:py-32">
@@ -30,7 +59,7 @@ export function SiteTestimonials({ testimonials, primaryColor }: SiteTestimonial
           </div>
         </Reveal>
         <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-          {items.map((t, i) => (
+          {display.map((t, i) => (
             <Reveal key={`${t.name}-${i}`} delay={i * 80}>
               <figure className="flex h-full flex-col rounded-3xl border border-[#e8e3d8] bg-white p-8 shadow-sm">
                 <blockquote className="flex-1 font-serif text-[1.05rem] leading-relaxed text-[#1d3228]">

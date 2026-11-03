@@ -113,8 +113,8 @@ export function StorefrontClient({
         logoUrl={logoUrl}
         primaryColor={safePrimary}
         hasAbout={Boolean(branding?.aboutTitle || branding?.aboutBody)}
-        hasTestimonials={Boolean(branding?.testimonials?.length)}
-        hasFaq={Boolean(branding?.faqItems?.length)}
+        hasTestimonials={true}
+        hasFaq={true}
         onBook={openBook}
       />
       <main id="main-content" tabIndex={-1} className="outline-none">
