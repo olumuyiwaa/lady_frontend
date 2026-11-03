@@ -27,6 +27,7 @@ export function SiteGallery({ imageUrls, primaryColor, businessName }: SiteGalle
               />
               {t("eyebrow")}
             </span>
+            <h2 className="site-section-title mt-5">{t("title")}</h2>
           </div>
         </Reveal>
         <div className="mt-10 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4">

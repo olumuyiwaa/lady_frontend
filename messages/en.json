@@ -1914,7 +1914,11 @@
       "call": "Call {phone}",
       "proofTrusted": "Trusted local cleaners",
       "proofFlexible": "Flexible scheduling",
-      "proofClear": "Clear booking details"
+      "proofClear": "Clear booking details",
+      "proofReviews": "{score}★ · {count} verified reviews",
+      "proofEco": "Eco-friendly products",
+      "proofPayAfter": "Pay after cleaning",
+      "proofEnglish": "English-speaking staff"
     },
     "services": {
       "eyebrow": "Cleaning services",
@@ -1929,6 +1933,13 @@
       "portalLink": "Client portal",
       "noDescription": "Details available when you book.",
       "addons": "{count, plural, one {# add-on available} other {# add-ons available}}",
+      "trustLabel": "Why choose us",
+      "trustPayAfter": "Pay after cleaning",
+      "trustEco": "Eco-friendly products",
+      "trustEnglish": "English-speaking staff",
+      "trustRated": "4.8★ top local ratings",
+      "trustMoveOut": "Move-out experts",
+      "trustBooking": "Fast online booking",
       "model": {
         "FLAT": "Fixed price",
         "PER_SQFT": "Per m²",
@@ -1947,7 +1958,9 @@
       "step3Title": "Quality-checked service",
       "step3Body": "Your booking is completed with care, and you can arrange another visit whenever you need one.",
       "beforeAlt": "Room before cleaning",
-      "afterAlt": "Room after cleaning"
+      "afterAlt": "Room after cleaning",
+      "beforeLabel": "Before",
+      "afterLabel": "After"
     },
     "contact": {
       "eyebrow": "Contact",
@@ -2014,12 +2027,16 @@
       "eyebrow": "Frequently asked questions",
       "title": "Good to know before you book."
     },
+    "about": {
+      "eyebrow": "About the service"
+    },
     "testimonials": {
       "eyebrow": "Client testimonials",
       "title": "Trusted by our customers."
     },
     "gallery": {
-      "eyebrow": "Our work"
+      "eyebrow": "Our work",
+      "title": "A glimpse of what we do."
     },
     "cta": {
       "title": "Ready for a cleaner home?",

@@ -30,6 +30,8 @@ export function SiteHowItWorks({ primaryColor }: SiteHowItWorksProps) {
               afterSrc="/images/after-room.jpg"
               beforeAlt={t("beforeAlt")}
               afterAlt={t("afterAlt")}
+              beforeLabel={t("beforeLabel")}
+              afterLabel={t("afterLabel")}
             />
           </div>
         </Reveal>

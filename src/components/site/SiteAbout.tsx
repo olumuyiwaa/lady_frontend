@@ -1,5 +1,6 @@
 "use client";
 
+import { useTranslations } from "next-intl";
 import { Reveal } from "./Reveal";
 import { SiteImage } from "./SiteImage";
 
@@ -11,6 +12,8 @@ type SiteAboutProps = {
 };
 
 export function SiteAbout({ title, body, heroImageUrl, primaryColor }: SiteAboutProps) {
+  const t = useTranslations("Site.about");
+
   // Nothing configured — skip entirely rather than render an empty shell.
   // A business toggling this section on before writing anything can't
   // accidentally publish a blank block.
@@ -26,7 +29,7 @@ export function SiteAbout({ title, body, heroImageUrl, primaryColor }: SiteAbout
                 className="site-eyebrow-dot"
                 style={{ backgroundColor: primaryColor, boxShadow: `0 0 0 5px ${primaryColor}1f` }}
               />
-                About the service
+              {t("eyebrow")}
             </span>
             {title && (
               <h2 className="site-section-title mt-5">{title}</h2>

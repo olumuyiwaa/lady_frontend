@@ -125,6 +125,8 @@ export function StorefrontClient({
           heroImageUrl={branding?.heroImageUrl}
           phoneNumber={business.phone}
           accentColor={accentColor}
+          reviewScore={branding?.reviewScore ?? 4.8}
+          reviewCount={branding?.reviewCount ?? 146}
           onBook={openBook}
           onBookWithPostcode={openBookWithPostcode}
         />

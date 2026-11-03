@@ -1914,7 +1914,11 @@
       "call": "Bel {phone}",
       "proofTrusted": "Betrouwbare lokale schoonmakers",
       "proofFlexible": "Flexibele planning",
-      "proofClear": "Duidelijke boekingsdetails"
+      "proofClear": "Duidelijke boekingsdetails",
+      "proofReviews": "{score}★ · {count} beoordelingen",
+      "proofEco": "Milieuvriendelijke producten",
+      "proofPayAfter": "Betalen na de schoonmaak",
+      "proofEnglish": "Engelstalig personeel"
     },
     "services": {
       "eyebrow": "Schoonmaakdiensten",
@@ -1929,6 +1933,13 @@
       "portalLink": "Klantportaal",
       "noDescription": "Details ziet u bij het boeken.",
       "addons": "{count, plural, one {# extra beschikbaar} other {# extra's beschikbaar}}",
+      "trustLabel": "Waarom voor ons kiezen",
+      "trustPayAfter": "Betalen na de schoonmaak",
+      "trustEco": "Milieuvriendelijke producten",
+      "trustEnglish": "Engelstalig personeel",
+      "trustRated": "4,8★ beste lokale beoordeling",
+      "trustMoveOut": "Experts in eindoplevering",
+      "trustBooking": "Snel online boeken",
       "model": {
         "FLAT": "Vaste prijs",
         "PER_SQFT": "Per m²",
@@ -1947,7 +1958,9 @@
       "step3Title": "Kwaliteitsgecontroleerde service",
       "step3Body": "Uw boeking wordt zorgvuldig afgerond, en u kunt eenvoudig een volgende afspraak plannen wanneer u wilt.",
       "beforeAlt": "Kamer vóór schoonmaak",
-      "afterAlt": "Kamer na schoonmaak"
+      "afterAlt": "Kamer na schoonmaak",
+      "beforeLabel": "Voor",
+      "afterLabel": "Na"
     },
     "contact": {
       "eyebrow": "Contact",
@@ -2014,12 +2027,16 @@
       "eyebrow": "Veelgestelde vragen",
       "title": "Goed om te weten voordat u boekt."
     },
+    "about": {
+      "eyebrow": "Over de dienst"
+    },
     "testimonials": {
       "eyebrow": "Klantervaringen",
       "title": "Vertrouwd door onze klanten."
     },
     "gallery": {
-      "eyebrow": "Ons werk"
+      "eyebrow": "Ons werk",
+      "title": "Een kijkje in wat wij doen."
     },
     "cta": {
       "title": "Klaar voor een schoner huis?",

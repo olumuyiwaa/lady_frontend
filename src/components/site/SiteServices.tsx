@@ -58,6 +58,15 @@ export function SiteServices({
 
   const active = services.filter((s) => s.isActive !== false);
 
+  const trustItems = [
+    { icon: "💳", label: t("trustPayAfter") },
+    { icon: "🌿", label: t("trustEco") },
+    { icon: "🌍", label: t("trustEnglish") },
+    { icon: "⭐", label: t("trustRated") },
+    { icon: "🏠", label: t("trustMoveOut") },
+    { icon: "📅", label: t("trustBooking") },
+  ];
+
   return (
       <section id="services" className="site-section-light scroll-mt-24 py-20 sm:py-24">
         <div className="site-container">
@@ -80,8 +89,22 @@ export function SiteServices({
             </div>
           </Reveal>
 
-          <ul className="site-service-grid mt-12">
-            {active.map((svc, i) => {
+          {/* Trust USP strip */}
+          <Reveal>
+            <ul className="mt-10 mb-6 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-6" aria-label={t("trustLabel")}>
+              {trustItems.map((item) => (
+                <li
+                  key={item.label}
+                  className="flex flex-col items-center gap-2 rounded-2xl border border-[#e6e1d6] bg-[#faf9f6] px-3 py-4 text-center"
+                >
+                  <span className="text-2xl" aria-hidden="true">{item.icon}</span>
+                  <span className="text-xs font-semibold leading-snug text-[#374b43]">{item.label}</span>
+                </li>
+              ))}
+            </ul>
+          </Reveal>
+
+          <ul className="site-service-grid mt-12">            {active.map((svc, i) => {
               const price = centsToDisplay(svc.basePriceCents, currency);
               const modelLabel = t(`model.${svc.pricingModel}` as "model.FLAT");
               const addOnCount = svc.addOns?.length ?? 0;

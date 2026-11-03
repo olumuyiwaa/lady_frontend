@@ -8,6 +8,10 @@ type BeforeAfterSliderProps = {
   afterSrc: string;
   beforeAlt?: string;
   afterAlt?: string;
+  /** Visible label overlaid on the before panel */
+  beforeLabel?: string;
+  /** Visible label overlaid on the after panel */
+  afterLabel?: string;
 };
 
 export default function BeforeAfterSlider({
@@ -15,6 +19,8 @@ export default function BeforeAfterSlider({
                                             afterSrc,
                                             beforeAlt = "Before cleaning",
                                             afterAlt = "After cleaning",
+                                            beforeLabel = "Before",
+                                            afterLabel = "After",
                                           }: BeforeAfterSliderProps) {
   const [pct, setPct] = useState(55);
   const [trackWidth, setTrackWidth] = useState(800);
@@ -89,11 +95,11 @@ export default function BeforeAfterSlider({
         </div>
 
         <span className="site-eyebrow absolute left-3 top-3 rounded-sm bg-ink/80 px-2 py-1 text-xs font-medium text-paper">
-        Before
-      </span>
+          {beforeLabel}
+        </span>
         <span className="site-eyebrow absolute right-3 top-3 rounded-sm bg-sage-700/85 px-2 py-1 text-xs font-medium text-paper">
-        After
-      </span>
+          {afterLabel}
+        </span>
 
         <div className="absolute top-0 bottom-0 w-0.5 bg-paper" style={{ left: `${pct}%` }}>
           <div className="absolute top-1/2 left-1/2 grid h-9 w-9 -translate-x-1/2 -translate-y-1/2 place-items-center rounded-full bg-paper shadow-md cursor-ew-resize">

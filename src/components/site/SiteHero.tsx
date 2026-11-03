@@ -14,6 +14,10 @@ type SiteHeroProps = {
   heroImageUrl?: string | null;
   phoneNumber?: string | null;
   accentColor?: string | null;
+  /** Average review score, e.g. 4.8 */
+  reviewScore?: number | null;
+  /** Total number of reviews */
+  reviewCount?: number | null;
   onBook?: () => void;
   /** Start a booking with a postcode the visitor already checked. */
   onBookWithPostcode?: (postalCode: string) => void;
@@ -40,6 +44,8 @@ export function SiteHero({
   heroImageUrl,
   phoneNumber,
   accentColor,
+  reviewScore,
+  reviewCount,
   onBook,
   onBookWithPostcode,
 }: SiteHeroProps) {
@@ -107,9 +113,15 @@ export function SiteHero({
             <SitePostcodeCheck subdomain={subdomain} businessName={businessName} onBook={onBookWithPostcode} />
 
             <div className="site-hero-proof mt-8" aria-label="Service highlights">
-              <span>{t("proofTrusted")}</span>
-              <span>{t("proofFlexible")}</span>
-              <span>{t("proofClear")}</span>
+              {reviewScore && reviewCount ? (
+                <span className="site-hero-proof-reviews">
+                  <span className="site-hero-proof-stars" aria-hidden="true">★★★★★</span>
+                  {t("proofReviews", { score: reviewScore.toFixed(1), count: reviewCount })}
+                </span>
+              ) : null}
+              <span>{t("proofEco")}</span>
+              <span>{t("proofPayAfter")}</span>
+              <span>{t("proofEnglish")}</span>
             </div>
           </div>
         </Reveal>

@@ -76,6 +76,10 @@ export type WidgetBranding = {
   galleryImageUrls?: string[];
   socialLinks?: WidgetSocialLinks | null;
   sectionsEnabled?: WidgetSectionsEnabled | null;
+  /** Average Google/review score shown in the hero social proof strip. */
+  reviewScore?: number | null;
+  /** Total verified review count shown alongside the score. */
+  reviewCount?: number | null;
 };
 
 export type WidgetBusiness = {
