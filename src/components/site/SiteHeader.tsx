@@ -48,7 +48,6 @@ export function SiteHeader({
     { label: t("contact"), href: "#contact" },
   ];
 
-  const initial = businessName.trim().charAt(0).toUpperCase() || "C";
   const paths = useTenantPaths(subdomain);
   const bookHref = paths.book;
   const portalHref = paths.portal;
@@ -64,29 +63,30 @@ export function SiteHeader({
   return (
       <header className="site-header-shell fixed inset-x-0 top-4 z-50 px-4 sm:top-5 sm:px-7">
         <div className={`site-header-pill mx-auto flex max-w-[1400px] items-center justify-between gap-3 px-4 py-3 sm:px-7 ${scrolled ? "site-header-pill-scrolled" : ""}`}>
-          <a href="#top" className="flex min-w-0 items-center gap-3 shrink-0">
+          <a href="#top" className="flex min-w-0 items-center gap-2.5 shrink-0">
             {logoUrl ? (
                 <SiteImage
                     src={logoUrl}
                     alt={businessName}
-                    width={48}
-                    height={48}
+                    width={52}
+                    height={52}
                     preload
-                    className="h-10 w-10 rounded-lg object-contain sm:h-12 sm:w-12"
+                    className="h-11 w-11 rounded-full object-contain sm:h-[52px] sm:w-[52px]"
                 />
             ) : (
-                <span
-                    className="grid h-10 w-10 place-items-center rounded-lg text-base font-semibold text-white shadow-sm sm:h-12 sm:w-12"
-                    style={{
-                      background: `linear-gradient(135deg, ${primaryColor}, ${primaryColor}cc)`,
-                    }}
-                >
-              {initial}
-            </span>
+                <img
+                    src="/images/logo/ladygreener-logo.png"
+                    alt={businessName}
+                    width={52}
+                    height={52}
+                    className="h-11 w-11 rounded-full object-contain sm:h-[52px] sm:w-[52px]"
+                    loading="eager"
+                    fetchPriority="high"
+                />
             )}
-            <span className="truncate text-base font-semibold tracking-tight text-[#102c24] sm:text-lg">
-            {businessName}
-          </span>
+            <span className="truncate text-base font-semibold tracking-tight text-[#0a2e22] sm:text-lg">
+              {businessName}
+            </span>
           </a>
 
           <nav className="hidden items-center gap-1 lg:flex" aria-label={t("siteNav")}>

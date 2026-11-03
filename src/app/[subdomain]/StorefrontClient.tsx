@@ -150,6 +150,7 @@ export function StorefrontClient({
       <SiteFooter
         subdomain={subdomain}
         businessName={name}
+        logoUrl={logoUrl}
         onBook={openBook}
         phoneNumber={business.phone}
         socialLinks={branding?.socialLinks}

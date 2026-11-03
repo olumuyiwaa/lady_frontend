@@ -143,6 +143,7 @@ export function LegalPage({
       <SiteFooter
         subdomain={subdomain}
         businessName={businessName}
+        logoUrl={logoUrl}
         phoneNumber={phone}
         primaryColor={primaryColor}
         accentColor={accentColor}

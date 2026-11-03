@@ -9,6 +9,7 @@ import { useTenantPaths } from "@/lib/tenantPaths";
 type SiteFooterProps = {
   subdomain: string;
   businessName: string;
+  logoUrl?: string | null;
   onBook?: () => void;
   phoneNumber?: string | null;
   socialLinks?: Partial<
@@ -31,6 +32,7 @@ const SOCIAL_LABELS: Record<string, string> = {
 export function SiteFooter({
   subdomain,
   businessName,
+  logoUrl,
   onBook,
   phoneNumber,
   socialLinks,
@@ -40,7 +42,6 @@ export function SiteFooter({
 }: SiteFooterProps) {
   const t = useTranslations("Site.footer");
   const tn = useTranslations("Site.nav");
-  const initial = businessName.trim().charAt(0).toUpperCase() || "C";
   const paths = useTenantPaths(subdomain);
   const bookHref = paths.book;
   const socialEntries = Object.entries(socialLinks || {}).filter(([, url]) => !!url);
@@ -58,12 +59,26 @@ export function SiteFooter({
         <div className="grid gap-10 sm:grid-cols-[1.5fr_1fr_1fr_1fr] sm:gap-12">
           <div>
             <div className="flex items-center gap-2.5">
-              <span
-                className="grid h-8 w-8 place-items-center rounded-lg text-sm font-semibold"
-                style={{ backgroundColor: primaryColor, color: readableTextOn(primaryColor) }}
-              >
-                {initial}
-              </span>
+              {logoUrl ? (
+                // eslint-disable-next-line @next/next/no-img-element
+                <img
+                  src={logoUrl}
+                  alt={businessName}
+                  width={40}
+                  height={40}
+                  className="h-10 w-10 rounded-full object-contain"
+                />
+              ) : (
+                // eslint-disable-next-line @next/next/no-img-element
+                <img
+                  src="/images/logo/ladygreener-logo.png"
+                  alt={businessName}
+                  width={40}
+                  height={40}
+                  className="h-10 w-10 rounded-full object-contain"
+                  loading="lazy"
+                />
+              )}
               <span className="text-base font-semibold text-white/85 hover:text-white">
                 {businessName}
               </span>
