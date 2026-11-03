@@ -42,7 +42,13 @@ export function proxy(req: NextRequest) {
     return NextResponse.redirect(clean, 307);
   }
 
-  if (pathname === "/" || pathname === "/portal" || pathname.startsWith("/portal/")) {
+  // Paths that belong to the storefront and need rewriting to /{slug}/...
+  const STOREFRONT_PATHS = ["/portal", "/terms", "/privacy", "/cookies"];
+  const isStorefrontPath =
+    pathname === "/" ||
+    STOREFRONT_PATHS.some((p) => pathname === p || pathname.startsWith(`${p}/`));
+
+  if (isStorefrontPath) {
     const url = req.nextUrl.clone();
     url.pathname = `${prefix}${pathname === "/" ? "" : pathname}`;
     return withTenant(req, url);

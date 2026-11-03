@@ -1985,7 +1985,11 @@
       "viewServices": "Bekijk diensten",
       "portal": "Klantportaal",
       "rights": "Alle rechten voorbehouden.",
-      "poweredBy": "Mogelijk gemaakt door"
+      "poweredBy": "Mogelijk gemaakt door",
+      "legal": "Juridisch",
+      "legalPrivacy": "Privacybeleid",
+      "legalTerms": "Algemene voorwaarden",
+      "legalCookies": "Cookiebeleid"
     },
     "postcode": {
       "label": "Werken wij in uw buurt?",

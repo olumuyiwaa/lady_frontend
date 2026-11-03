@@ -1985,7 +1985,11 @@
       "viewServices": "View services",
       "portal": "Client portal",
       "rights": "All rights reserved.",
-      "poweredBy": "Powered by"
+      "poweredBy": "Powered by",
+      "legal": "Legal",
+      "legalPrivacy": "Privacy Policy",
+      "legalTerms": "Terms & Conditions",
+      "legalCookies": "Cookie Policy"
     },
     "postcode": {
       "label": "Do we clean in your area?",

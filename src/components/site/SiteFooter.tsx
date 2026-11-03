@@ -55,7 +55,7 @@ export function SiteFooter({
   return (
     <footer id="site-footer" className="site-footer border-t border-[#e4dfd4]">
       <div className="site-container py-12 sm:py-14">
-        <div className="grid gap-10 sm:grid-cols-[1.5fr_1fr_1fr] sm:gap-12">
+        <div className="grid gap-10 sm:grid-cols-[1.5fr_1fr_1fr_1fr] sm:gap-12">
           <div>
             <div className="flex items-center gap-2.5">
               <span
@@ -111,6 +111,23 @@ export function SiteFooter({
               {t("portal")}
             </Link>
           </div>
+
+          <div className="flex flex-col gap-3">
+            <h2 className="text-sm font-semibold uppercase tracking-[0.12em]"
+              style={{ color: accentColor }}>
+              {t("legal")}
+            </h2>
+            <Link href={`${paths.home}/privacy`} className="text-sm text-white/80 hover:text-white">
+              {t("legalPrivacy")}
+            </Link>
+            <Link href={`${paths.home}/terms`} className="text-sm text-white/80 hover:text-white">
+              {t("legalTerms")}
+            </Link>
+            <Link href={`${paths.home}/cookies`} className="text-sm text-white/80 hover:text-white">
+              {t("legalCookies")}
+            </Link>
+          </div>
+
           <div className="flex flex-col gap-3 sm:items-start">
             <h2 className="text-sm font-semibold uppercase tracking-[0.12em]"
               style={{ color: accentColor }}>
@@ -151,6 +168,17 @@ export function SiteFooter({
           <p className="text-xs text-white/55">
             © {new Date().getFullYear()} {businessName}. {t("rights")}
           </p>
+          <div className="flex flex-wrap gap-4">
+            <Link href={`${paths.home}/privacy`} className="text-xs text-white/45 hover:text-white/80">
+              {t("legalPrivacy")}
+            </Link>
+            <Link href={`${paths.home}/terms`} className="text-xs text-white/45 hover:text-white/80">
+              {t("legalTerms")}
+            </Link>
+            <Link href={`${paths.home}/cookies`} className="text-xs text-white/45 hover:text-white/80">
+              {t("legalCookies")}
+            </Link>
+          </div>
         </div>
       </div>
     </footer>
