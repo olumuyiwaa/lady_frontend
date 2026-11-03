@@ -128,10 +128,10 @@ export function SiteContact({ subdomain, businessName, primaryColor, phoneNumber
   return (
     <section
       id="contact"
-      className="site-section-cream scroll-mt-24 border-t border-[#e7e3d9] py-20 sm:py-24"
+      className="site-section-cream scroll-mt-24 border-t border-[#e8e3d8] py-24 sm:py-32"
       aria-labelledby={`${uid}-title`}
     >
-      <div className="site-container grid gap-10 lg:grid-cols-[minmax(0,0.8fr)_minmax(0,1fr)] lg:gap-16">
+      <div className="site-container grid gap-12 lg:grid-cols-[minmax(0,0.75fr)_minmax(0,1fr)] lg:gap-20">
         <Reveal>
           <div className="max-w-md">
             <span className="site-eyebrow">
@@ -157,7 +157,7 @@ export function SiteContact({ subdomain, businessName, primaryColor, phoneNumber
         </Reveal>
 
         <Reveal delay={80}>
-          <div className="rounded-2xl border border-[#e4dfd4] bg-white p-6 shadow-sm sm:p-8">
+          <div className="rounded-3xl border border-[#e8e3d8] bg-white p-7 shadow-sm sm:p-10">
             {status === "sent" ? (
               <div role="status" aria-live="polite" className="py-6 text-center">
                 <span

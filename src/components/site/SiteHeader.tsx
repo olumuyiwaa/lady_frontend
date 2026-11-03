@@ -94,7 +94,7 @@ export function SiteHeader({
                 <a
                     key={item.href}
                     href={item.href}
-                    className="rounded-full px-3 py-2 text-sm font-semibold text-[#253d34] transition-colors hover:bg-[#f3f0e9] hover:text-[#102c24] xl:px-4"
+                    className="rounded-full px-3 py-2 text-sm font-semibold text-[#1a2e25] transition-colors hover:bg-[#f0ede6] hover:text-[#0a2e22] xl:px-4"
                 >
                   {item.label}
                 </a>
@@ -105,16 +105,16 @@ export function SiteHeader({
             <LanguageSwitcher />
             <Link
                 href={portalHref}
-                className="inline-flex min-h-11 items-center rounded-full px-4 py-2 text-sm font-semibold text-[#253d34] transition-colors hover:bg-[#f3f0e9]"
+                className="inline-flex min-h-11 items-center rounded-full px-4 py-2 text-sm font-semibold text-[#1a2e25] transition-colors hover:bg-[#f0ede6]"
             >
               {t("portal")}
             </Link>
             <a
                 href={bookHref}
                 onClick={handleBook}
-                className="inline-flex min-h-11 items-center gap-2 rounded-full bg-[#082e25] px-5 py-2 text-sm font-semibold text-white transition-transform hover:-translate-y-0.5"
+                className="inline-flex min-h-11 items-center gap-2 rounded-full bg-[#0a2e22] px-5 py-2 text-sm font-semibold text-white transition-all hover:-translate-y-0.5 hover:brightness-110"
                 style={{
-                  boxShadow: "0 8px 24px rgba(8, 46, 37, .18)",
+                  boxShadow: "0 6px 20px rgba(10, 46, 34, .20)",
                 }}
             >
               {t("book")}

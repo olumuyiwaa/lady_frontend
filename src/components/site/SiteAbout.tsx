@@ -20,14 +20,14 @@ export function SiteAbout({ title, body, heroImageUrl, primaryColor }: SiteAbout
   if (!title && !body) return null;
 
   return (
-    <section id="about" className="site-section-light scroll-mt-24 border-t border-[#e7e3d9] py-20 sm:py-24">
-      <div className="site-container grid gap-10 lg:grid-cols-2 lg:items-center">
+    <section id="about" className="site-section-light scroll-mt-24 border-t border-[#e8e3d8] py-24 sm:py-32">
+      <div className="site-container grid gap-14 lg:grid-cols-2 lg:items-center lg:gap-24">
         <Reveal>
           <div>
             <span className="site-eyebrow">
               <span
                 className="site-eyebrow-dot"
-                style={{ backgroundColor: primaryColor, boxShadow: `0 0 0 5px ${primaryColor}1f` }}
+                style={{ backgroundColor: primaryColor, boxShadow: `0 0 0 4px ${primaryColor}18` }}
               />
               {t("eyebrow")}
             </span>
@@ -35,7 +35,7 @@ export function SiteAbout({ title, body, heroImageUrl, primaryColor }: SiteAbout
               <h2 className="site-section-title mt-5">{title}</h2>
             )}
             {body && (
-              <p className="mt-5 whitespace-pre-line text-base leading-relaxed text-[#616963] sm:text-lg">{body}</p>
+              <p className="mt-5 whitespace-pre-line text-base leading-relaxed text-[#5c6b64] sm:text-lg">{body}</p>
             )}
           </div>
         </Reveal>
@@ -44,10 +44,10 @@ export function SiteAbout({ title, body, heroImageUrl, primaryColor }: SiteAbout
             <SiteImage
               src={heroImageUrl}
               alt=""
-              width={800}
-              height={600}
+              width={900}
+              height={680}
               sizes="(min-width: 1024px) 50vw, 100vw"
-              className="aspect-[4/3] w-full rounded-2xl border border-[#E8E4DE] object-cover shadow-sm"
+              className="aspect-[4/3] w-full rounded-3xl border border-[#e8e3d8] object-cover shadow-md"
             />
           </Reveal>
         )}

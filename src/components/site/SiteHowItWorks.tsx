@@ -20,9 +20,9 @@ export function SiteHowItWorks({ primaryColor }: SiteHowItWorksProps) {
   return (
     <section
       id="how-it-works"
-      className="site-section-cream scroll-mt-24 border-t border-[#e7e3d9] py-20 sm:py-24"
+      className="site-section-cream scroll-mt-24 border-t border-[#e8e3d8] py-24 sm:py-32"
     >
-      <div className="site-container grid items-center gap-12 lg:grid-cols-[minmax(0,0.95fr)_minmax(0,1fr)] lg:gap-20">
+      <div className="site-container grid items-center gap-14 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] lg:gap-24">
         <Reveal>
           <div className="site-process-image">
             <BeforeAfterSlider
@@ -47,7 +47,7 @@ export function SiteHowItWorks({ primaryColor }: SiteHowItWorksProps) {
                 {t("eyebrow")}
               </span>
               <h2 className="site-section-title mt-5">{t("title")}</h2>
-              <p className="mt-4 text-base leading-relaxed text-[#616963] sm:text-lg">
+              <p className="mt-4 text-base leading-relaxed text-[#5c6b64] sm:text-lg">
                 {t("subtitle")}
               </p>
             </div>
@@ -58,10 +58,10 @@ export function SiteHowItWorks({ primaryColor }: SiteHowItWorksProps) {
                 <li className="site-process-step">
                   <span className="site-process-number">{item.step}</span>
                   <div>
-                    <h3 className="text-lg font-semibold text-[#102c24]">
+                    <h3 className="text-base font-semibold text-[#111918]">
                       {item.title}
                     </h3>
-                    <p className="mt-2 text-sm leading-relaxed text-[#616963]">
+                    <p className="mt-1.5 text-sm leading-relaxed text-[#5c6b64]">
                       {item.body}
                     </p>
                   </div>
