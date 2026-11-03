@@ -41,7 +41,7 @@ function formatLabel(value?: string | null) {
 function getActionBadgeClass(action: string): string {
     switch (action) {
         case "CREATE":  return "bg-green-100 text-green-700 dark:bg-green-500/10 dark:text-green-300";
-        case "UPDATE":  return "bg-blue-100 text-blue-700 dark:bg-blue-500/10 dark:text-blue-300";
+        case "UPDATE":  return "bg-brand-50 text-brand-700 dark:bg-brand-500/10 dark:text-brand-300";
         case "DELETE":  return "bg-red-100 text-red-700 dark:bg-red-500/10 dark:text-red-300";
         case "LOGIN":
         case "LOGOUT":  return "bg-gray-100 text-gray-700 dark:bg-gray-700 dark:text-gray-300";

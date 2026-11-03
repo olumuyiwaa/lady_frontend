@@ -27,7 +27,7 @@ const EVENT_TYPE_CONFIG: Record<
 > = {
     BOOKING: {
         label: "booking",
-        badgeClass: "bg-blue-100 text-blue-700 dark:bg-blue-500/10 dark:text-blue-300",
+        badgeClass: "bg-brand-50 text-brand-700 dark:bg-brand-500/10 dark:text-brand-300",
     },
     RECURRING: {
         label: "recurring",

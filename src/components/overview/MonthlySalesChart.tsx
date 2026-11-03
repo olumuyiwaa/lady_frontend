@@ -46,7 +46,7 @@ export default function MonthlySalesChart({
   const empty = !data?.length || values.every((v) => !v);
 
   const options: ApexOptions = {
-    colors: ["#465fff"],
+    colors: ["#0a2e22"],
     chart: {
       fontFamily: "Outfit, sans-serif",
       type: "bar",

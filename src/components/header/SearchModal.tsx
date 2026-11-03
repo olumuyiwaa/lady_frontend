@@ -105,7 +105,7 @@ export default function SearchModal({ isOpen, onClose, initialQuery = "",onResul
             <button
               onClick={() => setActiveTab("ALL")}
               className={`whitespace-nowrap rounded-lg px-3 py-1.5 text-xs font-medium transition-colors ${
-                activeTab === "ALL" ? "bg-blue-600 text-white" : "bg-gray-100 text-gray-600 hover:bg-gray-200 dark:bg-gray-800 dark:text-gray-400"
+                activeTab === "ALL" ? "bg-brand-600 text-white" : "bg-gray-100 text-gray-600 hover:bg-gray-200 dark:bg-gray-800 dark:text-gray-400"
               }`}
             >
               All Results
@@ -115,7 +115,7 @@ export default function SearchModal({ isOpen, onClose, initialQuery = "",onResul
                 key={cat}
                 onClick={() => setActiveTab(cat)}
                 className={`whitespace-nowrap rounded-lg px-3 py-1.5 text-xs font-medium transition-colors ${
-                  activeTab === cat ? "bg-blue-600 text-white" : "bg-gray-100 text-gray-600 hover:bg-gray-200 dark:bg-gray-800 dark:text-gray-400"
+                  activeTab === cat ? "bg-brand-600 text-white" : "bg-gray-100 text-gray-600 hover:bg-gray-200 dark:bg-gray-800 dark:text-gray-400"
                 }`}
               >
                 {cat} ({results[cat].length})
@@ -146,7 +146,7 @@ export default function SearchModal({ isOpen, onClose, initialQuery = "",onResul
                   <div className="flex-1">
                     <div className="flex items-center gap-2">
                       <span className="text-sm font-semibold text-gray-900 dark:text-white">{item.title}</span>
-                      <span className="rounded-full bg-blue-50 px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider text-blue-600 dark:bg-blue-900/30 dark:text-blue-400">
+                      <span className="rounded-full bg-brand-50 px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider text-brand-600 dark:bg-brand-900/30 dark:text-brand-400">
                         {item.badge}
                       </span>
                     </div>

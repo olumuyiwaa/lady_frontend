@@ -181,7 +181,7 @@ export default function UserDetailsModal({
                                 </span>
                                                         </td>
                                                         <td className="px-5 py-4">
-                                <span className="rounded-full bg-blue-50 px-2.5 py-1 text-xs font-medium text-blue-700 dark:bg-blue-500/10 dark:text-blue-300">
+                                <span className="rounded-full bg-brand-50 px-2.5 py-1 text-xs font-medium text-brand-700 dark:bg-brand-500/10 dark:text-brand-300">
                                     {credential.status}
                                 </span>
                                                         </td>
@@ -233,7 +233,7 @@ export default function UserDetailsModal({
                                         type="button"
                                         onClick={onRestore}
                                         disabled={isRestoring || user.status === "ACTIVE"}
-                                        className="rounded-lg bg-blue-500 px-4 py-2.5 text-sm font-medium text-white disabled:opacity-50"
+                                        className="rounded-lg bg-brand-500 px-4 py-2.5 text-sm font-medium text-white disabled:opacity-50"
                                     >
                                         {isRestoring ? "Restoring..." : "Restore User"}
                                     </button>

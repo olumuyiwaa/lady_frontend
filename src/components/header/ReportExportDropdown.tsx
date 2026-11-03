@@ -180,7 +180,7 @@ export default function ReportExportDropdown() {
             // className="dropdown-toggle relative flex h-11 w-11 items-center justify-center rounded-full border border-gray-200 bg-white text-gray-500 transition-colors hover:bg-gray-100 hover:text-gray-700 dark:border-gray-800 dark:bg-gray-900 dark:text-gray-400 dark:hover:bg-gray-800 dark:hover:text-white"
             className={`dropdown-toggle relative flex h-11 w-11 items-center justify-center rounded-full border transition-all duration-200
           ${isOpen
-                ? "border-blue-500 bg-blue-50 text-blue-600 shadow-sm"
+                ? "border-brand-500 bg-brand-50 text-brand-600 shadow-sm"
                 : "border-gray-200 bg-white text-gray-500 hover:border-gray-300 hover:bg-gray-50 dark:border-gray-800 dark:bg-gray-900 dark:text-gray-400 dark:hover:bg-gray-800"
             }`}
             onClick={() => setIsOpen(!isOpen)}
@@ -212,7 +212,7 @@ export default function ReportExportDropdown() {
               <select
                   value={reportType}
                   onChange={(e) => setReportType(e.target.value as ReportType)}
-                  className="w-full rounded-md border border-gray-200 bg-white px-3 py-2 text-sm text-gray-900 outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/10 dark:border-gray-800 dark:bg-gray-900 dark:text-white"
+                  className="w-full rounded-md border border-gray-200 bg-white px-3 py-2 text-sm text-gray-900 outline-none focus:border-brand-300 focus:ring-2 focus:ring-brand-500/10 dark:border-gray-800 dark:bg-gray-900 dark:text-white"
               >
                 <option value="dashboard">Dashboard Summary</option>
                 <option value="shifts">Shift Analytics</option>
@@ -234,7 +234,7 @@ export default function ReportExportDropdown() {
                       type="date"
                       value={from}
                       onChange={(e) => setFrom(e.target.value)}
-                      className="w-full rounded-md border border-gray-200 bg-white p-2 text-xs text-gray-900 outline-none focus:border-blue-500 dark:border-gray-800 dark:bg-gray-900 dark:text-white"
+                      className="w-full rounded-md border border-gray-200 bg-white p-2 text-xs text-gray-900 outline-none focus:border-brand-300 dark:border-gray-800 dark:bg-gray-900 dark:text-white"
                   />
                 </div>
                 <div className="relative">
@@ -242,7 +242,7 @@ export default function ReportExportDropdown() {
                       type="date"
                       value={to}
                       onChange={(e) => setTo(e.target.value)}
-                      className="w-full rounded-md border border-gray-200 bg-white p-2 text-xs text-gray-900 outline-none focus:border-blue-500 dark:border-gray-800 dark:bg-gray-900 dark:text-white"
+                      className="w-full rounded-md border border-gray-200 bg-white p-2 text-xs text-gray-900 outline-none focus:border-brand-300 dark:border-gray-800 dark:bg-gray-900 dark:text-white"
                   />
                 </div>
               </div>
@@ -275,7 +275,7 @@ export default function ReportExportDropdown() {
                 <button
                     onClick={() => exportReport("csv")}
                     disabled={loading}
-                    className="flex items-center justify-center gap-2 rounded-md bg-blue-50 px-4 py-2 text-sm font-medium text-blue-600 transition-colors hover:bg-blue-100 disabled:opacity-50 dark:bg-blue-500/10 dark:text-blue-400"
+                    className="flex items-center justify-center gap-2 rounded-md bg-brand-50 px-4 py-2 text-sm font-medium text-brand-600 transition-colors hover:bg-brand-100 disabled:opacity-50 dark:bg-brand-500/10 dark:text-brand-400"
                 >
                   <ListIcon />
                   CSV (Data Only)

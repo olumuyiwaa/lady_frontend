@@ -19,7 +19,7 @@ interface AlertModalProps {
 
 const alertConfig = {
     success: { color: "success", bgColor: "bg-success-50 dark:bg-success-500/15", iconColor: "text-success-600" },
-    info:    { color: "blue-light", bgColor: "bg-blue-light-50 dark:bg-blue-light-500/15", iconColor: "text-blue-light-500" },
+    info:    { color: "green", bgColor: "bg-brand-50 dark:bg-brand-500/15", iconColor: "text-brand-500" },
     warning: { color: "warning", bgColor: "bg-warning-50 dark:bg-warning-500/15", iconColor: "text-warning-600" },
     error:   { color: "error", bgColor: "bg-error-50 dark:bg-error-500/15", iconColor: "text-error-600" },
 };

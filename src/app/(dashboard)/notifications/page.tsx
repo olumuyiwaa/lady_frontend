@@ -65,7 +65,7 @@ function getNotificationBadgeClass(type: string) {
             return "bg-orange-50 text-orange-700 dark:bg-orange-500/10 dark:text-orange-300";
 
         case "NEW_MESSAGE":
-            return "bg-blue-50 text-blue-700 dark:bg-blue-500/10 dark:text-blue-300";
+            return "bg-brand-50 text-brand-700 dark:bg-brand-500/10 dark:text-brand-300";
 
         default:
             return "bg-gray-100 text-gray-700 dark:bg-white/[0.06] dark:text-gray-300";

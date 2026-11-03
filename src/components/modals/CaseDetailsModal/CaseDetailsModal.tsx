@@ -170,7 +170,7 @@ export default function CaseDetailsModal({
                                                     </p>
                                                 </div>
 
-                                                <span className="w-fit rounded-full bg-blue-50 px-2.5 py-1 text-xs font-medium text-blue-700 dark:bg-blue-500/10 dark:text-blue-300">
+                                                <span className="w-fit rounded-full bg-brand-50 px-2.5 py-1 text-xs font-medium text-brand-700 dark:bg-brand-500/10 dark:text-brand-300">
                                                     {shift.status}
                                                 </span>
                                             </div>

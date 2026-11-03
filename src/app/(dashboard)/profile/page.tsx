@@ -176,7 +176,7 @@ export default function ProfilePage() {
                         <p className="text-sm text-gray-500">{profile?.email}</p>
                         <div className="mt-2 flex flex-wrap gap-2">
                             {profile?.businessRole && (
-                                <span className="rounded-full bg-blue-50 px-3 py-1 text-xs font-medium text-blue-700 dark:bg-blue-500/10 dark:text-blue-300">
+                                <span className="rounded-full bg-brand-50 px-3 py-1 text-xs font-medium text-brand-700 dark:bg-brand-500/10 dark:text-brand-300">
                   {t(`roles.${profile.businessRole}`)}
                 </span>
                             )}

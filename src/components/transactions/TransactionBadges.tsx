@@ -6,7 +6,7 @@ const TYPE_STYLE: Record<TransactionType, string> = {
   TIP: "bg-cyan-100 text-cyan-700 dark:bg-cyan-500/10 dark:text-cyan-300",
   REFUND: "bg-orange-100 text-orange-700 dark:bg-orange-500/10 dark:text-orange-300",
   DISPUTE: "bg-red-100 text-red-700 dark:bg-red-500/10 dark:text-red-300",
-  CLEANER_PAYOUT: "bg-blue-100 text-blue-700 dark:bg-blue-500/10 dark:text-blue-300",
+  CLEANER_PAYOUT: "bg-brand-50 text-brand-700 dark:bg-brand-500/10 dark:text-brand-300",
   SUBSCRIPTION: "bg-purple-100 text-purple-700 dark:bg-purple-500/10 dark:text-purple-300",
 };
 

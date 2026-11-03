@@ -60,7 +60,7 @@ const CATEGORY_OPTIONS = [
 ];
 
 const STATUS_CLS: Record<TicketStatus, string> = {
-  OPEN: "bg-blue-50 text-blue-700 dark:bg-blue-500/10 dark:text-blue-300",
+  OPEN: "bg-brand-50 text-brand-700 dark:bg-brand-500/10 dark:text-brand-300",
   IN_PROGRESS: "bg-yellow-50 text-yellow-700 dark:bg-yellow-500/10 dark:text-yellow-300",
   WAITING_ON_CUSTOMER: "bg-purple-50 text-purple-700 dark:bg-purple-500/10 dark:text-purple-300",
   RESOLVED: "bg-green-50 text-green-700 dark:bg-green-500/10 dark:text-green-300",

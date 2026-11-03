@@ -48,7 +48,7 @@ function getStatusClass(status: string) {
             return "bg-green-50 text-green-700 dark:bg-green-500/10 dark:text-green-300";
         case "ISSUED":
         case "PENDING":
-            return "bg-blue-50 text-blue-700 dark:bg-blue-500/10 dark:text-blue-300";
+            return "bg-brand-50 text-brand-700 dark:bg-brand-500/10 dark:text-brand-300";
         case "OVERDUE":
             return "bg-red-50 text-red-700 dark:bg-red-500/10 dark:text-red-300";
         case "VOID":

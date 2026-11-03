@@ -107,7 +107,7 @@ function getNotificationIconClass(type: string) {
       return "bg-orange-50 text-orange-600 dark:bg-orange-500/10 dark:text-orange-300";
 
     case "NEW_MESSAGE":
-      return "bg-blue-50 text-blue-600 dark:bg-blue-500/10 dark:text-blue-300";
+      return "bg-brand-50 text-brand-600 dark:bg-brand-500/10 dark:text-brand-300";
 
     default:
       return "bg-gray-100 text-gray-600 dark:bg-white/[0.06] dark:text-gray-300";

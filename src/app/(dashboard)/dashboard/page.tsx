@@ -204,7 +204,7 @@ export default function DashboardPage() {
       value: loading ? "…" : String(todayJobs.length),
       sub: needsAttention ? t("needConfirmation", { count: needsAttention }) : t("onSchedule"),
       href: "/bookings",
-      accent: "bg-blue-50 text-blue-700 dark:bg-blue-500/10 dark:text-blue-300",
+      accent: "bg-brand-50 text-brand-700 dark:bg-brand-500/10 dark:text-brand-300",
     },
     {
       label: t("needsAttention"),

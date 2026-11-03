@@ -55,7 +55,7 @@ function useDebounce<T>(value: T, delay: number): T {
 
 function getBadgeClass(type: SearchSelectType): string {
     switch (type) {
-        case "cleaner":    return "bg-blue-50 text-blue-700 dark:bg-blue-500/10 dark:text-blue-300";
+        case "cleaner":    return "bg-brand-50 text-brand-700 dark:bg-brand-500/10 dark:text-brand-300";
         case "business": return "bg-purple-50 text-purple-700 dark:bg-purple-500/10 dark:text-purple-300";
         case "case":     return "bg-amber-50 text-amber-700 dark:bg-amber-500/10 dark:text-amber-300";
         case "shift":    return "bg-green-50 text-green-700 dark:bg-green-500/10 dark:text-green-300";
