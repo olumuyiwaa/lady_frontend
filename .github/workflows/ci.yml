@@ -14,8 +14,10 @@ jobs:
           node-version: 22
           cache: npm
       - run: npm ci
-      # Fails if a tenant slug collides with a real route.
+      # Fails if the business slug collides with a real route.
       - run: npm run check:slugs
+        env:
+          NEXT_PUBLIC_BUSINESS_SLUG: ladygreener
       - run: npm run test:unit
       - run: npx tsc --noEmit
       - name: Build

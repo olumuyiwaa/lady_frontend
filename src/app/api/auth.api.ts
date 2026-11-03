@@ -16,16 +16,6 @@ export interface AuthTokens {
     refreshToken: string;
 }
 
-export interface RegisterBusinessPayload {
-    businessName: string;
-    subdomain: string;
-    firstName: string;
-    lastName: string;
-    email: string;
-    phone?: string;
-    password: string;
-}
-
 export interface LoginPayload {
     email: string;
     password: string;
@@ -76,8 +66,6 @@ async function publicPost<T>(path: string, body?: unknown): Promise<ApiEnvelope<
 }
 
 export const authApi = {
-    register: (payload: RegisterBusinessPayload) => publicPost<AuthTokens>("/auth/register", payload),
-
     login: (payload: LoginPayload) => publicPost<LoginResponse>("/auth/login", payload),
 
     refresh: (refreshToken: string) => publicPost<AuthTokens>("/auth/refresh", { refreshToken }),

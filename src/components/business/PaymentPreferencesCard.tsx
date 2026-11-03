@@ -1,7 +1,9 @@
 "use client";
 
 /**
- * Optional Stripe Connect + offline payment preference for Business Settings.
+ * How customers pay (card online and/or cash / bank transfer) and the offline
+ * payment instructions, for Business Settings. Card payments run on Lady
+ * Greener's own Stripe account, so there is nothing to connect here.
  */
 
 import React, { useState } from "react";
@@ -9,16 +11,14 @@ import Button from "@/components/ui/button/Button";
 import Label from "@/components/form/Label";
 import {
   PreferredPaymentCollection,
-  StripeConnectStatus,
+  PaymentStatus,
   updateBusiness,
-  startStripeConnectOnboarding,
-  refreshStripeConnectStatus,
-  getStripeConnectStatus,
+  getPaymentStatus,
 } from "@/app/api/businesses.api";
 
 type Props = {
-  stripe: StripeConnectStatus | null;
-  onStripeChange: (s: StripeConnectStatus) => void;
+  payment: PaymentStatus | null;
+  onPaymentChange: (s: PaymentStatus) => void;
   onError: (msg: string) => void;
   onSaved: (msg: string) => void;
   /** Initial values from business record */
@@ -26,15 +26,14 @@ type Props = {
   initialOfflineInstructions?: string | null;
 };
 
-export default function StripeConnectOptionalCard({
-  stripe,
-  onStripeChange,
+export default function PaymentPreferencesCard({
+  payment,
+  onPaymentChange,
   onError,
   onSaved,
   initialPreferred = "BOTH",
   initialOfflineInstructions = "",
 }: Props) {
-  const [stripeLoading, setStripeLoading] = useState(false);
   const [savingPrefs, setSavingPrefs] = useState(false);
   const [preferred, setPreferred] = useState<PreferredPaymentCollection>(initialPreferred);
   const [offlineInstructions, setOfflineInstructions] = useState(
@@ -42,32 +41,7 @@ export default function StripeConnectOptionalCard({
   );
 
   const onlineReady =
-    stripe?.onlineCardReady ?? stripe?.readyForPayments ?? false;
-
-  const connectStripe = async () => {
-    setStripeLoading(true);
-    try {
-      const { url } = await startStripeConnectOnboarding();
-      window.location.href = url;
-    } catch (e) {
-      onError(e instanceof Error ? e.message : "Could not start Stripe onboarding");
-    } finally {
-      setStripeLoading(false);
-    }
-  };
-
-  const refreshStatus = async () => {
-    setStripeLoading(true);
-    try {
-      await refreshStripeConnectStatus();
-      onStripeChange(await getStripeConnectStatus());
-      onSaved("Stripe status refreshed");
-    } catch (e) {
-      onError(e instanceof Error ? e.message : "Could not refresh Stripe status");
-    } finally {
-      setStripeLoading(false);
-    }
-  };
+    payment?.onlineCardReady ?? payment?.readyForPayments ?? false;
 
   const savePaymentPrefs = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -79,9 +53,9 @@ export default function StripeConnectOptionalCard({
       });
       onSaved("Payment preferences saved");
       try {
-        onStripeChange(await getStripeConnectStatus());
+        onPaymentChange(await getPaymentStatus());
       } catch {
-        /* status endpoint may lag until backend patch is deployed */
+        /* the preferences were saved; the status line just stays as it was */
       }
     } catch (err) {
       onError(err instanceof Error ? err.message : "Failed to save payment preferences");
@@ -90,11 +64,7 @@ export default function StripeConnectOptionalCard({
     }
   };
 
-  const statusLabel = onlineReady
-    ? "Card payments enabled"
-    : stripe?.connected
-      ? "Connected — finish onboarding in Stripe"
-      : "Not connected (optional)";
+  const statusLabel = onlineReady ? "Card payments enabled" : "Card payments not enabled";
 
   const statusClass = onlineReady
     ? "text-success-600 dark:text-success-400"
@@ -110,41 +80,20 @@ export default function StripeConnectOptionalCard({
           Customer payments
         </h2>
         <p className="mt-1 text-sm text-gray-500 dark:text-gray-400">
-          Stripe Connect is <strong>optional</strong>. You can take bookings and pay cleaners
-          without it — collect cash or bank transfer and mark payments received on each booking.
-          Connect Stripe only if you want customers to pay by card online.
+          Card payments are optional. You can take bookings and pay cleaners without them —
+          collect cash or bank transfer and mark payments received on each booking.
         </p>
       </div>
 
-      {/* Stripe status */}
-      <div className="flex flex-wrap items-center justify-between gap-3 rounded-lg border border-gray-100 p-4 dark:border-gray-800">
-        <div>
-          <p className="text-xs uppercase text-gray-500">Stripe Connect</p>
-          <p className={`mt-1 font-medium ${statusClass}`}>{statusLabel}</p>
-          {stripe?.message && (
-            <p className="mt-1 max-w-md text-xs text-gray-500 dark:text-gray-400">
-              {stripe.message}
-            </p>
-          )}
-        </div>
-        <div className="flex flex-wrap gap-2">
-          {onlineReady ? (
-            <Button type="button" variant="outline" onClick={refreshStatus} disabled={stripeLoading}>
-              {stripeLoading ? "…" : "Refresh status"}
-            </Button>
-          ) : (
-            <>
-              {stripe?.connected && (
-                <Button type="button" variant="outline" onClick={refreshStatus} disabled={stripeLoading}>
-                  {stripeLoading ? "…" : "Refresh"}
-                </Button>
-              )}
-              <Button type="button" onClick={connectStripe} disabled={stripeLoading}>
-                {stripeLoading ? "…" : stripe?.connected ? "Continue onboarding" : "Connect Stripe"}
-              </Button>
-            </>
-          )}
-        </div>
+      {/* Card payment status (read-only) */}
+      <div className="rounded-lg border border-gray-100 p-4 dark:border-gray-800">
+        <p className="text-xs uppercase text-gray-500">Card payments</p>
+        <p className={`mt-1 font-medium ${statusClass}`}>{statusLabel}</p>
+        {payment?.message && (
+          <p className="mt-1 max-w-md text-xs text-gray-500 dark:text-gray-400">
+            {payment.message}
+          </p>
+        )}
       </div>
 
       {/* Payment preference */}
@@ -165,7 +114,7 @@ export default function StripeConnectOptionalCard({
               showing an error.
             */}
             <option value="ONLINE_CARD" disabled={!onlineReady}>
-              Prefer card online{onlineReady ? "" : " (connect Stripe first)"}
+              Prefer card online{onlineReady ? "" : " (not enabled yet)"}
             </option>
             <option value="MANUAL_OFFLINE">Offline only (cash / bank transfer)</option>
           </select>

@@ -667,7 +667,6 @@
       "primaryColor": "Primary color",
       "accentColor": "Accent color",
       "btwHint": "Required on every Dutch invoice. Your prices are shown to customers including BTW; invoices split out the BTW automatically.",
-      "stripeConnect": "Stripe Connect",
       "areaName": "Area name",
       "centerLat": "Center latitude",
       "centerLng": "Center longitude",
@@ -683,7 +682,6 @@
       "brandingSaveFailed": "Failed to save branding",
       "hoursSaved": "Business hours saved",
       "hoursSaveFailed": "Failed to save hours",
-      "stripeStartFailed": "Could not start Stripe onboarding",
       "serviceAreaValidation": "Enter a name, valid latitude/longitude, and a radius for the service area",
       "serviceAreaAdded": "Service area added",
       "serviceAreaAddFailed": "Failed to add service area",
@@ -1420,14 +1418,12 @@
       "steps": {
         "services": "Add a service",
         "hours": "Set business hours",
-        "serviceAreas": "Add a service area",
-        "stripeConnect": "Connect Stripe"
+        "serviceAreas": "Add a service area"
       },
       "ctas": {
         "services": "Add a service",
         "hours": "Set business hours",
-        "serviceAreas": "Add a service area",
-        "stripeConnect": "Connect Stripe (optional)"
+        "serviceAreas": "Add a service area"
       }
     },
     "pricing": {

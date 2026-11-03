@@ -18,13 +18,11 @@ import {
   ServiceArea,
   BusinessHours,
   BusinessBranding,
-  StripeConnectStatus,
-  refreshStripeConnectStatus,
-  getStripeConnectStatus,
-  startStripeConnectOnboarding,
+  PaymentStatus,
+  getPaymentStatus,
 } from "@/app/api/businesses.api";
 import { Business } from "@/app/api/app-types";
-import StripeConnectOptionalCard from "@/components/business/StripeConnectOptionalCard";
+import PaymentPreferencesCard from "@/components/business/PaymentPreferencesCard";
 const DAY_COUNT = 7;
 
 export default function BusinessSettingsPage() {
@@ -161,35 +159,15 @@ export default function BusinessSettingsPage() {
     }
   };
 
-  // state
-  const [stripe, setStripe] = useState<StripeConnectStatus | null>(null);
-  const [stripeLoading, setStripeLoading] = useState(false);
+  const [payment, setPayment] = useState<PaymentStatus | null>(null);
 
-// on load + when ?stripe=return|refresh
   useEffect(() => {
-    const params = new URLSearchParams(window.location.search);
-    const stripeParam = params.get("stripe");
     (async () => {
-      if (stripeParam === "return" || stripeParam === "refresh") {
-        try { await refreshStripeConnectStatus(); } catch {}
-      }
       try {
-        setStripe(await getStripeConnectStatus());
+        setPayment(await getPaymentStatus());
       } catch {}
     })();
   }, []);
-
-  const connectStripe = async () => {
-    setStripeLoading(true);
-    try {
-      const { url } = await startStripeConnectOnboarding();
-      window.location.href = url; // Stripe hosted onboarding
-    } catch (e) {
-      setError(e instanceof Error ? e.message : t("stripeStartFailed"));
-    } finally {
-      setStripeLoading(false);
-    }
-  };
 
   const addServiceArea = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -361,10 +339,10 @@ export default function BusinessSettingsPage() {
         </form>
       </section>
 
-      {/* Connect Stripe */}
-      <StripeConnectOptionalCard
-          stripe={stripe}
-          onStripeChange={setStripe}
+      {/* Customer payments */}
+      <PaymentPreferencesCard
+          payment={payment}
+          onPaymentChange={setPayment}
           onError={setError}
           onSaved={setSaved}
           initialPreferred={(business as any)?.preferredPaymentCollection || "BOTH"}

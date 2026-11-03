@@ -15,7 +15,6 @@ const STEP_LINKS: Record<OnboardingStepKey, { href: string }> = {
   services: { href: "/services" },
   hours: { href: "/business-settings" },
   serviceAreas: { href: "/business-settings" },
-  stripeConnect: { href: "/business-settings#stripe" },
 };
 
 export default function OnboardingPage() {
@@ -66,7 +65,7 @@ export default function OnboardingPage() {
             <div className="overflow-hidden rounded-xl border border-gray-200 bg-white dark:border-gray-800 dark:bg-white/[0.02]">
               <ul className="divide-y divide-gray-100 dark:divide-gray-800">
                 {status.steps.map((step, i) => {
-                  const isOptional = step.required === false || step.key === "stripeConnect";
+                  const isOptional = step.required === false;
                   return (
                       <li key={step.key} className="flex items-center justify-between gap-4 p-4">
                         <div className="flex items-center gap-3">

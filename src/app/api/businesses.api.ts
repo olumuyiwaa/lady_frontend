@@ -65,7 +65,7 @@ export type BusinessBranding = {
 
 export type PreferredPaymentCollection = 'ONLINE_CARD' | 'MANUAL_OFFLINE' | 'BOTH';
 
-export type StripeConnectStatus = {
+export type PaymentStatus = {
     connected: boolean;
     onboarded: boolean;
     chargesEnabled: boolean;
@@ -157,32 +157,13 @@ export async function updateHours(hours: BusinessHours[]) {
     return result.data as BusinessHours[];
 }
 
-export async function getStripeConnectStatus() {
-    const result = await authFetch(`/businesses/stripe-connect/status`, { method: "GET" });
-    return result.data as StripeConnectStatus;
+/** Read-only: are card payments enabled, and what is the payment preference. */
+export async function getPaymentStatus() {
+    const result = await authFetch(`/businesses/payment-status`, { method: "GET" });
+    return result.data as PaymentStatus;
 }
 
-export async function startStripeConnectOnboarding(payload?: {
-    refreshUrl?: string;
-    returnUrl?: string;
-}) {
-    const origin = typeof window !== "undefined" ? window.location.origin : "";
-    const result = await authFetch(`/businesses/stripe-connect/onboard`, {
-        method: "POST",
-        body: JSON.stringify({
-            refreshUrl: payload?.refreshUrl ?? `${origin}/business-settings?stripe=refresh`,
-            returnUrl: payload?.returnUrl ?? `${origin}/business-settings?stripe=return`,
-        }),
-    });
-    return result.data as { accountId: string; url: string };
-}
-
-export async function refreshStripeConnectStatus() {
-    const result = await authFetch(`/businesses/stripe-connect/refresh`, { method: "POST" });
-    return result.data;
-}
-
-export type OnboardingStepKey = "stripeConnect" | "services" | "hours" | "serviceAreas";
+export type OnboardingStepKey = "services" | "hours" | "serviceAreas";
 
 export type OnboardingStatus = {
     isComplete: boolean;

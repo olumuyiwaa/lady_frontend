@@ -667,7 +667,6 @@
       "primaryColor": "Primaire kleur",
       "accentColor": "Accentkleur",
       "btwHint": "Verplicht op elke Nederlandse factuur. Prijzen worden inclusief BTW getoond; facturen splitsen de BTW automatisch uit.",
-      "stripeConnect": "Stripe Connect",
       "areaName": "Gebiedsnaam",
       "centerLat": "Breedtegraad centrum",
       "centerLng": "Lengtegraad centrum",
@@ -683,7 +682,6 @@
       "brandingSaveFailed": "Huisstijl opslaan is mislukt",
       "hoursSaved": "Openingstijden opgeslagen",
       "hoursSaveFailed": "Openingstijden opslaan is mislukt",
-      "stripeStartFailed": "Stripe-onboarding starten is mislukt",
       "serviceAreaValidation": "Voer een naam, geldige breedte- en lengtegraad en een straal in voor het werkgebied",
       "serviceAreaAdded": "Werkgebied toegevoegd",
       "serviceAreaAddFailed": "Werkgebied toevoegen is mislukt",
@@ -1420,14 +1418,12 @@
       "steps": {
         "services": "Een dienst toevoegen",
         "hours": "Openingstijden instellen",
-        "serviceAreas": "Een werkgebied toevoegen",
-        "stripeConnect": "Stripe koppelen"
+        "serviceAreas": "Een werkgebied toevoegen"
       },
       "ctas": {
         "services": "Dienst toevoegen",
         "hours": "Openingstijden instellen",
-        "serviceAreas": "Werkgebied toevoegen",
-        "stripeConnect": "Stripe koppelen (optioneel)"
+        "serviceAreas": "Werkgebied toevoegen"
       }
     },
     "pricing": {
