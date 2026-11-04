@@ -33,7 +33,7 @@ import {
     type PortalCustomer,
 } from "@/app/api/portal.api";
 
-import { StatCard, ActionBtn, Modal, ModalActions, DetailRow, PlusIcon, CheckIcon, CalendarIcon, PinIcon, UserIcon } from "./PortalParts";
+import { StatCard, ActionBtn, Modal, ModalActions, DetailRow, PlusIcon, CheckIcon, CalendarIcon, PinIcon, UserIcon, ClockIcon, HistoryIcon } from "./PortalParts";
 type Step = "phone" | "code" | "bookings";
 
 const RESEND_COOLDOWN_SECONDS = 30;
@@ -637,16 +637,16 @@ export default function CustomerPortalPage() {
             className="min-h-screen bg-[#F6F2ED] text-gray-800 dark:bg-gray-900 dark:text-white/90"
             style={brandVars}
         >
-            {/* Header */}
-            <header className="sticky top-0 z-30 border-b border-gray-200 bg-white dark:border-gray-800 dark:bg-gray-900">
+            {/* ── Header ── */}
+            <header className="sticky top-0 z-30 border-b border-gray-200/80 bg-white/95 backdrop-blur-sm dark:border-gray-800 dark:bg-gray-900/95">
                 <div className="mx-auto flex max-w-7xl items-center justify-between gap-3 px-4 py-3 sm:px-6 lg:px-8">
-                    <div className="flex items-center gap-3">
+                    {/* Brand + title */}
+                    <div className="flex min-w-0 items-center gap-3">
                         <Link
                             href={paths.home}
                             aria-label={brand?.name || t("header.site")}
-                            className="flex h-10 w-10 items-center justify-center overflow-hidden rounded-xl border border-gray-200 bg-white shadow-theme-xs transition hover:bg-gray-50 dark:border-gray-700"
+                            className="flex h-10 w-10 shrink-0 items-center justify-center overflow-hidden rounded-xl border border-gray-200 bg-white shadow-sm transition hover:shadow-md dark:border-gray-700"
                         >
-                            {/* The business's uploaded logo, or the Tod Cleaning icon when there is none */}
                             {/* eslint-disable-next-line @next/next/no-img-element -- tenant-uploaded asset, arbitrary host */}
                             <img
                                 src={brand?.logoUrl || FALLBACK_LOGO}
@@ -657,22 +657,25 @@ export default function CustomerPortalPage() {
                                 }}
                             />
                         </Link>
-                        <div>
-                            <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-brand-500 dark:text-brand-400">
+                        <div className="min-w-0">
+                            <p className="truncate text-[11px] font-semibold uppercase tracking-[0.15em] text-brand-500 dark:text-brand-400">
                                 {brand?.name || t("header.badge")}
                             </p>
-                            <h1 className="text-base font-semibold tracking-tight text-gray-800 dark:text-white/90 sm:text-lg">
+                            <h1 className="truncate text-sm font-semibold text-gray-800 dark:text-white/90 sm:text-base">
                                 {t("header.title")}
                             </h1>
                         </div>
                     </div>
-                    <div className="hidden items-center gap-3 sm:flex">
+
+                    {/* Desktop actions */}
+                    <div className="hidden items-center gap-2 sm:flex">
                         <LanguageSwitcher />
                         <ThemeToggleButton />
+                        <div className="mx-1 h-5 w-px bg-gray-200 dark:bg-gray-700" aria-hidden />
                         <button
                             type="button"
                             onClick={() => setBookOpen(true)}
-                            className="inline-flex items-center gap-1.5 rounded-xl bg-brand-500 px-3.5 py-2 text-sm font-medium text-white shadow-theme-xs transition hover:bg-brand-600"
+                            className="inline-flex items-center gap-1.5 rounded-xl bg-brand-500 px-4 py-2 text-sm font-semibold text-white shadow-sm transition hover:bg-brand-600 focus:outline-none focus:ring-2 focus:ring-brand-300 focus:ring-offset-1"
                         >
                             <PlusIcon className="h-4 w-4" />
                             {t("header.bookAgain")}
@@ -681,12 +684,14 @@ export default function CustomerPortalPage() {
                             <button
                                 type="button"
                                 onClick={logout}
-                                className="rounded-xl border border-gray-200 bg-white dark:border-gray-700 dark:bg-gray-800 px-3 py-2 text-sm font-medium text-gray-600 dark:text-gray-300 transition hover:bg-gray-50 dark:hover:bg-white/5"
+                                className="rounded-xl border border-gray-200 bg-white px-3 py-2 text-sm font-medium text-gray-600 transition hover:bg-gray-50 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-300 dark:hover:bg-white/5"
                             >
                                 {t("header.signOut")}
                             </button>
                         )}
                     </div>
+
+                    {/* Mobile hamburger */}
                     <button
                         type="button"
                         onClick={() => setMenuOpen((o) => !o)}
@@ -700,13 +705,15 @@ export default function CustomerPortalPage() {
                         </svg>
                     </button>
                 </div>
+
+                {/* Mobile menu drawer */}
                 {menuOpen && (
                     <div id="portal-mobile-menu" className="border-t border-gray-200 bg-white px-4 pb-4 pt-3 dark:border-gray-800 dark:bg-gray-900 sm:hidden">
-                        <div className="mx-auto flex max-w-7xl flex-col gap-3">
+                        <div className="mx-auto flex max-w-7xl flex-col gap-2">
                             <button
                                 type="button"
                                 onClick={() => { setMenuOpen(false); setBookOpen(true); }}
-                                className="inline-flex items-center justify-center gap-1.5 rounded-xl bg-brand-500 px-4 py-3 text-sm font-medium text-white shadow-theme-xs transition hover:bg-brand-600"
+                                className="inline-flex items-center justify-center gap-1.5 rounded-xl bg-brand-500 px-4 py-3 text-sm font-semibold text-white transition hover:bg-brand-600"
                             >
                                 <PlusIcon className="h-4 w-4" />
                                 {t("header.bookAgain")}
@@ -736,96 +743,99 @@ export default function CustomerPortalPage() {
                 )}
             </header>
 
-            <main className="mx-auto max-w-7xl px-4 py-6 sm:px-6 sm:py-8 lg:px-8">
-                {/* Alerts */}
+            <main className="mx-auto max-w-7xl px-4 py-8 sm:px-6 sm:py-10 lg:px-8">
+                {/* ── Toast alerts ── */}
                 {(error || msg) && (
                     <div className="mb-6 space-y-2">
                         {error && (
                             <div
                                 role="alert"
-                                className="flex items-start gap-3 rounded-xl border border-error-200 bg-error-50 px-4 py-3 text-sm text-error-700 dark:border-error-500/30 dark:bg-error-500/10 dark:text-error-400"
+                                className="flex items-start gap-3 rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700 dark:border-red-500/30 dark:bg-red-500/10 dark:text-red-400"
                             >
-                                <span className="mt-0.5 text-red-500">●</span>
+                                <svg className="mt-0.5 h-4 w-4 shrink-0 text-red-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden><circle cx="12" cy="12" r="9"/><path d="M12 8v4M12 16h.01" strokeLinecap="round"/></svg>
                                 <span className="flex-1">{error}</span>
-                                <button
-                                    type="button"
-                                    onClick={() => setError("")}
-                                    className="text-red-400 hover:text-red-600"
-                                >
-                                    ✕
+                                <button type="button" onClick={() => setError("")} className="text-red-400 transition hover:text-red-600" aria-label="Dismiss">
+                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden><path d="M6 6l12 12M18 6 6 18" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/></svg>
                                 </button>
                             </div>
                         )}
                         {msg && (
                             <div
                                 role="status"
-                                className="flex items-start gap-3 rounded-xl border border-success-200 bg-success-50 px-4 py-3 text-sm text-success-700 dark:border-success-500/30 dark:bg-success-500/10 dark:text-success-400"
+                                className="flex items-start gap-3 rounded-xl border border-green-200 bg-green-50 px-4 py-3 text-sm text-green-700 dark:border-green-500/30 dark:bg-green-500/10 dark:text-green-400"
                             >
-                                <span className="mt-0.5 text-success-500">●</span>
+                                <svg className="mt-0.5 h-4 w-4 shrink-0 text-green-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" aria-hidden><path d="M5 13l4 4L19 7" strokeLinecap="round" strokeLinejoin="round"/></svg>
                                 <span className="flex-1">{msg}</span>
-                                <button
-                                    type="button"
-                                    onClick={() => setMsg("")}
-                                    className="text-success-500 hover:text-brand-600 dark:text-brand-400"
-                                >
-                                    ✕
+                                <button type="button" onClick={() => setMsg("")} className="text-green-500 transition hover:text-green-700" aria-label="Dismiss">
+                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden><path d="M6 6l12 12M18 6 6 18" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/></svg>
                                 </button>
                             </div>
                         )}
                     </div>
                 )}
 
-                {/* ── Auth screens (centered card on desktop) ── */}
+                {/* ── Auth screens ── */}
                 {(step === "phone" || step === "code") && (
-                    <div className="mx-auto grid max-w-5xl gap-8 lg:grid-cols-2 lg:items-center lg:gap-16">
+                    <div className="mx-auto grid max-w-5xl gap-10 lg:grid-cols-2 lg:items-center lg:gap-20">
                         {/* Marketing panel — desktop only */}
                         <div className="hidden lg:block">
-                            <p className="mb-3 text-sm font-semibold uppercase tracking-wider text-brand-500">
+                            {/* Icon lockup */}
+                            <div className="mb-8 flex items-center gap-4">
+                                <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-brand-500 text-white shadow-lg">
+                                    <CalendarIcon className="h-7 w-7" />
+                                </div>
+                                <div className="h-px flex-1 bg-gradient-to-r from-brand-200 to-transparent dark:from-brand-700" aria-hidden />
+                            </div>
+                            <p className="mb-2 text-xs font-bold uppercase tracking-widest text-brand-500 dark:text-brand-400">
                                 {t("marketing.selfService")}
                             </p>
-                            <h2 className="text-3xl font-semibold tracking-tight text-gray-800 dark:text-white/90 xl:text-4xl">
+                            <h2 className="text-3xl font-bold tracking-tight text-gray-900 dark:text-white xl:text-4xl">
                                 {t("marketing.heading")}
                             </h2>
-                            <p className="mt-4 max-w-md text-base leading-relaxed text-gray-500 dark:text-gray-400 dark:text-gray-400">
+                            <p className="mt-4 max-w-md text-base leading-relaxed text-gray-500 dark:text-gray-400">
                                 {t("marketing.description")}
                             </p>
-                            <ul className="mt-8 space-y-3 text-sm text-gray-600 dark:text-gray-300">
+                            <ul className="mt-8 space-y-4">
                                 {[
                                     t("marketing.feature1"),
                                     t("marketing.feature2"),
                                     t("marketing.feature3"),
                                 ].map((item) => (
-                                    <li key={item} className="flex items-center gap-3">
-                    <span className="flex h-6 w-6 items-center justify-center rounded-full bg-brand-50 text-brand-600 dark:bg-brand-500/15 dark:text-brand-400">
-                      <CheckIcon className="h-3.5 w-3.5" />
-                    </span>
+                                    <li key={item} className="flex items-start gap-3 text-sm text-gray-700 dark:text-gray-300">
+                                        <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-brand-100 text-brand-600 dark:bg-brand-500/20 dark:text-brand-400">
+                                            <CheckIcon className="h-3 w-3" />
+                                        </span>
                                         {item}
                                     </li>
                                 ))}
                             </ul>
                         </div>
 
+                        {/* Auth card */}
                         <div className="mx-auto w-full max-w-md lg:mx-0">
                             {step === "phone" && (
                                 <form
                                     onSubmit={sendCode}
-                                    className="rounded-2xl border border-gray-200 bg-white p-6 shadow-theme-md dark:border-gray-800 dark:bg-gray-900 sm:p-8"
+                                    className="rounded-2xl border border-gray-200 bg-white p-7 shadow-lg dark:border-gray-800 dark:bg-gray-900"
                                 >
-                                    <div className="mb-6 text-center lg:text-left">
-                                        <h2 className="text-xl font-semibold text-gray-800 dark:text-white/90">
+                                    <div className="mb-7">
+                                        <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-2xl bg-brand-50 text-brand-500 dark:bg-brand-500/15 dark:text-brand-400">
+                                            <UserIcon className="h-6 w-6" />
+                                        </div>
+                                        <h2 className="text-xl font-bold text-gray-900 dark:text-white">
                                             {t("phoneStep.heading")}
                                         </h2>
                                         <p className="mt-2 text-sm leading-relaxed text-gray-500 dark:text-gray-400">
                                             {t("phoneStep.description")}
                                         </p>
                                     </div>
-                                    <label className="mb-1.5 block text-sm font-medium text-gray-700">
+                                    <label className="mb-1.5 block text-sm font-medium text-gray-700 dark:text-gray-300">
                                         {method === "email" ? tx("emailLabel") : t("phoneStep.phoneLabel")}
                                     </label>
                                     {method === "email" ? (
                                         <input
                                             key="email"
-                                            className="mb-2 h-12 w-full rounded-xl border border-gray-300 bg-transparent dark:border-gray-700 px-4 text-sm outline-none transition focus:border-brand-300 focus:ring-3 focus:ring-brand-500/20 dark:focus:border-brand-500"
+                                            className="mb-3 h-12 w-full rounded-xl border border-gray-300 bg-transparent px-4 text-sm outline-none transition focus:border-brand-400 focus:ring-3 focus:ring-brand-500/20 dark:border-gray-700 dark:focus:border-brand-500"
                                             value={email}
                                             onChange={(e) => setEmail(e.target.value)}
                                             placeholder={tx("emailPlaceholder")}
@@ -837,7 +847,7 @@ export default function CustomerPortalPage() {
                                     ) : (
                                         <input
                                             key="phone"
-                                            className="mb-2 h-12 w-full rounded-xl border border-gray-300 bg-transparent dark:border-gray-700 px-4 text-sm outline-none transition focus:border-brand-300 focus:ring-3 focus:ring-brand-500/20 dark:focus:border-brand-500"
+                                            className="mb-3 h-12 w-full rounded-xl border border-gray-300 bg-transparent px-4 text-sm outline-none transition focus:border-brand-400 focus:ring-3 focus:ring-brand-500/20 dark:border-gray-700 dark:focus:border-brand-500"
                                             value={phone}
                                             onChange={(e) => setPhone(e.target.value)}
                                             placeholder={t("phoneStep.phonePlaceholder")}
@@ -853,14 +863,14 @@ export default function CustomerPortalPage() {
                                             setMethod(method === "email" ? "phone" : "email");
                                             setError("");
                                         }}
-                                        className="mb-5 text-sm font-medium text-brand-600 transition hover:text-brand-700 dark:text-brand-400"
+                                        className="mb-6 text-xs font-semibold text-brand-600 transition hover:text-brand-700 dark:text-brand-400"
                                     >
                                         {method === "email" ? tx("usePhoneInstead") : tx("useEmailInstead")}
                                     </button>
                                     <button
                                         type="submit"
                                         disabled={loading || !identityText}
-                                        className="h-12 w-full rounded-2xl bg-brand-500 text-sm font-semibold text-white shadow-theme-xs transition hover:bg-brand-600 disabled:opacity-60"
+                                        className="h-12 w-full rounded-xl bg-brand-500 text-sm font-bold text-white shadow-sm transition hover:bg-brand-600 disabled:opacity-60"
                                     >
                                         {loading ? t("phoneStep.sending") : t("phoneStep.sendCode")}
                                     </button>
@@ -870,22 +880,25 @@ export default function CustomerPortalPage() {
                             {step === "code" && (
                                 <form
                                     onSubmit={verify}
-                                    className="rounded-2xl border border-gray-200 bg-white p-6 shadow-theme-md dark:border-gray-800 dark:bg-gray-900 sm:p-8"
+                                    className="rounded-2xl border border-gray-200 bg-white p-7 shadow-lg dark:border-gray-800 dark:bg-gray-900"
                                 >
-                                    <div className="mb-6 text-center lg:text-left">
-                                        <h2 className="text-xl font-semibold text-gray-800 dark:text-white/90">
+                                    <div className="mb-7">
+                                        <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-2xl bg-brand-50 text-brand-500 dark:bg-brand-500/15 dark:text-brand-400">
+                                            <svg className="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" aria-hidden><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4" strokeLinecap="round"/></svg>
+                                        </div>
+                                        <h2 className="text-xl font-bold text-gray-900 dark:text-white">
                                             {t("codeStep.heading")}
                                         </h2>
                                         <p className="mt-2 text-sm text-gray-500 dark:text-gray-400">
                                             {t("codeStep.sentTo")}{" "}
-                                            <span className="font-medium text-gray-800">{identityText}</span>
+                                            <span className="font-semibold text-gray-800 dark:text-white">{identityText}</span>
                                         </p>
                                     </div>
-                                    <label className="mb-1.5 block text-sm font-medium text-gray-700">
+                                    <label className="mb-1.5 block text-sm font-medium text-gray-700 dark:text-gray-300">
                                         {t("codeStep.codeLabel")}
                                     </label>
                                     <input
-                                        className="mb-5 h-14 w-full rounded-xl border border-gray-300 bg-transparent dark:border-gray-700 px-4 text-center text-2xl font-semibold tracking-[0.5em] outline-none transition focus:border-brand-300 focus:ring-3 focus:ring-brand-500/20 dark:focus:border-brand-500"
+                                        className="mb-6 h-16 w-full rounded-xl border border-gray-300 bg-transparent px-4 text-center text-2xl font-bold tracking-[0.5em] outline-none transition focus:border-brand-400 focus:ring-3 focus:ring-brand-500/20 dark:border-gray-700 dark:focus:border-brand-500"
                                         value={code}
                                         onChange={(e) =>
                                             setCode(e.target.value.replace(/\D/g, "").slice(0, 6))
@@ -898,28 +911,30 @@ export default function CustomerPortalPage() {
                                     <button
                                         type="submit"
                                         disabled={loading || code.length < 6}
-                                        className="h-12 w-full rounded-2xl bg-brand-500 text-sm font-semibold text-white shadow-theme-xs transition hover:bg-brand-600 disabled:opacity-60"
+                                        className="h-12 w-full rounded-xl bg-brand-500 text-sm font-bold text-white shadow-sm transition hover:bg-brand-600 disabled:opacity-60"
                                     >
                                         {loading ? t("codeStep.verifying") : t("codeStep.continue")}
                                     </button>
-                                    <button
-                                        type="button"
-                                        onClick={resendCode}
-                                        disabled={resendIn > 0 || loading}
-                                        className="mt-4 w-full text-sm font-medium text-brand-600 transition hover:text-brand-700 disabled:cursor-not-allowed disabled:text-gray-400 dark:text-brand-400"
-                                    >
-                                        {resendIn > 0 ? tx("resendIn", { seconds: resendIn }) : tx("resend")}
-                                    </button>
-                                    <button
-                                        type="button"
-                                        onClick={() => {
-                                            setStep("phone");
-                                            setCode("");
-                                        }}
-                                        className="mt-4 w-full text-sm text-gray-500 dark:text-gray-400 transition hover:text-gray-800"
-                                    >
-                                        {method === "email" ? tx("useDifferentEmail") : t("codeStep.useDifferentPhone")}
-                                    </button>
+                                    <div className="mt-4 flex flex-col gap-2">
+                                        <button
+                                            type="button"
+                                            onClick={resendCode}
+                                            disabled={resendIn > 0 || loading}
+                                            className="w-full text-sm font-medium text-brand-600 transition hover:text-brand-700 disabled:cursor-not-allowed disabled:text-gray-400 dark:text-brand-400"
+                                        >
+                                            {resendIn > 0 ? tx("resendIn", { seconds: resendIn }) : tx("resend")}
+                                        </button>
+                                        <button
+                                            type="button"
+                                            onClick={() => {
+                                                setStep("phone");
+                                                setCode("");
+                                            }}
+                                            className="w-full text-sm text-gray-400 transition hover:text-gray-600 dark:hover:text-gray-200"
+                                        >
+                                            {method === "email" ? tx("useDifferentEmail") : t("codeStep.useDifferentPhone")}
+                                        </button>
+                                    </div>
                                 </form>
                             )}
                         </div>
@@ -929,23 +944,40 @@ export default function CustomerPortalPage() {
                 {/* ── Bookings dashboard ── */}
                 {step === "bookings" && customer && (
                     <div className="space-y-8">
-                        {/* Welcome + stats */}
-                        <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
+                        {/* Welcome banner */}
+                        <div className="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
                             <div>
-                                <h2 className="text-2xl font-semibold tracking-tight text-gray-800 dark:text-white/90 sm:text-3xl">
+                                <p className="mb-1 text-xs font-semibold uppercase tracking-widest text-brand-500 dark:text-brand-400">
+                                    {brand?.name}
+                                </p>
+                                <h2 className="text-2xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-3xl">
                                     {t("welcome", { name: customer.firstName })}
                                 </h2>
                                 <p className="mt-1 text-sm text-gray-500 dark:text-gray-400">{customer.phone}</p>
                             </div>
-                            <div className="grid grid-cols-3 gap-3 sm:gap-4">
-                                <StatCard label={t("stats.upcoming")} value={stats.upcoming} accent />
-                                <StatCard label={t("stats.completed")} value={stats.completed} />
-                                <StatCard label={t("stats.total")} value={stats.total} />
+                            {/* Stats */}
+                            <div className="grid grid-cols-3 gap-3">
+                                <StatCard
+                                    label={t("stats.upcoming")}
+                                    value={stats.upcoming}
+                                    accent
+                                    icon={<ClockIcon className="h-4 w-4" />}
+                                />
+                                <StatCard
+                                    label={t("stats.completed")}
+                                    value={stats.completed}
+                                    icon={<CheckIcon className="h-4 w-4" />}
+                                />
+                                <StatCard
+                                    label={t("stats.total")}
+                                    value={stats.total}
+                                    icon={<HistoryIcon className="h-4 w-4" />}
+                                />
                             </div>
                         </div>
 
-                        {/* Filters */}
-                        <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+                        {/* Filter bar */}
+                        <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
                             <div className="inline-flex rounded-xl bg-gray-100 p-1 dark:bg-gray-800">
                                 {(
                                     [
@@ -958,10 +990,10 @@ export default function CustomerPortalPage() {
                                         key={key}
                                         type="button"
                                         onClick={() => setFilter(key)}
-                                        className={`rounded-xl px-4 py-2 text-sm font-medium transition ${
+                                        className={`rounded-xl px-4 py-2 text-sm font-semibold transition ${
                                             filter === key
-                                                ? "bg-brand-500 text-white shadow-sm"
-                                                : "text-gray-600 dark:text-gray-300 hover:text-gray-800 dark:text-white/90"
+                                                ? "bg-white text-gray-900 shadow-sm dark:bg-gray-700 dark:text-white"
+                                                : "text-gray-500 hover:text-gray-800 dark:text-gray-400 dark:hover:text-white"
                                         }`}
                                     >
                                         {label}
@@ -969,7 +1001,10 @@ export default function CustomerPortalPage() {
                                 ))}
                             </div>
                             {loading && (
-                                <p className="text-sm text-gray-400">{t("filters.refreshing")}</p>
+                                <p className="flex items-center gap-1.5 text-xs text-gray-400">
+                                    <svg className="h-3.5 w-3.5 animate-spin" viewBox="0 0 24 24" fill="none" aria-hidden><circle cx="12" cy="12" r="9" stroke="currentColor" strokeWidth="2.5" strokeDasharray="40 20" /></svg>
+                                    {t("filters.refreshing")}
+                                </p>
                             )}
                         </div>
 
@@ -979,25 +1014,25 @@ export default function CustomerPortalPage() {
                                 {[1, 2, 3].map((i) => (
                                     <div
                                         key={i}
-                                        className="h-48 animate-pulse rounded-2xl bg-white ring-1 ring-gray-100 dark:bg-white/[0.03] dark:ring-gray-800"
+                                        className="h-52 animate-pulse rounded-2xl bg-white ring-1 ring-gray-100 dark:bg-white/[0.03] dark:ring-white/10"
                                     />
                                 ))}
                             </div>
                         ) : filtered.length === 0 ? (
-                            <div className="rounded-2xl border border-dashed border-gray-200 bg-white dark:border-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:bg-white/[0.03] px-6 py-16 text-center">
-                                <div className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-2xl bg-brand-50 dark:bg-brand-500/10 text-brand-500">
-                                    <CalendarIcon className="h-7 w-7" />
+                            <div className="rounded-2xl border border-dashed border-gray-200 bg-white px-8 py-20 text-center dark:border-gray-700 dark:bg-white/[0.03]">
+                                <div className="mx-auto mb-5 flex h-16 w-16 items-center justify-center rounded-2xl bg-brand-50 text-brand-400 dark:bg-brand-500/10 dark:text-brand-400">
+                                    <CalendarIcon className="h-8 w-8" />
                                 </div>
-                                <p className="text-base font-medium text-gray-800 dark:text-white/90">
+                                <p className="text-base font-semibold text-gray-800 dark:text-white/90">
                                     {t("empty.noBookings")}
                                 </p>
-                                <p className="mt-1 text-sm text-gray-500 dark:text-gray-400">
+                                <p className="mt-2 text-sm text-gray-400 dark:text-gray-500">
                                     {t("empty.scheduleWhenReady")}
                                 </p>
                                 <button
                                     type="button"
                                     onClick={() => setBookOpen(true)}
-                                    className="mt-6 inline-flex items-center gap-2 rounded-xl bg-brand-500 px-5 py-2.5 text-sm font-medium text-white hover:bg-brand-600"
+                                    className="mt-7 inline-flex items-center gap-2 rounded-xl bg-brand-500 px-6 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:bg-brand-600"
                                 >
                                     <PlusIcon className="h-4 w-4" />
                                     {t("empty.bookACleaning")}
@@ -1008,91 +1043,102 @@ export default function CustomerPortalPage() {
                                 {filtered.map((b) => (
                                     <article
                                         key={b.id}
-                                        className="group flex flex-col rounded-2xl border border-gray-200 bg-white dark:border-gray-700 dark:bg-gray-800 p-5 dark:border-gray-800 dark:bg-white/[0.03] transition hover:-translate-y-0.5 hover:border-brand-200 dark:hover:border-brand-500/40"
+                                        className="group flex flex-col overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-sm transition hover:-translate-y-0.5 hover:shadow-md dark:border-gray-700 dark:bg-white/[0.04]"
                                     >
-                                        <div className="mb-3 flex items-start justify-between gap-3">
-                                            <div className="min-w-0">
-                                                <h3 className="truncate text-base font-semibold text-gray-800 dark:text-white/90">
+                                        {/* Colored top accent strip keyed to status */}
+                                        <div
+                                            className={`h-1 w-full shrink-0 ${
+                                                b.status === "COMPLETED" ? "bg-green-400" :
+                                                b.status === "CANCELLED" ? "bg-red-400" :
+                                                b.status === "IN_PROGRESS" ? "bg-amber-400" :
+                                                "bg-brand-500"
+                                            }`}
+                                            aria-hidden
+                                        />
+
+                                        <div className="flex flex-1 flex-col p-5">
+                                            {/* Title row */}
+                                            <div className="mb-3 flex items-start justify-between gap-3">
+                                                <h3 className="min-w-0 truncate text-base font-semibold text-gray-900 dark:text-white">
                                                     {b.service?.name || t("card.defaultServiceName")}
                                                 </h3>
-                                                <p className="mt-1 text-sm text-gray-500 dark:text-gray-400">
-                                                    {formatWhen(b.scheduledStart)}
-                                                </p>
+                                                <span
+                                                    className={`shrink-0 rounded-full px-2.5 py-1 text-[10px] font-bold uppercase tracking-wide ${statusColor(b.status)}`}
+                                                >
+                                                    {statusLabel(b.status, tStatus)}
+                                                </span>
                                             </div>
-                                            <span
-                                                className={`shrink-0 rounded-full px-2.5 py-1 text-[10px] font-bold uppercase tracking-wide ${statusColor(
-                                                    b.status
-                                                )}`}
-                                            >
-                        {statusLabel(b.status, tStatus)}
-                      </span>
-                                        </div>
 
-                                        {(b.city || cleanerName(b)) && (
-                                            <div className="mb-4 space-y-1.5 text-xs text-gray-500 dark:text-gray-400">
-                                                {b.city && (
-                                                    <p className="flex items-center gap-1.5 truncate">
-                                                        <PinIcon className="h-3.5 w-3.5 shrink-0 text-gray-400" />
-                                                        {[b.addressLine1, b.city].filter(Boolean).join(", ")}
-                                                    </p>
-                                                )}
-                                                {cleanerName(b) && (
-                                                    <p className="flex items-center gap-1.5">
-                                                        <UserIcon className="h-3.5 w-3.5 shrink-0 text-gray-400" />
-                                                        {cleanerName(b)}
-                                                    </p>
-                                                )}
-                                            </div>
-                                        )}
+                                            {/* Date/time */}
+                                            <p className="mb-3 flex items-center gap-1.5 text-sm font-medium text-gray-600 dark:text-gray-300">
+                                                <CalendarIcon className="h-4 w-4 shrink-0 text-gray-400" />
+                                                {formatWhen(b.scheduledStart)}
+                                            </p>
 
-                                        <div className="mt-auto border-t border-gray-100 pt-4">
-                                            <div className="mb-3 flex items-center justify-between">
-                                                <p className="text-lg font-semibold tabular-nums text-gray-800 dark:text-white/90">
-                                                    {money(b.quotedPriceCents)}
-                                                </p>
-                                            </div>
-                                            <div className="flex flex-wrap gap-2">
-                                                <ActionBtn onClick={() => openDetail(b)}>{t("card.details")}</ActionBtn>
-                                                {canModify(b) && (
-                                                    <>
+                                            {/* Location / cleaner */}
+                                            {(b.city || cleanerName(b)) && (
+                                                <div className="mb-4 space-y-1.5 text-xs text-gray-500 dark:text-gray-400">
+                                                    {b.city && (
+                                                        <p className="flex items-center gap-1.5 truncate">
+                                                            <PinIcon className="h-3.5 w-3.5 shrink-0 text-gray-400" />
+                                                            {[b.addressLine1, b.city].filter(Boolean).join(", ")}
+                                                        </p>
+                                                    )}
+                                                    {cleanerName(b) && (
+                                                        <p className="flex items-center gap-1.5">
+                                                            <UserIcon className="h-3.5 w-3.5 shrink-0 text-gray-400" />
+                                                            {cleanerName(b)}
+                                                        </p>
+                                                    )}
+                                                </div>
+                                            )}
+
+                                            {/* Price + actions */}
+                                            <div className="mt-auto border-t border-gray-100 pt-4 dark:border-gray-700">
+                                                <div className="mb-3 flex items-center justify-between">
+                                                    <span className="text-xs text-gray-400">{t("detailModal.price")}</span>
+                                                    <p className="text-lg font-bold tabular-nums text-gray-900 dark:text-white">
+                                                        {money(b.quotedPriceCents)}
+                                                    </p>
+                                                </div>
+                                                <div className="flex flex-wrap gap-1.5">
+                                                    <ActionBtn onClick={() => openDetail(b)}>{t("card.details")}</ActionBtn>
+                                                    {canModify(b) && (
+                                                        <>
+                                                            <ActionBtn onClick={() => openReschedule(b)}>
+                                                                {t("card.reschedule")}
+                                                            </ActionBtn>
+                                                            <ActionBtn onClick={() => addToCalendar(b)}>
+                                                                {tx("addToCalendar")}
+                                                            </ActionBtn>
+                                                            <ActionBtn danger onClick={() => openCancel(b)}>
+                                                                {t("card.cancel")}
+                                                            </ActionBtn>
+                                                        </>
+                                                    )}
+                                                    {b.status === "COMPLETED" && !b.review && (
                                                         <ActionBtn
-                                                            onClick={() => openReschedule(b)}
+                                                            primary
+                                                            onClick={() => {
+                                                                setReviewId(b.id);
+                                                                setRating(5);
+                                                                setComment("");
+                                                            }}
                                                         >
-                                                            {t("card.reschedule")}
+                                                            {t("card.review")}
                                                         </ActionBtn>
-                                                        <ActionBtn onClick={() => addToCalendar(b)}>
-                                                            {tx("addToCalendar")}
-                                                        </ActionBtn>
+                                                    )}
+                                                    {b.status === "COMPLETED" && !b.tipAmountCents && tipPendingId !== b.id && (
                                                         <ActionBtn
-                                                            danger
-                                                            onClick={() => openCancel(b)}
+                                                            onClick={() => {
+                                                                setTipId(b.id);
+                                                                selectTipPreset(500);
+                                                            }}
                                                         >
-                                                            {t("card.cancel")}
+                                                            {t("card.tip")}
                                                         </ActionBtn>
-                                                    </>
-                                                )}
-                                                {b.status === "COMPLETED" && !b.review && (
-                                                    <ActionBtn
-                                                        primary
-                                                        onClick={() => {
-                                                            setReviewId(b.id);
-                                                            setRating(5);
-                                                            setComment("");
-                                                        }}
-                                                    >
-                                                        {t("card.review")}
-                                                    </ActionBtn>
-                                                )}
-                                                {b.status === "COMPLETED" && !b.tipAmountCents && tipPendingId !== b.id && (
-                                                    <ActionBtn
-                                                        onClick={() => {
-                                                            setTipId(b.id);
-                                                            selectTipPreset(500);
-                                                        }}
-                                                    >
-                                                        {t("card.tip")}
-                                                    </ActionBtn>
-                                                )}
+                                                    )}
+                                                </div>
                                             </div>
                                         </div>
                                     </article>
@@ -1103,9 +1149,17 @@ export default function CustomerPortalPage() {
                 )}
             </main>
 
-            {/* Footer */}
-            <footer className="mx-auto max-w-6xl px-4 pb-10 pt-4 text-center text-xs text-gray-400 sm:px-6 lg:px-8">
-                {t("footer")}
+            {/* ── Footer ── */}
+            <footer className="mx-auto max-w-7xl border-t border-gray-200 px-4 py-8 dark:border-gray-800 sm:px-6 lg:px-8">
+                <div className="flex flex-col items-center justify-between gap-3 text-center sm:flex-row sm:text-left">
+                    <p className="text-xs text-gray-400">{t("footer")}</p>
+                    <Link
+                        href={paths.home}
+                        className="text-xs font-medium text-brand-500 transition hover:text-brand-600 dark:text-brand-400"
+                    >
+                        {t("header.site")} →
+                    </Link>
+                </div>
             </footer>
 
             {/* ── Modals ── */}
