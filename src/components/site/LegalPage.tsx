@@ -15,6 +15,8 @@ type LegalPageProps = {
   logoUrl?: string | null;
   primaryColor: string;
   accentColor: string;
+  /** Show the About link in the header, like the home page does. */
+  hasAbout?: boolean;
   phone?: string | null;
   socialLinks?: Parameters<typeof SiteFooter>[0]["socialLinks"];
   legal?: WidgetBusiness["legal"];
@@ -38,6 +40,7 @@ export function LegalPage({
   logoUrl,
   primaryColor,
   accentColor,
+  hasAbout,
   phone,
   socialLinks,
   legal,
@@ -53,6 +56,10 @@ export function LegalPage({
         businessName={businessName}
         logoUrl={logoUrl}
         primaryColor={primaryColor}
+        // Same menu as the home page (its Reviews and FAQ sections always exist).
+        hasAbout={hasAbout}
+        hasTestimonials
+        hasFaq
       />
 
       <main className="min-h-screen bg-[#F6F2ED]">

@@ -144,6 +144,7 @@ export default async function TermsPage({ params }: PageProps) {
       logoUrl={logoUrl}
       primaryColor={primaryColor}
       accentColor={accentColor}
+      hasAbout={Boolean(business.branding?.aboutTitle || business.branding?.aboutBody)}
       phone={phone}
       socialLinks={business.branding?.socialLinks ?? null}
       legal={business.legal}

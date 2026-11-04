@@ -116,10 +116,10 @@ export function SiteFooter({
               style={{ color: accentColor }}>
               {t("explore")}
             </h2>
-            <a href="#services" className="text-sm text-white/80 hover:text-white">
+            <a href={`${paths.home}#services`} className="text-sm text-white/80 hover:text-white">
               {tn("services")}
             </a>
-            <a href="#how-it-works" className="text-sm text-white/80 hover:text-white">
+            <a href={`${paths.home}#how-it-works`} className="text-sm text-white/80 hover:text-white">
               {tn("howItWorks")}
             </a>
             <Link href={paths.portal} className="text-sm text-white/80 hover:text-white">
@@ -132,13 +132,13 @@ export function SiteFooter({
               style={{ color: accentColor }}>
               {t("legal")}
             </h2>
-            <Link href={`${paths.home}/privacy`} className="text-sm text-white/80 hover:text-white">
+            <Link href={paths.privacy} className="text-sm text-white/80 hover:text-white">
               {t("legalPrivacy")}
             </Link>
-            <Link href={`${paths.home}/terms`} className="text-sm text-white/80 hover:text-white">
+            <Link href={paths.terms} className="text-sm text-white/80 hover:text-white">
               {t("legalTerms")}
             </Link>
-            <Link href={`${paths.home}/cookies`} className="text-sm text-white/80 hover:text-white">
+            <Link href={paths.cookies} className="text-sm text-white/80 hover:text-white">
               {t("legalCookies")}
             </Link>
           </div>
@@ -157,7 +157,7 @@ export function SiteFooter({
               {t("book")}
             </a>
             <a
-              href="#services"
+              href={`${paths.home}#services`}
               className="text-sm font-medium text-white/75 hover:text-white"
             >
               {t("viewServices")}
@@ -184,13 +184,13 @@ export function SiteFooter({
             © {new Date().getFullYear()} {businessName}. {t("rights")}
           </p>
           <div className="flex flex-wrap gap-4">
-            <Link href={`${paths.home}/privacy`} className="text-xs text-white/45 hover:text-white/80">
+            <Link href={paths.privacy} className="text-xs text-white/45 hover:text-white/80">
               {t("legalPrivacy")}
             </Link>
-            <Link href={`${paths.home}/terms`} className="text-xs text-white/45 hover:text-white/80">
+            <Link href={paths.terms} className="text-xs text-white/45 hover:text-white/80">
               {t("legalTerms")}
             </Link>
-            <Link href={`${paths.home}/cookies`} className="text-xs text-white/45 hover:text-white/80">
+            <Link href={paths.cookies} className="text-xs text-white/45 hover:text-white/80">
               {t("legalCookies")}
             </Link>
           </div>

@@ -115,6 +115,7 @@ export default async function CookiesPage({ params }: PageProps) {
       logoUrl={logoUrl}
       primaryColor={primaryColor}
       accentColor={accentColor}
+      hasAbout={Boolean(business.branding?.aboutTitle || business.branding?.aboutBody)}
       phone={phone}
       socialLinks={business.branding?.socialLinks ?? null}
       legal={business.legal}

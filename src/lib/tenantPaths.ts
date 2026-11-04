@@ -14,6 +14,11 @@ export function useTenantPaths(slug: string) {
   return {
     home: "/",
     portal: "/portal",
+    // Written out, not built as `${home}/terms`: home is "/", which would give
+    // "//terms", a protocol-relative URL that points at a host called "terms".
+    privacy: "/privacy",
+    terms: "/terms",
+    cookies: "/cookies",
     book: `/book-now/${encodeURIComponent(slug)}`,
   };
 }
