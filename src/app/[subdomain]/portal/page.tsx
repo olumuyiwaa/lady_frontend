@@ -60,6 +60,7 @@ export default function CustomerPortalPage() {
     // Business timezone + cancellation policy come from the same storefront
     // call that already supplies the currency.
     const [timezone, setTimezone] = useState<string | undefined>(undefined);
+    const [menuOpen, setMenuOpen] = useState(false);
     const [policy, setPolicy] = useState<StorefrontCancellationPolicy | null>(null);
 
     // Times are shown in the BUSINESS's timezone, not the visitor's: a customer
@@ -385,6 +386,14 @@ export default function CustomerPortalPage() {
 
     const logout = () => clearSession();
 
+    // Mobile menu: Escape closes it.
+    useEffect(() => {
+        if (!menuOpen) return;
+        const onKey = (e: KeyboardEvent) => e.key === "Escape" && setMenuOpen(false);
+        window.addEventListener("keydown", onKey);
+        return () => window.removeEventListener("keydown", onKey);
+    }, [menuOpen]);
+
     // "YYYY-MM-DD" of an instant in the business timezone (browser tz if unknown/invalid).
     const dayInBusinessTz = useCallback(
         (d: Date) => {
@@ -647,7 +656,7 @@ export default function CustomerPortalPage() {
                             </h1>
                         </div>
                     </div>
-                    <div className="flex items-center gap-2 sm:gap-3">
+                    <div className="hidden items-center gap-3 sm:flex">
                         <LanguageSwitcher />
                         <ThemeToggleButton />
                         <Link
@@ -655,8 +664,7 @@ export default function CustomerPortalPage() {
                             className="inline-flex items-center gap-1.5 rounded-xl bg-brand-500 px-3.5 py-2 text-sm font-medium text-white shadow-theme-xs transition hover:bg-brand-600"
                         >
                             <PlusIcon className="h-4 w-4" />
-                            <span className="hidden sm:inline">{t("header.bookAgain")}</span>
-                            <span className="sm:hidden">{t("header.book")}</span>
+                            {t("header.bookAgain")}
                         </Link>
                         {customer && (
                             <button
@@ -668,7 +676,53 @@ export default function CustomerPortalPage() {
                             </button>
                         )}
                     </div>
+                    <button
+                        type="button"
+                        onClick={() => setMenuOpen((o) => !o)}
+                        aria-expanded={menuOpen}
+                        aria-controls="portal-mobile-menu"
+                        aria-label={menuOpen ? t("header.closeMenu") : t("header.openMenu")}
+                        className="flex h-10 w-10 items-center justify-center rounded-xl border border-gray-200 text-gray-700 transition hover:bg-gray-50 dark:border-gray-700 dark:text-gray-200 dark:hover:bg-gray-800 sm:hidden"
+                    >
+                        <svg className="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" aria-hidden="true">
+                            {menuOpen ? <path d="M6 6l12 12M18 6L6 18" /> : <path d="M4 7h16M4 12h16M4 17h16" />}
+                        </svg>
+                    </button>
                 </div>
+                {menuOpen && (
+                    <div id="portal-mobile-menu" className="border-t border-gray-200 bg-white px-4 pb-4 pt-3 dark:border-gray-800 dark:bg-gray-900 sm:hidden">
+                        <div className="mx-auto flex max-w-7xl flex-col gap-3">
+                            <Link
+                                href={paths.book}
+                                onClick={() => setMenuOpen(false)}
+                                className="inline-flex items-center justify-center gap-1.5 rounded-xl bg-brand-500 px-4 py-3 text-sm font-medium text-white shadow-theme-xs transition hover:bg-brand-600"
+                            >
+                                <PlusIcon className="h-4 w-4" />
+                                {t("header.bookAgain")}
+                            </Link>
+                            <Link
+                                href={paths.home}
+                                onClick={() => setMenuOpen(false)}
+                                className="rounded-xl border border-gray-200 px-4 py-3 text-center text-sm font-medium text-gray-700 transition hover:bg-gray-50 dark:border-gray-700 dark:text-gray-200 dark:hover:bg-gray-800"
+                            >
+                                {t("header.site")}
+                            </Link>
+                            <div className="flex items-center justify-between gap-3 rounded-xl border border-gray-200 px-4 py-2 dark:border-gray-700">
+                                <LanguageSwitcher />
+                                <ThemeToggleButton />
+                            </div>
+                            {customer && (
+                                <button
+                                    type="button"
+                                    onClick={() => { setMenuOpen(false); logout(); }}
+                                    className="rounded-xl border border-gray-200 px-4 py-3 text-sm font-medium text-gray-600 transition hover:bg-gray-50 dark:border-gray-700 dark:text-gray-300 dark:hover:bg-gray-800"
+                                >
+                                    {t("header.signOut")}
+                                </button>
+                            )}
+                        </div>
+                    </div>
+                )}
             </header>
 
             <main className="mx-auto max-w-7xl px-4 py-6 sm:px-6 sm:py-8 lg:px-8">

@@ -1710,7 +1710,9 @@
       "site": "Site",
       "bookAgain": "Book again",
       "book": "Book",
-      "signOut": "Sign out"
+      "signOut": "Sign out",
+      "openMenu": "Open menu",
+      "closeMenu": "Close menu"
     },
     "marketing": {
       "selfService": "Self-service",

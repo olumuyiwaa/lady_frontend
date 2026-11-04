@@ -1710,7 +1710,9 @@
       "site": "Website",
       "bookAgain": "Opnieuw boeken",
       "book": "Boeken",
-      "signOut": "Uitloggen"
+      "signOut": "Uitloggen",
+      "openMenu": "Menu openen",
+      "closeMenu": "Menu sluiten"
     },
     "marketing": {
       "selfService": "Zelfbediening",
