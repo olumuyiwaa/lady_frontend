@@ -56,8 +56,7 @@ export default function AuthLayout({
 
                   {/* Tagline */}
                   <p className="text-center text-gray-400 dark:text-white/60 text-sm">
-                    Connecting healthcare professionals, facilities, and opportunities
-                    through a secure and efficient staffing platform.
+                    Bookings, cleaners and customers, all in one place.
                   </p>
                 </div>
               </div>
