@@ -75,8 +75,8 @@ export function SiteHeader({
   }
 
   return (
-      <header className="site-header-shell fixed inset-x-0 top-4 z-50 px-4 sm:top-5 sm:px-7">
-        <div className={`site-header-pill mx-auto flex max-w-[1400px] items-center justify-between gap-3 px-4 py-3 sm:px-7 ${scrolled ? "site-header-pill-scrolled" : ""}`}>
+      <header className="site-header-shell site-container fixed inset-x-0 top-4 z-50 sm:top-5">
+        <div className={`site-header-pill mx-auto flex max-w-[1680px] items-center justify-between gap-3 px-4 py-3 sm:px-7 ${scrolled ? "site-header-pill-scrolled" : ""}`}>
           <a href={`${paths.home}#top`} className="flex min-w-0 items-center gap-2.5 shrink-0">
             {logoUrl ? (
                 <SiteImage
@@ -160,7 +160,7 @@ export function SiteHeader({
         </div>
 
         {menuOpen && (
-            <div id="site-mobile-menu" className="site-mobile-menu mx-auto mt-3 max-w-[1400px] lg:hidden">
+            <div id="site-mobile-menu" className="site-mobile-menu mx-auto mt-3 max-w-[1680px] lg:hidden">
               <div className="flex flex-col p-3">
                 {nav.map((item) => (
                     <a
