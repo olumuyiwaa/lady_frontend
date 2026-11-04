@@ -32,10 +32,12 @@ import {
     type PortalCustomer,
 } from "@/app/api/portal.api";
 
-import { StatCard, ActionBtn, Modal, ModalActions, DetailRow, SparkleIcon, PlusIcon, CheckIcon, CalendarIcon, PinIcon, UserIcon } from "./PortalParts";
+import { StatCard, ActionBtn, Modal, ModalActions, DetailRow, PlusIcon, CheckIcon, CalendarIcon, PinIcon, UserIcon } from "./PortalParts";
 type Step = "phone" | "code" | "bookings";
 
 const RESEND_COOLDOWN_SECONDS = 30;
+
+const FALLBACK_LOGO = "/images/logo/todcleaning-logo.png";
 
 export default function CustomerPortalPage() {
     const params = useParams();
@@ -636,16 +638,18 @@ export default function CustomerPortalPage() {
                         <Link
                             href={paths.home}
                             aria-label={brand?.name || t("header.site")}
-                            className="flex h-10 w-10 items-center justify-center overflow-hidden rounded-xl bg-brand-500 text-white shadow-theme-xs transition hover:bg-brand-400"
+                            className="flex h-10 w-10 items-center justify-center overflow-hidden rounded-xl border border-gray-200 bg-white shadow-theme-xs transition hover:bg-gray-50 dark:border-gray-700"
                         >
-                            {brand?.logoUrl ? (
-                                // eslint-disable-next-line @next/next/no-img-element -- tenant-uploaded asset, arbitrary host
-                                <img src={brand.logoUrl} alt="" className="h-full w-full object-cover" />
-                            ) : brand?.name ? (
-                                <span className="text-base font-semibold">{brand.name.trim().charAt(0).toUpperCase()}</span>
-                            ) : (
-                                <SparkleIcon className="h-5 w-5" />
-                            )}
+                            {/* The business's uploaded logo, or the Tod Cleaning icon when there is none */}
+                            {/* eslint-disable-next-line @next/next/no-img-element -- tenant-uploaded asset, arbitrary host */}
+                            <img
+                                src={brand?.logoUrl || FALLBACK_LOGO}
+                                alt=""
+                                className="h-full w-full object-contain p-1"
+                                onError={(e) => {
+                                    if (!e.currentTarget.src.endsWith(FALLBACK_LOGO)) e.currentTarget.src = FALLBACK_LOGO;
+                                }}
+                            />
                         </Link>
                         <div>
                             <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-brand-500 dark:text-brand-400">
