@@ -80,7 +80,7 @@ export interface AdminProfile {
 // matching todcleaning's actual /auth/me response — no adminProfile/
 // nurseProfile/facilityMember sub-objects; firstName/lastName/role sit
 // directly on the user (businessRole), since Tod Cleaning Services users don't have the
-// per-role profile split Trabajo Hub's model had.
+// per-role profile split the original platform had.
 
 export type UserRole = "BUSINESS_OWNER" | "BUSINESS_MANAGER" | "CLEANER" | "SUPER_ADMIN" | string;
 export type AccountStatus = "PENDING" | "ACTIVE" | "SUSPENDED" | "DEACTIVATED" | string;
