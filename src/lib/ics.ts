@@ -25,10 +25,10 @@ export function buildIcs(ev: IcsEvent): string {
   const lines = [
     "BEGIN:VCALENDAR",
     "VERSION:2.0",
-    "PRODID:-//Lady Greener//Portal//EN",
+    "PRODID:-//Tod Cleaning Services//Portal//EN",
     "CALSCALE:GREGORIAN",
     "BEGIN:VEVENT",
-    `UID:${ev.uid}@ladygreener.nl`,
+    `UID:${ev.uid}@todcleaning.nl`,
     `DTSTAMP:${stamp(new Date().toISOString())}`,
     `DTSTART:${stamp(ev.start)}`,
     `DTEND:${stamp(ev.end)}`,

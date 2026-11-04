@@ -9,7 +9,7 @@ type RevealProps = {
 };
 
 /**
- * Fade-up on scroll — same motion language as ladygreener homepage.
+ * Fade-up on scroll — same motion language as todcleaning homepage.
  */
 export function Reveal({ children, delay = 0, className = "" }: RevealProps) {
   const ref = useRef<HTMLDivElement>(null);

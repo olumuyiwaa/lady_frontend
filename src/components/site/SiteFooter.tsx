@@ -71,7 +71,7 @@ export function SiteFooter({
               ) : (
                 // eslint-disable-next-line @next/next/no-img-element
                 <img
-                  src="/images/logo/ladygreener-logo.png"
+                  src="/images/logo/todcleaning-logo.png"
                   alt={businessName}
                   width={40}
                   height={40}

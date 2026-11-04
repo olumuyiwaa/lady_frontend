@@ -29,7 +29,7 @@ export default async function BusinessLayout({
   // URL (/signup, /whatever) would resolve to the storefront, because the API
   // always answers with the single business.
   const { subdomain } = await params;
-  const slug = (process.env.NEXT_PUBLIC_BUSINESS_SLUG || "ladygreener").toLowerCase();
+  const slug = (process.env.NEXT_PUBLIC_BUSINESS_SLUG || "todcleaning").toLowerCase();
   if (subdomain.toLowerCase() !== slug) notFound();
 
   return (

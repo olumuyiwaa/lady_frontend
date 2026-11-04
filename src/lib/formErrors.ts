@@ -26,7 +26,7 @@ export function fieldErrorMap(err: unknown): Record<string, string> {
 }
 
 /**
- * Base URL of the Lady Greener API. In development a missing variable falls back
+ * Base URL of the Tod Cleaning Services API. In development a missing variable falls back
  * to the local API; in production it is a configuration error and must be
  * visible, not a silent request to localhost.
  */

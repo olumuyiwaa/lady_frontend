@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 
 /**
- * Lady Greener is one business, so there is no host or subdomain lookup.
+ * Tod Cleaning Services is one business, so there is no host or subdomain lookup.
  *
  * The storefront and customer portal still live under src/app/[subdomain]
  * (they were built for many businesses). This proxy makes them answer at the
@@ -14,7 +14,7 @@ import { NextRequest, NextResponse } from "next/server";
  * Everything else (dashboard, sign-in, /book-now, API routes, static files) is
  * served as-is. Server components read the business slug from x-tenant-slug.
  */
-const SLUG = (process.env.NEXT_PUBLIC_BUSINESS_SLUG || "ladygreener").toLowerCase();
+const SLUG = (process.env.NEXT_PUBLIC_BUSINESS_SLUG || "todcleaning").toLowerCase();
 const TENANT_HEADER = "x-tenant-slug";
 
 const BYPASS_PREFIXES = ["/_next", "/favicon.ico", "/api/", "/images/", "/lottie/", "/embed.js"];

@@ -89,7 +89,7 @@ export function SiteHeader({
                 />
             ) : (
                 <img
-                    src="/images/logo/ladygreener-logo.png"
+                    src="/images/logo/todcleaning-logo.png"
                     alt={businessName}
                     width={52}
                     height={52}

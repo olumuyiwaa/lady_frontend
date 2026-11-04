@@ -77,9 +77,9 @@ export interface AdminProfile {
 // }
 
 // NOTE: User is now defined above as an alias to CurrentUser (from auth.api),
-// matching ladygreener's actual /auth/me response — no adminProfile/
+// matching todcleaning's actual /auth/me response — no adminProfile/
 // nurseProfile/facilityMember sub-objects; firstName/lastName/role sit
-// directly on the user (businessRole), since Lady Greener users don't have the
+// directly on the user (businessRole), since Tod Cleaning Services users don't have the
 // per-role profile split Trabajo Hub's model had.
 
 export type UserRole = "BUSINESS_OWNER" | "BUSINESS_MANAGER" | "CLEANER" | "SUPER_ADMIN" | string;

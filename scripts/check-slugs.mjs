@@ -36,7 +36,7 @@ const reservedSegments = [...new Set(await topLevelSegments(APP_DIR))].sort();
 
 // Same default as src/proxy.ts and the [subdomain] layout, so the check
 // validates what the app will actually use when the variable is not set.
-const slug = (process.env.NEXT_PUBLIC_BUSINESS_SLUG || "ladygreener").trim().toLowerCase();
+const slug = (process.env.NEXT_PUBLIC_BUSINESS_SLUG || "todcleaning").trim().toLowerCase();
 
 if (reservedSegments.includes(slug)) {
   console.error(

@@ -15,9 +15,9 @@ import type { PortalBooking, PortalCustomer } from "@/app/api/portal.api";
  * Long-term: replace with httpOnly cookies set by the API, which would remove
  * the token from JS-readable storage entirely.
  */
-const tokenKey    = (slug: string) => `ladygreener_portal_token_${slug}`;
-const customerKey = (slug: string) => `ladygreener_portal_customer_${slug}`;
-const tipPendingKey = (slug: string) => `ladygreener_portal_tip_pending_${slug}`;
+const tokenKey    = (slug: string) => `todcleaning_portal_token_${slug}`;
+const customerKey = (slug: string) => `todcleaning_portal_customer_${slug}`;
+const tipPendingKey = (slug: string) => `todcleaning_portal_tip_pending_${slug}`;
 
 export type StoredSession = { token: string; customer: PortalCustomer };
 

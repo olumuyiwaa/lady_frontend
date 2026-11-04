@@ -6,7 +6,7 @@ import { useEffect, useRef } from "react";
  * Cloudflare Turnstile challenge for the public booking form and waitlist.
  * The API (POST /widget/.../bookings, /waitlist) requires a valid token once
  * TURNSTILE_SECRET_KEY is configured on the server; without it anyone can
- * script the endpoint and make Lady Greener send SMS/e-mail to arbitrary numbers.
+ * script the endpoint and make Tod Cleaning Services send SMS/e-mail to arbitrary numbers.
  *
  * Renders nothing when NEXT_PUBLIC_TURNSTILE_SITE_KEY is unset (local dev),
  * matching the server, which then skips the check. Tokens are single-use, so

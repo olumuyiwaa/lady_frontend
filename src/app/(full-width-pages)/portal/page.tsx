@@ -25,8 +25,8 @@ import {
   type PortalCustomer,
 } from "@/app/api/portal.api";
 
-const TOKEN_KEY = "ladygreener_portal_token";
-const CUSTOMER_KEY = "ladygreener_portal_customer";
+const TOKEN_KEY = "todcleaning_portal_token";
+const CUSTOMER_KEY = "todcleaning_portal_customer";
 
 export default function CustomerPortalHostPage() {
   const t = useTranslations("Portal");

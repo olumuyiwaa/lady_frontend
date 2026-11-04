@@ -1,6 +1,6 @@
-# Lady Greener web
+# Tod Cleaning Services web
 
-Website and staff dashboard for **Lady Greener**, a cleaning company in the
+Website and staff dashboard for **Tod Cleaning Services**, a cleaning company in the
 Netherlands (Next.js 16, App Router, next-intl `nl`/`en`, Tailwind).
 
 Features: public storefront with online booking and postcode check, customer
@@ -15,7 +15,7 @@ Backend: [lady](https://github.com/olumuyiwaa/lady)
 ## How routes work
 
 `src/proxy.ts` serves the storefront at the site root, using the single
-business slug (`NEXT_PUBLIC_BUSINESS_SLUG`, default `ladygreener`):
+business slug (`NEXT_PUBLIC_BUSINESS_SLUG`, default `todcleaning`):
 
 | URL | Page |
 |---|---|
@@ -43,5 +43,5 @@ the `lady` repo). Staff sign in at `/signin`.
 
 ## Still to do
 
-- Replace `public/images/logo/ladygreener-logo.png` with the final high-resolution logo file before launch (the current file was added as a placeholder from the chat conversation).
+- Replace `public/images/logo/todcleaning-logo.png` with the final high-resolution logo file before launch (the current file was added as a placeholder from the chat conversation).
 - Confirm the `effectiveDate` strings on the Terms and Privacy pages (`"March 2021 — Updated for 2025"`) match the actual dates before publishing.

@@ -16,7 +16,7 @@ export function SiteTestimonials({ testimonials, primaryColor }: SiteTestimonial
   const FALLBACK: WidgetTestimonial[] = [
     {
       name: "Sarah M.",
-      quote: "Lady Greener did an amazing job on our apartment. Everything was spotless and the team was friendly and professional. Will definitely book again!",
+      quote: "Tod Cleaning Services did an amazing job on our apartment. Everything was spotless and the team was friendly and professional. Will definitely book again!",
     },
     {
       name: "James K.",
@@ -28,7 +28,7 @@ export function SiteTestimonials({ testimonials, primaryColor }: SiteTestimonial
     },
     {
       name: "Tom V.",
-      quote: "Used Lady Greener for our Airbnb between guests. Fast turnaround, fresh linens, everything restocked. Our guests noticed the difference.",
+      quote: "Used Tod Cleaning Services for our Airbnb between guests. Fast turnaround, fresh linens, everything restocked. Our guests noticed the difference.",
     },
     {
       name: "Anna L.",

@@ -1,5 +1,5 @@
 import { getActiveCurrency } from "@/app/services/currency";
-// Types matching ladygreener's Prisma schema and API response shapes.
+// Types matching todcleaning's Prisma schema and API response shapes.
 // Kept separate from the original template's types.ts (still used by the
 // generic messages/calendar/notifications/support-tickets pages) to avoid
 // touching working code those pages depend on.

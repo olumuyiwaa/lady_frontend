@@ -1,7 +1,7 @@
 /**
  * Links to the storefront's own pages.
  *
- * Lady Greener is one business and src/proxy.ts serves its storefront at the
+ * Tod Cleaning Services is one business and src/proxy.ts serves its storefront at the
  * site root (/ and /portal). Links must therefore be the clean form: a link to
  * "/{slug}/portal" is answered with a 307 redirect to "/portal" on every click.
  * The booking widget is the one real top-level route that still carries the

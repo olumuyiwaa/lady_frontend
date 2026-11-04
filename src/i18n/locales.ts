@@ -10,7 +10,7 @@
 export const locales = ["en", "nl"] as const;
 export type AppLocale = (typeof locales)[number];
 export const defaultLocale: AppLocale = "en";
-export const LOCALE_COOKIE = "ladygreener_locale";
+export const LOCALE_COOKIE = "todcleaning_locale";
 
 export function isSupportedLocale(value: string | undefined | null): value is AppLocale {
   return !!value && (locales as readonly string[]).includes(value);

@@ -53,7 +53,7 @@ export default function CustomerPortalPage() {
     const paths = useTenantPaths(slug);
 
     // Tenant branding: the portal is a "My Account" for THIS business, so it
-    // wears the business's logo and colour, not Lady Greener's.
+    // wears the business's logo and colour, not Tod Cleaning Services'.
     const [brand, setBrand] = useState<{ name: string; logoUrl: string | null; primary: string | null } | null>(null);
     const brandVars = brand?.primary ? (brandScaleVars(brand.primary) as CSSProperties) : undefined;
 

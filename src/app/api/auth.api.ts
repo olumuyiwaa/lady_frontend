@@ -2,7 +2,7 @@ import { authFetch } from "@/app/api/authFetch";
 import { publicFetch } from "@/app/api/publicFetch";
 
 // ─── Shared envelope ──────────────────────────────────────────
-// Every ladygreener response follows this shape: { success, message, data }.
+// Every todcleaning response follows this shape: { success, message, data }.
 // Unlike some other backends, tokens live INSIDE data — never at the
 // envelope root — for both /auth/login and /auth/refresh.
 interface ApiEnvelope<T> {
@@ -95,7 +95,7 @@ export const authApi = {
         }),
 
     // ─── Convenience aliases used by the auth pages ──────────────────
-    // ladygreener's email-verify routes require an authenticated
+    // todcleaning's email-verify routes require an authenticated
     // session (they act on req.user, not a userId/email from the request
     // body), so these ignore any userId/email argument the page passes
     // and act on whoever's currently logged in.

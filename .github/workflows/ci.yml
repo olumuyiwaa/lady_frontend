@@ -17,7 +17,7 @@ jobs:
       # Fails if the business slug collides with a real route.
       - run: npm run check:slugs
         env:
-          NEXT_PUBLIC_BUSINESS_SLUG: ladygreener
+          NEXT_PUBLIC_BUSINESS_SLUG: todcleaning
       - run: npm run test:unit
       - run: npx tsc --noEmit
       - name: Build

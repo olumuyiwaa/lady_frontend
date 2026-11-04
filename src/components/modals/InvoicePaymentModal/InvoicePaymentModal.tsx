@@ -2,9 +2,9 @@
 
 // NOT CURRENTLY WIRED UP — no page imports this modal, and the backend has
 // no matching endpoint that issues a payment-intent clientSecret. It also
-// runs against Lady Greener's agreed subscription-only billing model: job/
+// runs against Tod Cleaning Services' agreed subscription-only billing model: job/
 // booking payments happen outside the platform, so there's no invoice for
-// Lady Greener itself to collect on. This is the "optional per-booking Stripe
+// Tod Cleaning Services itself to collect on. This is the "optional per-booking Stripe
 // payment link" feature flagged as a possible v1.1 addition, left half-built
 // — if picking it back up, it needs a backend route before it does anything;
 // if abandoning it, this file and its backend counterpart can both go.
