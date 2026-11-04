@@ -22,6 +22,20 @@ export type PortalCustomer = {
   phone: string;
 };
 
+export type TimelineStepKey =
+  | "BOOKED"
+  | "CONFIRMED"
+  | "CLEANER_ASSIGNED"
+  | "ON_THE_WAY"
+  | "ARRIVED"
+  | "COMPLETED"
+  | "CANCELLED";
+
+export type PortalTimeline = {
+  steps: Array<{ key: TimelineStepKey; at: string | null; state: "done" | "current" | "upcoming" }>;
+  current: TimelineStepKey;
+};
+
 export type PortalBooking = {
   id: string;
   status: string;
@@ -42,6 +56,8 @@ export type PortalBooking = {
   checklist?: { items: Array<{ label: string; done: boolean }>; completedAt?: string | null } | null;
   customAnswers?: Array<{ questionId: string; label: string; type: string; value: unknown }> | null;
   photos?: Array<{ id: string; stage: string; storageKey: string; url?: string | null }> | null;
+  /** Progress steps; present on the single-booking endpoint. */
+  timeline?: PortalTimeline | null;
   assignments?: Array<{
     id: string;
     onMyWayAt?: string | null;
@@ -220,6 +236,122 @@ export async function tipPortalBooking(
     token
   );
   return result.data as { url: string; sessionId: string };
+}
+
+export type PortalReward = {
+  code: string;
+  valueCents: number;
+  expiresAt: string | null;
+  status: "AVAILABLE" | "USED" | "EXPIRED";
+};
+
+export type PortalReferral = {
+  code: string;
+  giveCents: number;
+  getCents: number;
+  friendsBooked: number;
+  friendsCompleted: number;
+  earnedCents: number;
+  rewards: PortalReward[];
+};
+
+export type PortalCleanerChoice = { id: string; name: string; jobs: number };
+
+export type PortalCleaners = {
+  preferredCleanerId: string | null;
+  cleaners: PortalCleanerChoice[];
+};
+
+export type PortalOverview = {
+  nextBooking: PortalBooking | null;
+  counts: { upcoming: number; completed: number; total: number };
+  unreadMessages: number;
+  preferredCleaner: PortalCleanerChoice | null;
+  referral: {
+    code: string;
+    giveCents: number;
+    getCents: number;
+    friendsBooked: number;
+    availableRewards: number;
+  };
+};
+
+export type PortalChatMessage = {
+  id: string;
+  role: "CUSTOMER" | "CLEANER" | "STAFF";
+  mine: boolean;
+  name: string | null;
+  body: string | null;
+  createdAt: string;
+  readAt: string | null;
+};
+
+export type PortalChat = {
+  open: boolean;
+  closedReason: "NO_CLEANER" | "CANCELLED" | "CLOSED" | null;
+  with: string | null;
+  messages: PortalChatMessage[];
+};
+
+export async function getPortalOverview(slug: string | null, token: string) {
+  const result = await portalFetch(slug, `/overview`, { method: "GET" }, token);
+  return result.data as PortalOverview;
+}
+
+export async function getPortalReferral(slug: string | null, token: string) {
+  const result = await portalFetch(slug, `/referral`, { method: "GET" }, token);
+  return result.data as PortalReferral;
+}
+
+export async function listPortalCleaners(slug: string | null, token: string) {
+  const result = await portalFetch(slug, `/cleaners`, { method: "GET" }, token);
+  return result.data as PortalCleaners;
+}
+
+/** Pass null to clear the preference. */
+export async function setPortalPreferredCleaner(
+  slug: string | null,
+  token: string,
+  cleanerId: string | null
+) {
+  const result = await portalFetch(
+    slug,
+    `/preferences/cleaner`,
+    { method: "PUT", body: JSON.stringify({ cleanerId }) },
+    token
+  );
+  return result.data as PortalCleaners;
+}
+
+export async function getPortalTimeline(slug: string | null, token: string, id: string) {
+  const result = await portalFetch(slug, `/bookings/${id}/timeline`, { method: "GET" }, token);
+  return result.data as PortalTimeline & { status: string };
+}
+
+export async function listPortalMessages(
+  slug: string | null,
+  token: string,
+  id: string,
+  after?: string
+) {
+  const qs = after ? `?after=${encodeURIComponent(after)}` : "";
+  const result = await portalFetch(slug, `/bookings/${id}/messages${qs}`, { method: "GET" }, token);
+  return result.data as PortalChat;
+}
+
+export async function postPortalMessage(
+  slug: string | null,
+  token: string,
+  id: string,
+  body: string
+) {
+  const result = await portalFetch(
+    slug,
+    `/bookings/${id}/messages`,
+    { method: "POST", body: JSON.stringify({ body }) },
+    token
+  );
+  return result.data as PortalChatMessage;
 }
 
 export function formatMoney(

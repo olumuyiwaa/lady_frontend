@@ -1,7 +1,9 @@
 "use client";
 
+import { useState } from "react";
 import { useTranslations } from "next-intl";
 import type { AnswerValue, BookingQuestion } from "@/lib/bookingQuestions";
+import { readReferralCode } from "@/lib/referral";
 import { CustomQuestions } from "./CustomQuestions";
 import { formatMoney, type BookingFormState } from "./types";
 
@@ -26,8 +28,16 @@ export function StepDetails({
   onAnswer,
 }: Props) {
   const t = useTranslations("Booking.details");
+  // Present when the visitor arrived through a friend's ?ref= link.
+  const [referral] = useState(() => readReferralCode());
   return (
     <div className="space-y-6">
+      {referral && (
+        <p className="rounded-lg bg-emerald-50 px-3 py-2 text-sm text-emerald-800" role="status">
+          {t("referralNote")}
+        </p>
+      )}
+
       <header>
         <h2 className="text-xl font-semibold text-gray-900">{t("heading")}</h2>
         <p className="mt-1 text-sm text-gray-500">{t("subheading")}</p>

@@ -18,6 +18,7 @@ import { SiteContact } from "@/components/site/SiteContact";
 import { BookingWidgetModal } from "@/components/widget/BookingWidgetModal";
 import { brandForWhiteText } from "@/lib/color";
 import { resolveSectionOrder, type SectionKey } from "@/lib/sections";
+import { captureReferralFromUrl } from "@/lib/referral";
 
 const DEFAULT_PRIMARY = "#0B352A";
 const DEFAULT_ACCENT = "#D0AA62";
@@ -44,6 +45,11 @@ export function StorefrontClient({
 
   const business = data.business;
   const branding = business.branding;
+
+  // A friend's referral link (?ref=CODE): remember it so the booking can use it.
+  useEffect(() => {
+    captureReferralFromUrl();
+  }, []);
 
   // Align money formatting in the booking modal with this business.
   useEffect(() => {

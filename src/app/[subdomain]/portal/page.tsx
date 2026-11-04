@@ -34,6 +34,9 @@ import {
 } from "@/app/api/portal.api";
 
 import { StatCard, ActionBtn, Modal, ModalActions, DetailRow, PlusIcon, CheckIcon, CalendarIcon, PinIcon, UserIcon, ClockIcon, HistoryIcon } from "./PortalParts";
+import { PortalHome } from "./PortalHome";
+import { BookingTimeline } from "./BookingTimeline";
+import { BookingChat } from "./BookingChat";
 type Step = "phone" | "code" | "bookings";
 
 const RESEND_COOLDOWN_SECONDS = 30;
@@ -91,6 +94,18 @@ export default function CustomerPortalPage() {
         [locale, timezone]
     );
 
+    const formatDate = useCallback(
+        (iso: string) => {
+            const opts: Intl.DateTimeFormatOptions = { day: "numeric", month: "short", year: "numeric" };
+            try {
+                return new Date(iso).toLocaleDateString(locale, { ...opts, timeZone: timezone });
+            } catch {
+                return new Date(iso).toLocaleDateString(locale, opts);
+            }
+        },
+        [locale, timezone]
+    );
+
     // Currency was formatted with the browser locale (so a Dutch UI on an
     // English browser showed "EUR 1,234.50"); use the app locale like dates do.
     const money = useCallback(
@@ -130,6 +145,8 @@ export default function CustomerPortalPage() {
     const [bookings, setBookings] = useState<PortalBooking[]>([]);
     const [filter, setFilter] = useState<"upcoming" | "past" | "all">("upcoming");
     const [loading, setLoading] = useState(false);
+    // The home panel is shown after the first load so it is not fetched twice.
+    const [loadedOnce, setLoadedOnce] = useState(false);
     const [error, setError] = useState("");
     const [msg, setMsg] = useState("");
 
@@ -185,8 +202,15 @@ export default function CustomerPortalPage() {
         setToken(null);
         setCustomer(null);
         setBookings([]);
+        setLoadedOnce(false);
         setStep("phone");
     }, [slug]);
+
+    // For components that make their own authenticated calls (home panel, timeline, chat).
+    const onUnauthorized = useCallback(() => {
+        clearSession();
+        setError(t("errors.sessionExpired"));
+    }, [clearSession, t]);
 
     /** Shared catch for every token-authenticated call. */
     const handleActionError = (err: unknown, fallback: string) => {
@@ -227,6 +251,7 @@ export default function CustomerPortalPage() {
             setError("");
             try {
                 await loadBookings(token);
+                if (!cancelled) setLoadedOnce(true);
             } catch (e) {
                 if (!cancelled) {
                     if ((e as { status?: number } | null)?.status === 401) {
@@ -976,6 +1001,21 @@ export default function CustomerPortalPage() {
                             </div>
                         </div>
 
+                        {token && loadedOnce && (
+                            <PortalHome
+                                slug={slug}
+                                token={token}
+                                businessName={brand?.name ?? ""}
+                                money={money}
+                                formatWhen={formatWhen}
+                                formatDate={formatDate}
+                                onBook={() => setBookOpen(true)}
+                                onOpenBooking={openDetail}
+                                onUnauthorized={onUnauthorized}
+                                refreshKey={bookings.map((b) => `${b.id}:${b.status}:${b.scheduledStart}`).join("|")}
+                            />
+                        )}
+
                         {/* Filter bar */}
                         <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
                             <div className="inline-flex rounded-xl bg-gray-100 p-1 dark:bg-gray-800">
@@ -1227,32 +1267,17 @@ export default function CustomerPortalPage() {
                         <p className="mt-4 text-sm text-gray-400">{tx("loadingDetails")}</p>
                     )}
 
-                    {(() => {
-                        const a = detail.assignments?.[0];
-                        const steps = [
-                            [tx("onMyWay"), a?.onMyWayAt],
-                            [tx("checkedIn"), a?.checkedInAt],
-                            [tx("checkedOut"), a?.checkedOutAt],
-                        ].filter(([, at]) => !!at) as Array<[string, string]>;
-                        if (steps.length === 0) return null;
-                        return (
-                            <div className="mt-5">
-                                <p className="mb-2 text-xs font-medium uppercase tracking-wide text-gray-400">
-                                    {tx("visit")}
-                                </p>
-                                <ul className="space-y-1.5 text-sm text-gray-700 dark:text-gray-300">
-                                    {steps.map(([label, at]) => (
-                                        <li key={label} className="flex justify-between gap-3">
-                                            <span>{label}</span>
-                                            <span className="tabular-nums text-gray-500 dark:text-gray-400">
-                                                {formatSlotTime(at)}
-                                            </span>
-                                        </li>
-                                    ))}
-                                </ul>
-                            </div>
-                        );
-                    })()}
+                    {token && (
+                        <BookingTimeline
+                            key={detail.id}
+                            slug={slug}
+                            token={token}
+                            bookingId={detail.id}
+                            initial={detail.timeline}
+                            formatTime={formatWhen}
+                            onUnauthorized={onUnauthorized}
+                        />
+                    )}
 
                     {detail.checklist?.items && detail.checklist.items.length > 0 && (
                         <div className="mt-5">
@@ -1308,6 +1333,16 @@ export default function CustomerPortalPage() {
                             </div>
                         );
                     })()}
+                    {token && (
+                        <BookingChat
+                            key={detail.id}
+                            slug={slug}
+                            token={token}
+                            bookingId={detail.id}
+                            formatTime={formatWhen}
+                            onUnauthorized={onUnauthorized}
+                        />
+                    )}
                     <div className="mt-6 flex flex-wrap justify-end gap-2">
                         {detail.status !== "CANCELLED" && (
                             <button

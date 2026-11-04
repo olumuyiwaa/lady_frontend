@@ -10,6 +10,7 @@ import {
   type WidgetService,
 } from "@/app/api/widget.api";
 import { redirectToCheckout } from "@/lib/checkoutRedirect";
+import { clearReferralCode, readReferralCode } from "@/lib/referral";
 import {
   type AnswerValue,
   applicableQuestions,
@@ -271,6 +272,8 @@ export function useBookingState({ slug, services, questions, initialPostalCode }
         scheduledStart: state.scheduledStart,
         couponCode: state.couponCode.trim() || undefined,
         giftCardCode: state.giftCardCode.trim() || undefined,
+        // From a friend's ?ref= link. The server only applies it to new customers.
+        referralCode: readReferralCode() || undefined,
         rooms: state.rooms,
         bathrooms: state.bathrooms,
         sqft: state.sqft || undefined,
@@ -285,6 +288,8 @@ export function useBookingState({ slug, services, questions, initialPostalCode }
         return;
       }
 
+      // The referral has been used (or not applicable to a returning customer): drop it.
+      clearReferralCode();
       setBookingResult({
         id: result.id,
         scheduledStart: result.scheduledStart,

@@ -95,6 +95,7 @@
       "specialInstructions": "Bijzondere instructies",
       "specialInstructionsPlaceholder": "Deurcode, huisdieren, parkeren, aandachtspunten…",
       "couponCode": "Kortingscode",
+      "referralNote": "Je bent uitgenodigd door een vriend: je verwijzingskorting wordt bij het bevestigen van je eerste boeking toegepast.",
       "couponCodePlaceholder": "BESPAAR10",
       "apply": "Toepassen",
       "couponApplied": "Kortingscode toegepast",
@@ -2082,5 +2083,73 @@
         "PAID": "Betaald",
         "REFUNDED": "Terugbetaald"
       }
+  },
+  "PortalHome": {
+    "heading": "Je account in één oogopslag",
+    "next": {
+      "title": "Volgende bezoek",
+      "none": "Je hebt nog niets geboekt.",
+      "book": "Boek een schoonmaak",
+      "view": "Bekijk details",
+      "with": "met {name}",
+      "cleanerTbd": "schoonmaker volgt nog",
+      "unread": "{count, plural, one {# nieuw bericht} other {# nieuwe berichten}}"
+    },
+    "referral": {
+      "title": "Geef {give}, krijg {get}",
+      "description": "Deel je link. Een vriend krijgt {give} korting op de eerste schoonmaak en jij krijgt {get} korting op je volgende.",
+      "yourCode": "Jouw code",
+      "copy": "Link kopiëren",
+      "copied": "Gekopieerd!",
+      "share": "Delen",
+      "shareMessage": "Boek een schoonmaak bij {business} en krijg {give} korting op je eerste keer: {link}",
+      "friends": "{count, plural, one {# vriend heeft geboekt met jouw link} other {# vrienden hebben geboekt met jouw link}}",
+      "noFriends": "Er heeft nog niemand geboekt. Je beloningen verschijnen hier zodra dat gebeurt.",
+      "rewards": "Je kortingscodes ({count} beschikbaar)",
+      "expires": "Verloopt op {date}",
+      "status": {
+        "AVAILABLE": "Beschikbaar",
+        "USED": "Gebruikt",
+        "EXPIRED": "Verlopen"
+      }
+    },
+    "preferred": {
+      "title": "Favoriete schoonmaker",
+      "description": "Kies een schoonmaker die al eerder bij je is geweest. We sturen die persoon zodra die beschikbaar is.",
+      "none": "Geen voorkeur",
+      "visits": "{count, plural, one {# bezoek} other {# bezoeken}}",
+      "saved": "Opgeslagen",
+      "note": "Niet gegarandeerd: het hangt af van de beschikbaarheid.",
+      "saveFailed": "Je keuze kon niet worden opgeslagen.",
+      "empty": "Na je eerste schoonmaak kun je hier een favoriete schoonmaker kiezen."
+    },
+    "timeline": {
+      "heading": "Voortgang",
+      "live": "Wordt automatisch bijgewerkt",
+      "steps": {
+        "BOOKED": "Geboekt",
+        "CONFIRMED": "Bevestigd",
+        "CLEANER_ASSIGNED": "Schoonmaker toegewezen",
+        "ON_THE_WAY": "Schoonmaker is onderweg",
+        "ARRIVED": "Schoonmaker is aangekomen",
+        "COMPLETED": "Schoonmaak klaar",
+        "CANCELLED": "Geannuleerd"
+      }
+    },
+    "chat": {
+      "heading": "Berichten",
+      "with": "Chat met {name}",
+      "loading": "Berichten laden…",
+      "loadFailed": "Berichten konden niet worden geladen.",
+      "placeholder": "Schrijf een bericht…",
+      "send": "Versturen",
+      "empty": "Nog geen berichten. Vraag je schoonmaker gerust alles over het bezoek.",
+      "sendFailed": "Je bericht kon niet worden verstuurd.",
+      "closed": {
+        "NO_CLEANER": "Je kunt chatten met je schoonmaker zodra er een is toegewezen.",
+        "CANCELLED": "Deze boeking is geannuleerd, dus de chat is gesloten.",
+        "CLOSED": "De chat sluit 48 uur na de schoonmaak."
+      }
+    }
   }
 }

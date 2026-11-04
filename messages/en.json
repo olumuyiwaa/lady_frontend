@@ -95,6 +95,7 @@
       "specialInstructions": "Special instructions",
       "specialInstructionsPlaceholder": "Gate code, pets, parking, focus areas…",
       "couponCode": "Coupon code",
+      "referralNote": "A friend invited you: your referral discount is applied to your first booking when you confirm.",
       "couponCodePlaceholder": "SAVE10",
       "apply": "Apply",
       "couponApplied": "Coupon applied",
@@ -2082,5 +2083,73 @@
         "PAID": "Paid",
         "REFUNDED": "Refunded"
       }
+  },
+  "PortalHome": {
+    "heading": "Your account at a glance",
+    "next": {
+      "title": "Next visit",
+      "none": "Nothing booked yet.",
+      "book": "Book a cleaning",
+      "view": "View details",
+      "with": "with {name}",
+      "cleanerTbd": "cleaner to be assigned",
+      "unread": "{count, plural, one {# new message} other {# new messages}}"
+    },
+    "referral": {
+      "title": "Give {give}, get {get}",
+      "description": "Share your link. A friend gets {give} off their first clean, and you get {get} off your next one.",
+      "yourCode": "Your code",
+      "copy": "Copy link",
+      "copied": "Copied!",
+      "share": "Share",
+      "shareMessage": "Book a cleaning with {business} and get {give} off your first clean: {link}",
+      "friends": "{count, plural, one {# friend has booked with your link} other {# friends have booked with your link}}",
+      "noFriends": "No friends have booked yet. Rewards show up here as soon as they do.",
+      "rewards": "Your reward coupons ({count} available)",
+      "expires": "Expires {date}",
+      "status": {
+        "AVAILABLE": "Available",
+        "USED": "Used",
+        "EXPIRED": "Expired"
+      }
+    },
+    "preferred": {
+      "title": "Preferred cleaner",
+      "description": "Pick a cleaner who has cleaned for you before. We'll send them whenever they're free.",
+      "none": "No preference",
+      "visits": "{count, plural, one {# visit} other {# visits}}",
+      "saved": "Saved",
+      "note": "Not guaranteed: it depends on their availability.",
+      "saveFailed": "Could not save your choice.",
+      "empty": "After your first clean you can choose a favourite cleaner here."
+    },
+    "timeline": {
+      "heading": "Progress",
+      "live": "Updates automatically",
+      "steps": {
+        "BOOKED": "Booked",
+        "CONFIRMED": "Confirmed",
+        "CLEANER_ASSIGNED": "Cleaner assigned",
+        "ON_THE_WAY": "Cleaner on the way",
+        "ARRIVED": "Cleaner arrived",
+        "COMPLETED": "Clean complete",
+        "CANCELLED": "Cancelled"
+      }
+    },
+    "chat": {
+      "heading": "Messages",
+      "with": "Chat with {name}",
+      "loading": "Loading messages…",
+      "loadFailed": "Could not load messages.",
+      "placeholder": "Write a message…",
+      "send": "Send",
+      "empty": "No messages yet. Ask your cleaner anything about the visit.",
+      "sendFailed": "Could not send your message.",
+      "closed": {
+        "NO_CLEANER": "You can chat with your cleaner once one has been assigned.",
+        "CANCELLED": "This booking was cancelled, so chat is closed.",
+        "CLOSED": "Chat closes 48 hours after the clean."
+      }
+    }
   }
 }
