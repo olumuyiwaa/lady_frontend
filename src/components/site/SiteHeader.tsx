@@ -39,18 +39,32 @@ export function SiteHeader({
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  const nav = [
-    { label: t("services"), href: "#services" },
-    { label: t("howItWorks"), href: "#how-it-works" },
-    ...(hasAbout ? [{ label: t("about"), href: "#about" }] : []),
-    ...(hasTestimonials ? [{ label: t("reviews"), href: "#testimonials" }] : []),
-    ...(hasFaq ? [{ label: t("faq"), href: "#faq" }] : []),
-    { label: t("contact"), href: "#contact" },
-  ];
+  // Escape closes the mobile menu (keyboard users had no way to dismiss it).
+  useEffect(() => {
+    if (!menuOpen) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setMenuOpen(false);
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [menuOpen]);
 
   const paths = useTenantPaths(subdomain);
   const bookHref = paths.book;
   const portalHref = paths.portal;
+
+  // Section links point at the home page ("/#services"), not just "#services":
+  // this header is also used on the legal pages, which have no such sections,
+  // so a bare hash did nothing there. On the home page the browser treats
+  // "/#services" as an in-page jump (no reload).
+  const nav = [
+    { label: t("services"), href: `${paths.home}#services` },
+    { label: t("howItWorks"), href: `${paths.home}#how-it-works` },
+    ...(hasAbout ? [{ label: t("about"), href: `${paths.home}#about` }] : []),
+    ...(hasTestimonials ? [{ label: t("reviews"), href: `${paths.home}#testimonials` }] : []),
+    ...(hasFaq ? [{ label: t("faq"), href: `${paths.home}#faq` }] : []),
+    { label: t("contact"), href: `${paths.home}#contact` },
+  ];
 
   function handleBook(e: React.MouseEvent) {
     if (onBook) {
@@ -63,7 +77,7 @@ export function SiteHeader({
   return (
       <header className="site-header-shell fixed inset-x-0 top-4 z-50 px-4 sm:top-5 sm:px-7">
         <div className={`site-header-pill mx-auto flex max-w-[1400px] items-center justify-between gap-3 px-4 py-3 sm:px-7 ${scrolled ? "site-header-pill-scrolled" : ""}`}>
-          <a href="#top" className="flex min-w-0 items-center gap-2.5 shrink-0">
+          <a href={`${paths.home}#top`} className="flex min-w-0 items-center gap-2.5 shrink-0">
             {logoUrl ? (
                 <SiteImage
                     src={logoUrl}
@@ -127,6 +141,7 @@ export function SiteHeader({
               className="grid h-11 w-11 place-items-center rounded-full border border-[#e6e4dc] bg-[#f8f8f5] lg:hidden"
               aria-label={menuOpen ? t("closeMenu") : t("openMenu")}
               aria-expanded={menuOpen}
+              aria-controls="site-mobile-menu"
               onClick={() => setMenuOpen((v) => !v)}
           >
           <span className="relative block h-3 w-5">
@@ -145,7 +160,7 @@ export function SiteHeader({
         </div>
 
         {menuOpen && (
-            <div className="site-mobile-menu mx-auto mt-3 max-w-[1400px] lg:hidden">
+            <div id="site-mobile-menu" className="site-mobile-menu mx-auto mt-3 max-w-[1400px] lg:hidden">
               <div className="flex flex-col p-3">
                 {nav.map((item) => (
                     <a

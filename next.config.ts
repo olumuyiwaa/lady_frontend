@@ -72,7 +72,9 @@ const nextConfig: NextConfig = {
     // rewrite the http://localhost API calls to https and break them.
     const cspBase = [
       "default-src 'self'",
-      `script-src 'self' 'unsafe-inline' ${scriptHosts}`,
+      // 'unsafe-eval' only in development: React's dev build and HMR use eval(),
+      // which otherwise logs a CSP error on every page. Never sent in production.
+      `script-src 'self' 'unsafe-inline'${process.env.NODE_ENV === "production" ? "" : " 'unsafe-eval'"} ${scriptHosts}`,
       "script-src-attr 'none'",
       `connect-src 'self' ${connectHosts}`,
       "style-src 'self' 'unsafe-inline'",          // Tailwind inlines styles

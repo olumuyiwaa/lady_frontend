@@ -67,7 +67,7 @@ export function LegalPage({
           <div className="site-container">
             {/* Breadcrumb */}
             <nav aria-label="Breadcrumb" className="mb-4 flex items-center gap-1.5 text-sm text-[#5a7069]">
-              <Link href={`/${subdomain}`} className="hover:text-[#102c24]">
+              <Link href="/" className="hover:text-[#102c24]">
                 {businessName}
               </Link>
               <span aria-hidden="true">/</span>
