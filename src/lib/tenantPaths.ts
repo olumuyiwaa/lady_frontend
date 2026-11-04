@@ -2,15 +2,14 @@
  * Links to the storefront's own pages.
  *
  * Tod Cleaning Services is one business and src/proxy.ts serves its storefront at the
- * site root (/ and /portal). Links must therefore be the clean form: a link to
- * "/{slug}/portal" is answered with a 307 redirect to "/portal" on every click.
- * The booking widget is the one real top-level route that still carries the
- * slug (/book-now/{slug}); the API ignores the value.
+ * site root (/ and /portal). Booking is handled entirely via the modal on the
+ * storefront; there is no standalone /book-now route. The `book` path therefore
+ * returns visitors to the home page where they can open the modal.
  *
  * Kept as a hook with the old signature so the components that call it need no
  * changes.
  */
-export function useTenantPaths(slug: string) {
+export function useTenantPaths(_slug: string) {
   return {
     home: "/",
     portal: "/portal",
@@ -19,6 +18,7 @@ export function useTenantPaths(slug: string) {
     privacy: "/privacy",
     terms: "/terms",
     cookies: "/cookies",
-    book: `/book-now/${encodeURIComponent(slug)}`,
+    /** Portal "Book Again" links point here. On the storefront the modal is used instead. */
+    book: "/",
   };
 }

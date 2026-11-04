@@ -1,8 +1,7 @@
 "use client";
 
-import type { CSSProperties, MouseEvent } from "react";
+import type { CSSProperties } from "react";
 import { useTranslations } from "next-intl";
-import { useTenantPaths } from "@/lib/tenantPaths";
 import { Reveal } from "./Reveal";
 import { SiteImage } from "./SiteImage";
 import { SitePostcodeCheck } from "./SitePostcodeCheck";
@@ -50,15 +49,8 @@ export function SiteHero({
   onBookWithPostcode,
 }: SiteHeroProps) {
   const t = useTranslations("Site.hero");
-  const bookHref = useTenantPaths(subdomain).book;
   const accent = accentColor || "#C9983A";
   const image = heroImageUrl || "/images/after-room.jpg";
-
-  function handleBook(event: MouseEvent<HTMLAnchorElement>) {
-    if (!onBook) return;
-    event.preventDefault();
-    onBook();
-  }
 
   const copy = t("copy", { name: businessName });
   const fullCopy = tagline?.trim() ? tagline.trim() : copy;
@@ -110,10 +102,10 @@ export function SiteHero({
 
             {/* CTAs */}
             <div className="mt-9 flex flex-wrap gap-3">
-              <a href={bookHref} onClick={handleBook} className="site-btn-primary site-btn-gold">
+              <button type="button" onClick={onBook} className="site-btn-primary site-btn-gold">
                 {t("checkPrice")}
                 <ArrowIcon />
-              </a>
+              </button>
               <a href="#services" className="site-btn-secondary site-btn-dark">
                 {t("exploreServices")}
               </a>

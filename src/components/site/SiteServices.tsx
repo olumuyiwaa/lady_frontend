@@ -62,14 +62,6 @@ const USP_ICONS = {
 export function SiteServices({ subdomain, services, primaryColor, onBook, currency }: SiteServicesProps) {
   const t = useTranslations("Site.services");
   const paths = useTenantPaths(subdomain);
-  const bookHref = paths.book;
-
-  function handleBook(e: React.MouseEvent) {
-    if (onBook) {
-      e.preventDefault();
-      onBook();
-    }
-  }
 
   if (!services.length) {
     return (
@@ -186,9 +178,9 @@ export function SiteServices({ subdomain, services, primaryColor, onBook, curren
                     </div>
                   </div>
 
-                  <a
-                    href={bookHref}
-                    onClick={handleBook}
+                  <button
+                    type="button"
+                    onClick={onBook}
                     className="site-service-cta"
                     style={{ "--service-color": primaryColor } as React.CSSProperties}
                   >
@@ -196,7 +188,7 @@ export function SiteServices({ subdomain, services, primaryColor, onBook, curren
                     <svg width="15" height="15" viewBox="0 0 24 24" fill="none" aria-hidden>
                       <path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                     </svg>
-                  </a>
+                  </button>
                 </li>
               </Reveal>
             );

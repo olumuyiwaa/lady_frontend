@@ -44,15 +44,7 @@ export function SiteFooter({
   const t = useTranslations("Site.footer");
   const tn = useTranslations("Site.nav");
   const paths = useTenantPaths(subdomain);
-  const bookHref = paths.book;
   const socialEntries = Object.entries(socialLinks || {}).filter(([, url]) => !!url);
-
-  function handleBook(e: React.MouseEvent) {
-    if (onBook) {
-      e.preventDefault();
-      onBook();
-    }
-  }
 
   return (
     <footer id="site-footer" className="site-footer border-t border-[#e4dfd4]">
@@ -149,14 +141,14 @@ export function SiteFooter({
               style={{ color: accentColor }}>
               {t("ready")}
             </h2>
-            <a
-              href={bookHref}
-              onClick={handleBook}
+            <button
+              type="button"
+              onClick={onBook}
               className="inline-flex min-h-[46px] items-center justify-center rounded-full px-6 text-sm font-bold"
               style={{ backgroundColor: accentColor, color: readableTextOn(accentColor, "#092f26") }}
             >
               {t("book")}
-            </a>
+            </button>
             <a
               href={`${paths.home}#services`}
               className="text-sm font-medium text-white/75 hover:text-white"

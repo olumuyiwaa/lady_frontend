@@ -50,7 +50,6 @@ export function SiteHeader({
   }, [menuOpen]);
 
   const paths = useTenantPaths(subdomain);
-  const bookHref = paths.book;
   const portalHref = paths.portal;
 
   // Section links point at the home page ("/#services"), not just "#services":
@@ -66,9 +65,8 @@ export function SiteHeader({
     { label: t("contact"), href: `${paths.home}#contact` },
   ];
 
-  function handleBook(e: React.MouseEvent) {
+  function handleBook() {
     if (onBook) {
-      e.preventDefault();
       onBook();
       setMenuOpen(false);
     }
@@ -123,8 +121,8 @@ export function SiteHeader({
             >
               {t("portal")}
             </Link>
-            <a
-                href={bookHref}
+            <button
+                type="button"
                 onClick={handleBook}
                 className="inline-flex min-h-11 items-center gap-2 rounded-full bg-[#0a2e22] px-5 py-2 text-sm font-semibold text-white transition-all hover:-translate-y-0.5 hover:brightness-110"
                 style={{
@@ -133,7 +131,7 @@ export function SiteHeader({
             >
               {t("book")}
               <span aria-hidden="true">↗</span>
-            </a>
+            </button>
           </div>
 
           <button
@@ -180,13 +178,13 @@ export function SiteHeader({
                 >
                   {t("portal")}
                 </Link>
-                <a
-                    href={bookHref}
+                <button
+                    type="button"
                     onClick={handleBook}
                     className="mt-2 rounded-full bg-[#082e25] px-4 py-3 text-center text-sm font-semibold text-white"
                 >
                   {t("book")}
-                </a>
+                </button>
               </div>
             </div>
         )}

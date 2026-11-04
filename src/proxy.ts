@@ -15,7 +15,7 @@ import { resolveHostRoute } from "@/lib/hostRouting";
  * When NEXT_PUBLIC_ADMIN_URL is set (admin.todcleaning.nl), staff pages live on
  * that host and the public host redirects them there (see lib/hostRouting.ts).
  *
- * Everything else (dashboard, sign-in, /book-now, API routes, static files) is
+ * Everything else (dashboard, sign-in, API routes, static files) is
  * served as-is. Server components read the business slug from x-tenant-slug.
  */
 const SLUG = (process.env.NEXT_PUBLIC_BUSINESS_SLUG || "todcleaning").toLowerCase();
@@ -35,9 +35,6 @@ export function proxy(req: NextRequest) {
 
   if (BYPASS_PREFIXES.some((p) => pathname.startsWith(p))) return NextResponse.next();
   if (META_FILES.has(pathname)) return withTenant(req);
-
-  // /book-now/{anything} is the embeddable widget page; the slug in the path is ignored by the API.
-  if (pathname.startsWith("/book-now/")) return withTenant(req);
 
   const hostRoute = resolveHostRoute({
     host: req.headers.get("x-forwarded-host") || req.headers.get("host") || "",

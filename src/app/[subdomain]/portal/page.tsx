@@ -3,7 +3,8 @@
 import { useCallback, useEffect, useMemo, useRef, useState, type CSSProperties } from "react";
 import { useParams } from "next/navigation";
 import { useLocale, useTranslations } from "next-intl";
-import { getSlots, getStorefront, type Slot, type StorefrontCancellationPolicy } from "@/app/api/widget.api";
+import { getSlots, getStorefront, type Slot, type StorefrontCancellationPolicy, type StorefrontResponse } from "@/app/api/widget.api";
+import { BookingWidgetModal } from "@/components/widget/BookingWidgetModal";
 import { isoDateInTimeZone, setActiveCurrency } from "@/app/services/currency";
 import { useActiveCurrency } from "@/app/services/useActiveCurrency";
 import Link from "next/link";
@@ -59,6 +60,10 @@ export default function CustomerPortalPage() {
     const [brand, setBrand] = useState<{ name: string; logoUrl: string | null; primary: string | null } | null>(null);
     const brandVars = brand?.primary ? (brandScaleVars(brand.primary) as CSSProperties) : undefined;
 
+    // Booking modal — opened by the "Book Again" / "Book a cleaning" buttons.
+    const [bookOpen, setBookOpen] = useState(false);
+    const [storefrontData, setStorefrontData] = useState<StorefrontResponse | null>(null);
+
     // Business timezone + cancellation policy come from the same storefront
     // call that already supplies the currency.
     const [timezone, setTimezone] = useState<string | undefined>(undefined);
@@ -105,6 +110,7 @@ export default function CustomerPortalPage() {
                     logoUrl: s.business?.branding?.logoUrl ?? null,
                     primary: s.business?.branding?.primaryColor ?? null,
                 });
+                setStorefrontData(s);
             })
             .catch(() => {
                 /* keep the default currency; times fall back to the browser timezone */
@@ -663,13 +669,14 @@ export default function CustomerPortalPage() {
                     <div className="hidden items-center gap-3 sm:flex">
                         <LanguageSwitcher />
                         <ThemeToggleButton />
-                        <Link
-                            href={paths.book}
+                        <button
+                            type="button"
+                            onClick={() => setBookOpen(true)}
                             className="inline-flex items-center gap-1.5 rounded-xl bg-brand-500 px-3.5 py-2 text-sm font-medium text-white shadow-theme-xs transition hover:bg-brand-600"
                         >
                             <PlusIcon className="h-4 w-4" />
                             {t("header.bookAgain")}
-                        </Link>
+                        </button>
                         {customer && (
                             <button
                                 type="button"
@@ -696,14 +703,14 @@ export default function CustomerPortalPage() {
                 {menuOpen && (
                     <div id="portal-mobile-menu" className="border-t border-gray-200 bg-white px-4 pb-4 pt-3 dark:border-gray-800 dark:bg-gray-900 sm:hidden">
                         <div className="mx-auto flex max-w-7xl flex-col gap-3">
-                            <Link
-                                href={paths.book}
-                                onClick={() => setMenuOpen(false)}
+                            <button
+                                type="button"
+                                onClick={() => { setMenuOpen(false); setBookOpen(true); }}
                                 className="inline-flex items-center justify-center gap-1.5 rounded-xl bg-brand-500 px-4 py-3 text-sm font-medium text-white shadow-theme-xs transition hover:bg-brand-600"
                             >
                                 <PlusIcon className="h-4 w-4" />
                                 {t("header.bookAgain")}
-                            </Link>
+                            </button>
                             <Link
                                 href={paths.home}
                                 onClick={() => setMenuOpen(false)}
@@ -987,13 +994,14 @@ export default function CustomerPortalPage() {
                                 <p className="mt-1 text-sm text-gray-500 dark:text-gray-400">
                                     {t("empty.scheduleWhenReady")}
                                 </p>
-                                <Link
-                                    href={paths.book}
+                                <button
+                                    type="button"
+                                    onClick={() => setBookOpen(true)}
                                     className="mt-6 inline-flex items-center gap-2 rounded-xl bg-brand-500 px-5 py-2.5 text-sm font-medium text-white hover:bg-brand-600"
                                 >
                                     <PlusIcon className="h-4 w-4" />
                                     {t("empty.bookACleaning")}
-                                </Link>
+                                </button>
                             </div>
                         ) : (
                             <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
@@ -1476,6 +1484,22 @@ export default function CustomerPortalPage() {
                         loading={loading}
                     />
                 </Modal>
+            )}
+
+            {/* Booking modal — same wizard used on the storefront */}
+            {storefrontData && (
+                <BookingWidgetModal
+                    open={bookOpen}
+                    onClose={() => setBookOpen(false)}
+                    subdomain={slug}
+                    business={storefrontData.business}
+                    services={storefrontData.services}
+                    payment={storefrontData.payment}
+                    cancellationPolicy={storefrontData.cancellationPolicy}
+                    questions={storefrontData.questions}
+                    businessName={brand?.name}
+                    primaryColor={brand?.primary ?? undefined}
+                />
             )}
         </div>
     );
