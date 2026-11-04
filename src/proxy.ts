@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
+import { resolveHostRoute } from "@/lib/hostRouting";
 
 /**
  * Tod Cleaning Services is one business, so there is no host or subdomain lookup.
@@ -10,6 +11,9 @@ import { NextRequest, NextResponse } from "next/server";
  *   /          -> /{slug}
  *   /portal/*  -> /{slug}/portal/*
  *   /{slug}/*  -> redirected to the clean URL without the slug
+ *
+ * When NEXT_PUBLIC_ADMIN_URL is set (admin.todcleaning.nl), staff pages live on
+ * that host and the public host redirects them there (see lib/hostRouting.ts).
  *
  * Everything else (dashboard, sign-in, /book-now, API routes, static files) is
  * served as-is. Server components read the business slug from x-tenant-slug.
@@ -34,6 +38,21 @@ export function proxy(req: NextRequest) {
 
   // /book-now/{anything} is the embeddable widget page; the slug in the path is ignored by the API.
   if (pathname.startsWith("/book-now/")) return withTenant(req);
+
+  const hostRoute = resolveHostRoute({
+    host: req.headers.get("x-forwarded-host") || req.headers.get("host") || "",
+    pathname,
+    search: req.nextUrl.search,
+    adminUrl: process.env.NEXT_PUBLIC_ADMIN_URL,
+    siteUrl: process.env.NEXT_PUBLIC_SITE_URL,
+  });
+  if (hostRoute.redirectTo) return NextResponse.redirect(hostRoute.redirectTo, 307);
+  if (hostRoute.isAdminHost) {
+    // Staff area: keep it out of search results.
+    const res = withTenant(req);
+    res.headers.set("X-Robots-Tag", "noindex, nofollow");
+    return res;
+  }
 
   const prefix = `/${SLUG}`;
   if (pathname === prefix || pathname.startsWith(`${prefix}/`)) {

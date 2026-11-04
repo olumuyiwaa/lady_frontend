@@ -5,6 +5,7 @@ import { useTranslations } from "next-intl";
 import type { WidgetBusiness } from "@/app/api/widget.api";
 import { readableTextOn } from "@/lib/color";
 import { useTenantPaths } from "@/lib/tenantPaths";
+import { staffLoginHref } from "@/lib/hostRouting";
 
 type SiteFooterProps = {
   subdomain: string;
@@ -193,6 +194,9 @@ export function SiteFooter({
             <Link href={paths.cookies} className="text-xs text-white/45 hover:text-white/80">
               {t("legalCookies")}
             </Link>
+            <a href={staffLoginHref(process.env.NEXT_PUBLIC_ADMIN_URL)} className="text-xs text-white/45 hover:text-white/80">
+              {t("staffLogin")}
+            </a>
           </div>
         </div>
       </div>

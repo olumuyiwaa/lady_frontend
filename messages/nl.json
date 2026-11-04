@@ -1998,7 +1998,8 @@
       "legal": "Juridisch",
       "legalPrivacy": "Privacybeleid",
       "legalTerms": "Algemene voorwaarden",
-      "legalCookies": "Cookiebeleid"
+      "legalCookies": "Cookiebeleid",
+      "staffLogin": "Medewerkers inloggen"
     },
     "postcode": {
       "label": "Werken wij in uw buurt?",

@@ -1998,7 +1998,8 @@
       "legal": "Legal",
       "legalPrivacy": "Privacy Policy",
       "legalTerms": "Terms & Conditions",
-      "legalCookies": "Cookie Policy"
+      "legalCookies": "Cookie Policy",
+      "staffLogin": "Staff login"
     },
     "postcode": {
       "label": "Do we clean in your area?",
