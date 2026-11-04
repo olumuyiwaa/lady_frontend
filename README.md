@@ -22,12 +22,22 @@ business slug (`NEXT_PUBLIC_BUSINESS_SLUG`, default `todcleaning`):
 | `/` | Storefront |
 | `/portal` | Customer portal |
 | `/signin`, `/dashboard`, ... | Staff sign-in and dashboard |
-| `/book-now/{anything}` | Embeddable booking widget |
 | `/{slug}/...` | Redirects to the clean URL |
 | anything else | 404 |
 
 The pages still live in `src/app/[subdomain]`; the layout returns 404 for any
 segment other than the business slug.
+
+> **Booking** is handled entirely via the `BookingWidgetModal` that opens from
+> the storefront and customer portal. There is no standalone `/book-now` route.
+
+## Booking flow
+
+Every "Book" CTA on the storefront (`SiteHero`, `SiteServices`, `SiteHeader`,
+`SiteFooter`, `SiteCtaBand`) calls `onBook()` from `StorefrontClient`, which
+opens `BookingWidgetModal`. The portal's "Book again" and "Book a cleaning"
+buttons do the same. Both use the same `BookingWizard` component (with
+`compact={true}` inside the modal).
 
 ## Run it
 

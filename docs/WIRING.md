@@ -1,4 +1,44 @@
-# Wiring guide — Dashboard.nav → routes
+# Wiring guide
+
+## Storefront booking flow
+
+All booking CTAs on the public storefront open `BookingWidgetModal` — there is
+no `/book-now` route. The modal is wired entirely through props passed down from
+`StorefrontClient`:
+
+```
+StorefrontClient
+  ├─ bookOpen / bookPostcode  (useState)
+  ├─ openBook()               (→ setBookOpen(true))
+  ├─ openBookWithPostcode(pc) (→ setBookPostcode(pc); setBookOpen(true))
+  │
+  ├─ SiteHeader     onBook={openBook}
+  ├─ SiteHero       onBook={openBook}  onBookWithPostcode={openBookWithPostcode}
+  │    └─ SitePostcodeCheck  onBook={openBookWithPostcode}
+  ├─ SiteServices   onBook={openBook}
+  ├─ SiteCtaBand    onBook={openBook}
+  ├─ SiteFooter     onBook={openBook}
+  │
+  └─ BookingWidgetModal
+       open={bookOpen}
+       initialPostalCode={bookPostcode}
+       └─ BookingWizard compact={true}
+            └─ useBookingState  (all form / quote / slot / submit state)
+```
+
+Every CTA is a `<button onClick={onBook}>` — no `href`, no navigation.
+
+### Portal booking buttons
+
+`src/app/[subdomain]/portal/page.tsx` fetches the same storefront data on mount
+(`getStorefront(slug)`) and stores it in `storefrontData`. The three "Book
+again" / "Book a cleaning" buttons call `setBookOpen(true)`, and
+`BookingWidgetModal` is rendered at the bottom of the portal page using that
+stored data.
+
+---
+
+## Dashboard.nav → routes
 
 Use `useTranslations("Dashboard.nav")` (or `Dashboard.navGroups`) in the sidebar.
 
