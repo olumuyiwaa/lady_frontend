@@ -27,7 +27,7 @@ const nextConfig: NextConfig = {
   },
 
   // Baseline security headers. The app had none, so the dashboard (which keeps
-  // session tokens in localStorage) could be framed by any site (clickjacking).
+  // session tokens in browser storage) could be framed by any site (clickjacking).
   // Only the booking widget (/book-now/*) is meant to be embedded in other
   // sites' iframes; everything else refuses to be framed.
   async headers() {
@@ -65,8 +65,12 @@ const nextConfig: NextConfig = {
     // supports per-request nonces (tracked in next.js#42170). This is the
     // practical CSP floor — it blocks injected <script src="..."> tags from
     // unknown origins, which is the primary XSS vector when tokens are in
-    // localStorage.
-    const csp = [
+    // browser storage.
+    // frame-ancestors is added per route group below: nothing may frame the app
+    // except the booking widget (/book-now), which is made to be embedded.
+    // upgrade-insecure-requests is production-only: in development it would
+    // rewrite the http://localhost API calls to https and break them.
+    const cspBase = [
       "default-src 'self'",
       `script-src 'self' 'unsafe-inline' ${scriptHosts}`,
       "script-src-attr 'none'",
@@ -78,15 +82,16 @@ const nextConfig: NextConfig = {
       "object-src 'none'",
       "base-uri 'self'",
       "form-action 'self'",
-      "upgrade-insecure-requests",
-    ].join("; ");
+      ...(process.env.NODE_ENV === "production" ? ["upgrade-insecure-requests"] : []),
+    ];
+    const csp = (frameAncestors: string) =>
+      [...cspBase, `frame-ancestors ${frameAncestors}`].join("; ");
 
     const common = [
       { key: "X-Content-Type-Options", value: "nosniff" },
       { key: "Referrer-Policy", value: "strict-origin-when-cross-origin" },
       { key: "Permissions-Policy", value: "camera=(), microphone=(), geolocation=(self)" },
       { key: "Strict-Transport-Security", value: "max-age=63072000; includeSubDomains" },
-      { key: "Content-Security-Policy", value: csp },
     ];
     return [
       {
@@ -95,13 +100,14 @@ const nextConfig: NextConfig = {
         headers: [
           ...common,
           { key: "X-Frame-Options", value: "DENY" },
+          { key: "Content-Security-Policy", value: csp("'none'") },
         ],
       },
       {
         // The booking widget is meant to be embedded in third-party iframes.
         // Keep the CSP for script protection but allow framing from any origin.
         source: "/book-now/:path*",
-        headers: common,
+        headers: [...common, { key: "Content-Security-Policy", value: csp("*") }],
       },
     ];
   },

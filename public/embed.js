@@ -1,15 +1,15 @@
 /**
- * CleanSera booking widget embed.
+ * Lady Greener booking widget embed.
  *
  * Usage — drop this on any page of the business's own website:
  *
  *   <div id="ladygreener-widget" data-business="acme-cleaning"></div>
  *   <script src="https://widget.ladygreener.nl/embed.js" async></script>
  *
- * `data-business` is the business's CleanSera subdomain slug (not a
- * secret — it's the same value used in their CleanSera booking link).
- * Multiple widgets on one page are supported; each container needs its
- * own data-business (they can be different businesses or the same one).
+ * `data-business` is the business slug (not a secret). Lady Greener runs a
+ * single business, so the API ignores the value and always serves that one;
+ * the attribute is still required to mark the container. Multiple widgets on
+ * one page are supported; each container needs its own data-business.
  */
 (function () {
     var WIDGET_ORIGIN = (function () {
