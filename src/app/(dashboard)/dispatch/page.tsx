@@ -12,7 +12,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { listDispatchItems, createAssignment, suggestCleaners, getCleanerDayRoute, DispatchAssignment, DayRoute } from "@/app/api/dispatch.api";
+import { listDispatchItems, createAssignment, suggestCleaners, getCleanerDayRoute, DispatchAssignment, DayRoute, CleanerSuggestion } from "@/app/api/dispatch.api";
 import { listBookings } from "@/app/api/bookings.api";
 import { listCleaners } from "@/app/api/cleaners.api";
 import { Booking, Cleaner, cleanerDisplayName } from "@/app/api/app-types";
@@ -26,7 +26,7 @@ export default function DispatchPage() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
   const [suggestingFor, setSuggestingFor] = useState<string | null>(null);
-  const [suggestions, setSuggestions] = useState<Cleaner[]>([]);
+  const [suggestions, setSuggestions] = useState<CleanerSuggestion[]>([]);
   const [assigning, setAssigning] = useState<string | null>(null);
 
   const [activeCleaners, setActiveCleaners] = useState<Cleaner[]>([]);
@@ -246,7 +246,21 @@ export default function DispatchPage() {
                               disabled={assigning === b.id}
                               className="block w-full rounded-md border border-gray-200 px-3 py-1.5 text-left text-xs hover:bg-gray-50 dark:border-gray-700 dark:hover:bg-white/5"
                             >
-                              {cleanerDisplayName(c)}
+                              <span className="flex items-center justify-between gap-2">
+                                <span className="font-medium">{cleanerDisplayName(c)}</span>
+                                {c.matchScore != null && (
+                                  <span className="rounded-full bg-brand-50 px-2 py-0.5 text-[11px] font-semibold text-brand-600 dark:bg-brand-500/15 dark:text-brand-400">
+                                    {t("matchScore", { score: c.matchScore })}
+                                  </span>
+                                )}
+                              </span>
+                              {c.matchReasons && c.matchReasons.length > 0 && (
+                                <span className="mt-1 block text-[11px] text-gray-500 dark:text-gray-400">
+                                  {c.matchReasons
+                                    .map((r) => t(`reasons.${r.key}` as "reasons.CLOSE", { km: r.km ?? 0, rating: r.rating ?? 0, count: r.count ?? 0, visits: r.visits ?? 0 }))
+                                    .join(" · ")}
+                                </span>
+                              )}
                             </button>
                           ))
                         )}

@@ -35,9 +35,23 @@ export async function removeAssignment(id: string) {
     await authFetch(`/dispatch/${id}`, { method: "DELETE" });
 }
 
+export type MatchReason = {
+    key: "CLOSE" | "TOP_RATED" | "LOW_RATING" | "KNOWS_CUSTOMER" | "CUSTOMER_LOW_RATED" | "FREE_DAY" | "PREFERRED";
+    km?: number;
+    rating?: number;
+    count?: number;
+    visits?: number;
+};
+
+export type CleanerSuggestion = Cleaner & {
+    matchScore?: number;
+    matchReasons?: MatchReason[];
+    preferredByCustomer?: boolean;
+};
+
 export async function suggestCleaners(bookingId: string, limit = 5) {
     const result = await authFetch(`/dispatch/suggest?bookingId=${bookingId}&limit=${limit}`, { method: "GET" });
-    return result.data as Cleaner[];
+    return result.data as CleanerSuggestion[];
 }
 
 export type DayRouteStop = {

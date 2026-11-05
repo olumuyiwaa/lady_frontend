@@ -589,7 +589,17 @@
       "suggestCleaner": "Schoonmaker voorstellen",
       "assigning": "Bezig met toewijzen…",
       "autoAssign": "Automatisch toewijzen",
-      "inProgressCount": "In uitvoering ({count})"
+      "inProgressCount": "In uitvoering ({count})",
+      "matchScore": "Match {score}%",
+      "reasons": {
+        "CLOSE": "{km} km afstand",
+        "TOP_RATED": "Beoordeeld met {rating} ({count} reviews)",
+        "LOW_RATING": "Lage beoordeling: {rating} ({count})",
+        "KNOWS_CUSTOMER": "Eerder {visits}× hier geweest",
+        "CUSTOMER_LOW_RATED": "Deze klant gaf {rating}★",
+        "FREE_DAY": "Geen andere klussen die dag",
+        "PREFERRED": "Favoriete schoonmaker van de klant"
+      }
     },
     "calendar": {
       "sync": {

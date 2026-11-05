@@ -589,7 +589,17 @@
       "suggestCleaner": "Suggest cleaner",
       "assigning": "Assigning…",
       "autoAssign": "Auto-assign",
-      "inProgressCount": "In progress ({count})"
+      "inProgressCount": "In progress ({count})",
+      "matchScore": "Match {score}%",
+      "reasons": {
+        "CLOSE": "{km} km away",
+        "TOP_RATED": "Rated {rating} ({count} reviews)",
+        "LOW_RATING": "Low rating: {rating} ({count})",
+        "KNOWS_CUSTOMER": "Cleaned here {visits}× before",
+        "CUSTOMER_LOW_RATED": "This customer rated them {rating}★",
+        "FREE_DAY": "No other jobs that day",
+        "PREFERRED": "Customer's preferred cleaner"
+      }
     },
     "calendar": {
       "sync": {
