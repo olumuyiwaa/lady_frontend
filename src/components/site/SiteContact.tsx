@@ -6,6 +6,7 @@ import { submitContact } from "@/app/api/widget.api";
 import { fieldErrorMap, type ApiError } from "@/lib/formErrors";
 import { Turnstile, TURNSTILE_SITE_KEY } from "@/components/booking/Turnstile";
 import { Reveal } from "./Reveal";
+import { SiteImage } from "./SiteImage";
 
 type SiteContactProps = {
   subdomain: string;
@@ -99,7 +100,10 @@ export function SiteContact({ subdomain, businessName, primaryColor, phoneNumber
         const keys = Object.keys(fieldErrorMap(err)).filter((k): k is FieldKey =>
           ["name", "email", "phone", "message"].includes(k)
         );
-        if (keys.length) setInvalid(keys);
+        if (keys.length) {
+          setInvalid(keys);
+          document.getElementById(`${uid}-${keys[0]}`)?.focus();
+        }
         else setFormError(t("errGeneric"));
       } else if (apiErr.status === 429) {
         setFormError(t("errRateLimit"));
@@ -138,6 +142,14 @@ export function SiteContact({ subdomain, businessName, primaryColor, phoneNumber
               <span className="site-eyebrow-dot" style={{ backgroundColor: primaryColor }} />
               {t("eyebrow")}
             </span>
+            <SiteImage
+              src="/images/contact-cleaning.jpg"
+              alt="Professional cleaner wiping a sunlit window"
+              width={720}
+              height={450}
+              sizes="(min-width: 1024px) 30vw, 100vw"
+              className="mt-6 aspect-[5/4] w-full rounded-2xl border border-[#e8e3d8] object-cover shadow-sm"
+            />
             <h2 id={`${uid}-title`} className="site-section-title mt-5">
               {t("title")}
             </h2>
@@ -185,17 +197,20 @@ export function SiteContact({ subdomain, businessName, primaryColor, phoneNumber
                 </button>
               </div>
             ) : (
-              <form onSubmit={onSubmit} noValidate>
+              <form onSubmit={onSubmit} noValidate aria-busy={status === "sending"}>
+                <p className="mb-5 text-sm text-[#616963]">{t("requiredNote")}</p>
                 <div className="grid gap-5 sm:grid-cols-2">
                   <div>
                     <label htmlFor={`${uid}-name`} className={labelClass}>
-                      {t("nameLabel")}
+                      {t("nameLabel")} <span aria-hidden="true" className="text-[#9aa19c]">*</span>
                     </label>
                     <input
                       id={`${uid}-name`}
                       type="text"
                       autoComplete="name"
                       maxLength={100}
+                      required
+                      placeholder={t("namePlaceholder")}
                       value={fields.name}
                       onChange={set("name")}
                       aria-invalid={invalid.includes("name")}
@@ -210,7 +225,7 @@ export function SiteContact({ subdomain, businessName, primaryColor, phoneNumber
                   </div>
                   <div>
                     <label htmlFor={`${uid}-email`} className={labelClass}>
-                      {t("emailLabel")}
+                      {t("emailLabel")} <span aria-hidden="true" className="text-[#9aa19c]">*</span>
                     </label>
                     <input
                       id={`${uid}-email`}
@@ -218,6 +233,8 @@ export function SiteContact({ subdomain, businessName, primaryColor, phoneNumber
                       autoComplete="email"
                       inputMode="email"
                       maxLength={254}
+                      required
+                      placeholder={t("emailPlaceholder")}
                       value={fields.email}
                       onChange={set("email")}
                       aria-invalid={invalid.includes("email")}
@@ -234,7 +251,7 @@ export function SiteContact({ subdomain, businessName, primaryColor, phoneNumber
 
                 <div className="mt-5">
                   <label htmlFor={`${uid}-phone`} className={labelClass}>
-                    {t("phoneLabel")}
+                    {t("phoneLabel")} <span className="font-normal text-[#7a817c]">({t("optional")})</span>
                   </label>
                   <input
                     id={`${uid}-phone`}
@@ -242,6 +259,7 @@ export function SiteContact({ subdomain, businessName, primaryColor, phoneNumber
                     autoComplete="tel"
                     inputMode="tel"
                     maxLength={40}
+                    placeholder={t("phonePlaceholder")}
                     value={fields.phone}
                     onChange={set("phone")}
                     aria-invalid={invalid.includes("phone")}
@@ -257,17 +275,23 @@ export function SiteContact({ subdomain, businessName, primaryColor, phoneNumber
 
                 <div className="mt-5">
                   <label htmlFor={`${uid}-message`} className={labelClass}>
-                    {t("messageLabel")}
+                    {t("messageLabel")} <span aria-hidden="true" className="text-[#9aa19c]">*</span>
                   </label>
                   <textarea
                     id={`${uid}-message`}
                     rows={5}
                     maxLength={3000}
+                    minLength={10}
+                    required
                     value={fields.message}
                     onChange={set("message")}
                     placeholder={t("messagePlaceholder")}
                     aria-invalid={invalid.includes("message")}
-                    aria-describedby={invalid.includes("message") ? `${uid}-message-err` : undefined}
+                    aria-describedby={
+                      invalid.includes("message")
+                        ? `${uid}-message-err ${uid}-message-hint`
+                        : `${uid}-message-hint`
+                    }
                     className={`${inputClass("message")} resize-y`}
                   />
                   {invalid.includes("message") && (
@@ -275,6 +299,9 @@ export function SiteContact({ subdomain, businessName, primaryColor, phoneNumber
                       {fieldError.message}
                     </p>
                   )}
+                  <p id={`${uid}-message-hint`} className="mt-1.5 text-right text-xs text-[#7a817c]">
+                    {t("messageHint")} · {t("messageCount", { count: fields.message.length })}
+                  </p>
                 </div>
 
                 {/* Honeypot: hidden from people and assistive tech; bots fill it. */}
@@ -305,10 +332,16 @@ export function SiteContact({ subdomain, businessName, primaryColor, phoneNumber
                 <button
                   type="submit"
                   disabled={status === "sending"}
-                  className="mt-6 inline-flex min-h-[48px] w-full items-center justify-center rounded-xl px-6 text-base font-semibold text-white shadow-sm transition hover:opacity-95 focus:outline-none focus-visible:ring-4 focus-visible:ring-[#102c24]/25 disabled:cursor-not-allowed disabled:opacity-60"
+                  className="mt-6 inline-flex min-h-[52px] w-full items-center justify-center gap-2 rounded-xl px-6 text-base font-semibold text-white shadow-sm transition hover:opacity-95 focus:outline-none focus-visible:ring-4 focus-visible:ring-[#102c24]/25 disabled:cursor-wait disabled:opacity-70"
                   style={{ backgroundColor: primaryColor }}
                 >
-                  {status === "sending" ? t("sending") : t("send")}
+                  {status === "sending" && (
+                    <svg aria-hidden="true" className="h-4 w-4 animate-spin" viewBox="0 0 24 24" fill="none">
+                      <circle cx="12" cy="12" r="9" stroke="currentColor" strokeOpacity="0.3" strokeWidth="3" />
+                      <path d="M21 12a9 9 0 0 0-9-9" stroke="currentColor" strokeWidth="3" strokeLinecap="round" />
+                    </svg>
+                  )}
+                  <span aria-live="polite">{status === "sending" ? t("sending") : t("send")}</span>
                 </button>
                 <p className="mt-3 text-center text-xs text-[#7a817c]">{t("privacy")}</p>
               </form>
