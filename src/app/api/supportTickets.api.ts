@@ -40,3 +40,18 @@ export async function addTicketMessage(id: string, body: string, isInternal = fa
 export async function deleteTicket(id: string) {
   return authFetch(`/support-tickets/${id}`, { method: "DELETE" });
 }
+
+export type TicketStats = {
+  days: number;
+  open: number;
+  overdue: number;
+  atRisk: number;
+  complaintsOpen: number;
+  avgFirstResponseHours: number | null;
+  avgResolutionHours: number | null;
+  complaintsByCategory: Record<string, number>;
+};
+
+export async function getTicketStats(days = 30) {
+  return authFetch(`/support-tickets/stats?days=${days}`);
+}

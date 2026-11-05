@@ -9,6 +9,8 @@ import {
   updateTicket,
   addTicketMessage,
   deleteTicket,
+  getTicketStats,
+  type TicketStats,
 } from "@/app/api/supportTickets.api";
 import RowActionsMenu from "@/components/tables/RowActionsMenu";
 
@@ -31,6 +33,8 @@ type Ticket = {
   contactPhone?: string | null;
   /** 'WEBSITE' when it came from the public site's contact form. */
   source?: string | null;
+  kind?: string | null;
+  slaState?: "OK" | "AT_RISK" | "OVERDUE" | "DONE";
   createdAt: string;
   updatedAt: string;
   resolvedAt?: string | null;
@@ -94,6 +98,8 @@ export default function SupportTicketsPage() {
   const [q, setQ] = useState("");
   const [statusFilter, setStatusFilter] = useState<string>("");
   const [priorityFilter, setPriorityFilter] = useState<string>("");
+  const [complaintsOnly, setComplaintsOnly] = useState(false);
+  const [stats, setStats] = useState<TicketStats | null>(null);
 
   const [showCreate, setShowCreate] = useState(false);
   const [createForm, setCreateForm] = useState({
@@ -125,6 +131,7 @@ export default function SupportTicketsPage() {
         q: q || undefined,
         status: statusFilter || undefined,
         priority: priorityFilter || undefined,
+        kind: complaintsOnly ? "COMPLAINT" : undefined,
         page,
         limit: pagination.limit,
       });
@@ -137,6 +144,16 @@ export default function SupportTicketsPage() {
       setLoading(false);
     }
   };
+
+  useEffect(() => {
+    getTicketStats()
+      .then((res) => {
+        if (res.success) setStats(res.data as TicketStats);
+      })
+      .catch(() => {
+        /* stats are a nice-to-have; the list still works without them */
+      });
+  }, []);
 
   useEffect(() => {
     load(1);
@@ -327,7 +344,27 @@ export default function SupportTicketsPage() {
         </form>
       )}
 
+      {stats && (
+        <div className="grid grid-cols-2 gap-3 md:grid-cols-4">
+          {[
+            { label: t("stats.open"), value: stats.open, warn: false },
+            { label: t("stats.overdue"), value: stats.overdue, warn: stats.overdue > 0 },
+            { label: t("stats.firstResponse"), value: stats.avgFirstResponseHours == null ? "—" : t("stats.hours", { n: stats.avgFirstResponseHours }), warn: false },
+            { label: t("stats.resolution"), value: stats.avgResolutionHours == null ? "—" : t("stats.hours", { n: stats.avgResolutionHours }), warn: false },
+          ].map((c) => (
+            <div key={c.label} className="rounded-xl border border-gray-200 p-4 dark:border-gray-800">
+              <p className="text-xs text-gray-500 dark:text-gray-400">{c.label}</p>
+              <p className={`mt-1 text-xl font-semibold ${c.warn ? "text-red-600" : "text-gray-800 dark:text-white/90"}`}>{c.value}</p>
+            </div>
+          ))}
+        </div>
+      )}
+
       <div className="flex flex-wrap gap-3">
+        <label className="flex h-11 items-center gap-2 text-sm text-gray-600 dark:text-gray-300">
+          <input type="checkbox" checked={complaintsOnly} onChange={(e) => setComplaintsOnly(e.target.checked)} />
+          {t("complaintsOnly")}
+        </label>
         <input
           placeholder={t("searchPlaceholder")}
           value={q}
@@ -376,6 +413,11 @@ export default function SupportTicketsPage() {
                 >
                   <td className="px-4 py-3 font-medium text-gray-800 dark:text-white/90">
                     {ticket.subject}
+                    {ticket.kind === "COMPLAINT" && (
+                      <span className="ml-2 rounded-full bg-red-50 px-2 py-0.5 text-xs font-medium text-red-700 dark:bg-red-500/15 dark:text-red-300">
+                        {t("complaint")}
+                      </span>
+                    )}
                     {ticket.source === "WEBSITE" && (
                       <span className="ml-2 rounded-full bg-brand-50 px-2 py-0.5 text-xs font-medium text-brand-700 dark:bg-brand-500/15 dark:text-brand-400">
                         {t("fromWebsite")}
@@ -386,6 +428,17 @@ export default function SupportTicketsPage() {
                     <span className={`rounded-full px-2.5 py-0.5 text-xs font-medium ${STATUS_CLS[ticket.status]}`}>
                       {t(`statuses.${ticket.status}`)}
                     </span>
+                    {(ticket.slaState === "OVERDUE" || ticket.slaState === "AT_RISK") && (
+                      <span
+                        className={`ml-2 rounded-full px-2 py-0.5 text-xs font-medium ${
+                          ticket.slaState === "OVERDUE"
+                            ? "bg-red-50 text-red-700 dark:bg-red-500/15 dark:text-red-300"
+                            : "bg-amber-50 text-amber-700 dark:bg-amber-500/15 dark:text-amber-300"
+                        }`}
+                      >
+                        {t(`sla.${ticket.slaState}`)}
+                      </span>
+                    )}
                   </td>
                   <td className={`px-4 py-3 text-xs ${PRIORITY_CLS[ticket.priority]}`}>{t(`priorities.${ticket.priority}`)}</td>
                   <td className="px-4 py-3 text-gray-500">

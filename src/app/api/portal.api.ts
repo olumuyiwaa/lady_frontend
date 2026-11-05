@@ -394,3 +394,37 @@ export function statusColor(status: string) {
   };
   return map[status] || "bg-gray-100 text-gray-600";
 }
+
+export const COMPLAINT_CATEGORIES = ["QUALITY", "NO_SHOW", "LATE", "DAMAGE", "BEHAVIOUR", "SAFETY", "BILLING", "OTHER"] as const;
+export type ComplaintCategory = (typeof COMPLAINT_CATEGORIES)[number];
+
+export type PortalComplaint = {
+  id: string;
+  reference: string;
+  bookingId: string | null;
+  category: string | null;
+  status: string;
+  description: string;
+  createdAt: string;
+  resolvedAt: string | null;
+};
+
+export async function createPortalComplaint(
+  slug: string | null,
+  token: string,
+  bookingId: string,
+  body: { category: ComplaintCategory; description: string }
+) {
+  const result = await portalFetch(
+    slug,
+    `/bookings/${bookingId}/complaint`,
+    { method: "POST", body: JSON.stringify(body) },
+    token
+  );
+  return result.data as { id: string; reference: string; category: string; priority: string; status: string };
+}
+
+export async function listPortalComplaints(slug: string | null, token: string) {
+  const result = await portalFetch(slug, `/complaints`, { method: "GET" }, token);
+  return result.data as PortalComplaint[];
+}

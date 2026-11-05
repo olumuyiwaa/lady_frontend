@@ -1627,6 +1627,10 @@
       "internalNote": "Interne notitie",
       "reply": "Antwoord",
       "internalNoteHint": "Interne notitie (niet zichtbaar voor de klant)",
+      "complaint": "Klacht",
+      "complaintsOnly": "Alleen klachten",
+      "sla": { "OVERDUE": "Te laat", "AT_RISK": "Risico" },
+      "stats": { "open": "Open tickets", "overdue": "Te laat", "firstResponse": "Gem. eerste reactie", "resolution": "Gem. oplostijd", "hours": "{n} u" },
       "fromWebsite": "Website",
       "contactName": "Naam contactpersoon (optioneel)",
       "contactEmail": "E-mail contactpersoon - antwoorden worden hierheen gestuurd (optioneel)",
@@ -1655,6 +1659,13 @@
         "URGENT": "Urgent"
       },
       "categories": {
+        "QUALITY": "Kwaliteit van de schoonmaak",
+        "NO_SHOW": "Schoonmaker kwam niet opdagen",
+        "LATE": "Schoonmaker was te laat",
+        "DAMAGE": "Schade of verlies",
+        "BEHAVIOUR": "Gedrag",
+        "SAFETY": "Veiligheid",
+        "BILLING": "Facturatie",
         "ACCOUNT_ACCESS": "Account en toegang",
         "CREDENTIALS": "Inloggegevens",
         "SHIFTS_SCHEDULING": "Diensten en planning",
@@ -2174,6 +2185,29 @@
         "ARRIVED": "Schoonmaker is aangekomen",
         "COMPLETED": "Schoonmaak klaar",
         "CANCELLED": "Geannuleerd"
+      }
+    },
+    "complaint": {
+      "open": "Is er iets misgegaan? Meld een probleem",
+      "heading": "Meld een probleem met deze afspraak",
+      "intro": "Vertel ons wat er misging. Het team krijgt direct een melding en reageert per e-mail.",
+      "category": "Wat is er gebeurd?",
+      "description": "Details",
+      "submit": "Klacht versturen",
+      "sending": "Versturen…",
+      "cancel": "Annuleren",
+      "sent": "Bedankt. We hebben je klacht ontvangen en nemen contact met je op.",
+      "reference": "Referentie: {reference}",
+      "failed": "Je klacht kon niet worden verstuurd. Probeer het opnieuw.",
+      "categories": {
+        "QUALITY": "Kwaliteit van de schoonmaak",
+        "NO_SHOW": "Schoonmaker kwam niet opdagen",
+        "LATE": "Schoonmaker was te laat",
+        "DAMAGE": "Schade of verlies",
+        "BEHAVIOUR": "Gedrag",
+        "SAFETY": "Veiligheid",
+        "BILLING": "Facturatie",
+        "OTHER": "Iets anders"
       }
     },
     "chat": {

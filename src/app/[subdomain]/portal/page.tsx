@@ -37,6 +37,7 @@ import { StatCard, ActionBtn, Modal, ModalActions, DetailRow, PlusIcon, CheckIco
 import { PortalHome } from "./PortalHome";
 import { BookingTimeline } from "./BookingTimeline";
 import { BookingChat } from "./BookingChat";
+import { ComplaintForm } from "./ComplaintForm";
 type Step = "phone" | "code" | "bookings";
 
 const RESEND_COOLDOWN_SECONDS = 30;
@@ -1342,6 +1343,9 @@ export default function CustomerPortalPage() {
                             formatTime={formatWhen}
                             onUnauthorized={onUnauthorized}
                         />
+                    )}
+                    {token && (detail.status === "COMPLETED" || detail.status === "IN_PROGRESS") && (
+                        <ComplaintForm key={`c-${detail.id}`} slug={slug} token={token} bookingId={detail.id} onUnauthorized={onUnauthorized} />
                     )}
                     <div className="mt-6 flex flex-wrap justify-end gap-2">
                         {detail.status !== "CANCELLED" && (

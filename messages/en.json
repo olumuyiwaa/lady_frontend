@@ -1627,6 +1627,10 @@
       "internalNote": "Internal note",
       "reply": "Reply",
       "internalNoteHint": "Internal note (not visible to customer)",
+      "complaint": "Complaint",
+      "complaintsOnly": "Complaints only",
+      "sla": { "OVERDUE": "Overdue", "AT_RISK": "At risk" },
+      "stats": { "open": "Open tickets", "overdue": "Overdue", "firstResponse": "Avg. first reply", "resolution": "Avg. resolution", "hours": "{n} h" },
       "fromWebsite": "Website",
       "contactName": "Contact name (optional)",
       "contactEmail": "Contact email - replies are sent here (optional)",
@@ -1655,6 +1659,13 @@
         "URGENT": "Urgent"
       },
       "categories": {
+        "QUALITY": "Quality of the clean",
+        "NO_SHOW": "Cleaner did not show up",
+        "LATE": "Cleaner was late",
+        "DAMAGE": "Damage or loss",
+        "BEHAVIOUR": "Behaviour",
+        "SAFETY": "Safety concern",
+        "BILLING": "Billing",
         "ACCOUNT_ACCESS": "Account & access",
         "CREDENTIALS": "Credentials",
         "SHIFTS_SCHEDULING": "Shifts & scheduling",
@@ -2174,6 +2185,29 @@
         "ARRIVED": "Cleaner arrived",
         "COMPLETED": "Clean complete",
         "CANCELLED": "Cancelled"
+      }
+    },
+    "complaint": {
+      "open": "Something wrong? Report a problem",
+      "heading": "Report a problem with this visit",
+      "intro": "Tell us what went wrong. The team is notified straight away and will reply by email.",
+      "category": "What happened?",
+      "description": "Details",
+      "submit": "Send complaint",
+      "sending": "Sending…",
+      "cancel": "Cancel",
+      "sent": "Thank you. We have received your complaint and will be in touch.",
+      "reference": "Reference: {reference}",
+      "failed": "Could not send your complaint. Please try again.",
+      "categories": {
+        "QUALITY": "Quality of the clean",
+        "NO_SHOW": "Cleaner did not show up",
+        "LATE": "Cleaner was late",
+        "DAMAGE": "Damage or loss",
+        "BEHAVIOUR": "Behaviour",
+        "SAFETY": "Safety concern",
+        "BILLING": "Billing",
+        "OTHER": "Something else"
       }
     },
     "chat": {
