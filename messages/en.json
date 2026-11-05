@@ -549,6 +549,20 @@
       "newTitle": "New customer",
       "notes": "Notes",
       "deleteConfirm": "Delete this customer?",
+      "business": {
+        "heading": "Business account",
+        "isBusiness": "This is a business account",
+        "companyName": "Company name",
+        "kvkNumber": "KvK number (8 digits)",
+        "vatNumber": "VAT number (e.g. NL123456789B01)",
+        "billingEmail": "Billing email (invoices go here)",
+        "paymentTermsDays": "Payment terms in days (e.g. 30)",
+        "none": "Private customer",
+        "edit": "Edit business details",
+        "makeBusiness": "Make this a business account",
+        "clearHint": "Clear the company name to make this a private customer again.",
+        "termsLine": "Pays within {days} days"
+      },
       "noEmail": "no email",
       "addresses": "Addresses",
       "noAddresses": "No addresses",
@@ -2193,6 +2207,24 @@
         "COMPLETED": "Clean complete",
         "CANCELLED": "Cancelled"
       }
+    },
+    "b2b": {
+      "heading": "Business account",
+      "previousMonth": "Previous month",
+      "nextMonth": "Next month",
+      "spend": "Spend",
+      "visits": "Visits",
+      "hours": "Hours",
+      "outstanding": "Outstanding",
+      "vsLastMonth": "{amount} vs last month",
+      "noVisits": "No visits this month",
+      "overdue": "{count} overdue ({amount})",
+      "terms": "Payment terms: {days} days",
+      "byLocation": "By location",
+      "byService": "By service",
+      "locationLine": "{visits} visits · {amount}",
+      "statement": "Monthly statement",
+      "exportCsv": "Export visits (CSV)"
     },
     "complaint": {
       "open": "Something wrong? Report a problem",

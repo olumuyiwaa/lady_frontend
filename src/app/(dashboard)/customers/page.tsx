@@ -6,6 +6,7 @@ import {
   listCustomers,
   getCustomer,
   createCustomer,
+  updateCustomer,
   deleteCustomer,
 } from "@/app/api/customers.api";
 import RowActionsMenu from "@/components/tables/RowActionsMenu";
@@ -17,6 +18,7 @@ type Customer = {
   phone: string;
   email?: string | null;
   notes?: string | null;
+  companyName?: string | null;
   addresses?: any[];
   _count?: { bookings?: number };
 };
@@ -41,6 +43,75 @@ export default function CustomersPage() {
     email: "",
     notes: "",
   });
+  const emptyBiz = { companyName: "", kvkNumber: "", vatNumber: "", billingEmail: "", paymentTermsDays: "" };
+  const [isBiz, setIsBiz] = useState(false);
+  const [biz, setBiz] = useState(emptyBiz);
+  const [bizEdit, setBizEdit] = useState(false);
+  const [bizSaving, setBizSaving] = useState(false);
+  const [bizError, setBizError] = useState("");
+
+  const bizPayload = (b: typeof emptyBiz) => ({
+    companyName: b.companyName,
+    kvkNumber: b.kvkNumber,
+    vatNumber: b.vatNumber,
+    billingEmail: b.billingEmail,
+    paymentTermsDays: b.paymentTermsDays === "" ? null : Number(b.paymentTermsDays),
+  });
+
+  const bizInputs = (b: typeof emptyBiz, set: (b: typeof emptyBiz) => void) => (
+    <div className="space-y-3">
+      {(
+        [
+          ["companyName", t("business.companyName"), "text"],
+          ["kvkNumber", t("business.kvkNumber"), "text"],
+          ["vatNumber", t("business.vatNumber"), "text"],
+          ["billingEmail", t("business.billingEmail"), "email"],
+          ["paymentTermsDays", t("business.paymentTermsDays"), "number"],
+        ] as const
+      ).map(([key, label, type]) => (
+        <input
+          key={key}
+          type={type}
+          min={type === "number" ? 0 : undefined}
+          max={type === "number" ? 120 : undefined}
+          placeholder={label}
+          aria-label={label}
+          value={b[key]}
+          onChange={(e) => set({ ...b, [key]: e.target.value })}
+          className="h-11 w-full rounded-lg border px-3 text-sm dark:border-gray-700 dark:bg-gray-800"
+        />
+      ))}
+    </div>
+  );
+
+  const startBizEdit = () => {
+    setBiz({
+      companyName: selected?.companyName || "",
+      kvkNumber: selected?.kvkNumber || "",
+      vatNumber: selected?.vatNumber || "",
+      billingEmail: selected?.billingEmail || "",
+      paymentTermsDays: selected?.paymentTermsDays == null ? "" : String(selected.paymentTermsDays),
+    });
+    setBizError("");
+    setBizEdit(true);
+  };
+
+  const saveBiz = async () => {
+    if (!selected) return;
+    setBizSaving(true);
+    setBizError("");
+    try {
+      const res = await updateCustomer(selected.id, bizPayload(biz));
+      if (!res.success) throw new Error(res.message || tc("errorGeneric"));
+      setSelected({ ...selected, ...res.data });
+      setBizEdit(false);
+      load();
+    } catch (e: any) {
+      setBizError(e.message || tc("errorGeneric"));
+    } finally {
+      setBizSaving(false);
+    }
+  };
 
   const load = useCallback(async () => {
     setLoading(true);
@@ -67,13 +138,15 @@ export default function CustomersPage() {
 
   const onCreate = async (e: React.FormEvent) => {
     e.preventDefault();
-    const res = await createCustomer(form);
+    const res = await createCustomer({ ...form, ...(isBiz && biz.companyName.trim() ? bizPayload(biz) : {}) });
     if (!res.success) {
       setError(res.message || tc("errorGeneric"));
       return;
     }
     setShowCreate(false);
     setForm({ firstName: "", lastName: "", phone: "", email: "", notes: "" });
+    setIsBiz(false);
+    setBiz(emptyBiz);
     load();
   };
 
@@ -196,6 +269,11 @@ export default function CustomersPage() {
               onChange={(e) => setForm({ ...form, notes: e.target.value })}
               className="w-full rounded-lg border px-3 py-2 text-sm dark:border-gray-700 dark:bg-gray-800"
             />
+            <label className="flex items-center gap-2 text-sm">
+              <input type="checkbox" checked={isBiz} onChange={(e) => setIsBiz(e.target.checked)} />
+              {t("business.isBusiness")}
+            </label>
+            {isBiz && bizInputs(biz, setBiz)}
             <div className="flex justify-end gap-2">
               <button type="button" onClick={() => setShowCreate(false)} className="rounded-lg border px-4 py-2 text-sm">
                 {tc("cancel")}
@@ -220,11 +298,44 @@ export default function CustomersPage() {
                   {selected.phone} · {selected.email || t("noEmail")}
                 </p>
               </div>
-              <button type="button" onClick={() => setSelected(null)} className="text-gray-400">
+              <button type="button" onClick={() => { setSelected(null); setBizEdit(false); }} className="text-gray-400">
                 ✕
               </button>
             </div>
             {selected.notes && <p className="mt-3 text-sm">{selected.notes}</p>}
+            <h3 className="mt-4 text-sm font-semibold">{t("business.heading")}</h3>
+            {bizEdit ? (
+              <div className="mt-2 space-y-3">
+                {bizInputs(biz, setBiz)}
+                <p className="text-xs text-gray-500">{t("business.clearHint")}</p>
+                {bizError && <p className="text-xs text-red-600">{bizError}</p>}
+                <div className="flex gap-2">
+                  <button type="button" disabled={bizSaving} onClick={saveBiz} className="rounded-lg bg-brand-500 px-4 py-2 text-sm text-white disabled:opacity-60">
+                    {tc("save")}
+                  </button>
+                  <button type="button" onClick={() => setBizEdit(false)} className="rounded-lg border px-4 py-2 text-sm">
+                    {tc("cancel")}
+                  </button>
+                </div>
+              </div>
+            ) : (
+              <div className="mt-2 text-sm">
+                {selected.companyName ? (
+                  <ul className="space-y-0.5 text-gray-700 dark:text-gray-300">
+                    <li className="font-medium">{selected.companyName}</li>
+                    {selected.kvkNumber && <li>KvK: {selected.kvkNumber}</li>}
+                    {selected.vatNumber && <li>BTW: {selected.vatNumber}</li>}
+                    {selected.billingEmail && <li>{selected.billingEmail}</li>}
+                    {selected.paymentTermsDays ? <li>{t("business.termsLine", { days: selected.paymentTermsDays })}</li> : null}
+                  </ul>
+                ) : (
+                  <p className="text-gray-500">{t("business.none")}</p>
+                )}
+                <button type="button" onClick={startBizEdit} className="mt-2 text-xs font-medium text-brand-600 underline">
+                  {selected.companyName ? t("business.edit") : t("business.makeBusiness")}
+                </button>
+              </div>
+            )}
             <h3 className="mt-4 text-sm font-semibold">{t("addresses")}</h3>
             <ul className="mt-2 space-y-1 text-sm">
               {(selected.addresses || []).map((a: any) => (

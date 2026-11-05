@@ -263,6 +263,8 @@ export type PortalCleaners = {
 };
 
 export type PortalOverview = {
+  /** Set when the customer is a business account. */
+  company: { name: string; paymentTermsDays: number | null } | null;
   nextBooking: PortalBooking | null;
   counts: { upcoming: number; completed: number; total: number };
   unreadMessages: number;
@@ -427,4 +429,51 @@ export async function createPortalComplaint(
 export async function listPortalComplaints(slug: string | null, token: string) {
   const result = await portalFetch(slug, `/complaints`, { method: "GET" }, token);
   return result.data as PortalComplaint[];
+}
+
+export type B2BSummary = {
+  month: string;
+  currency: string;
+  company: { name: string; kvkNumber: string | null; vatNumber: string | null; paymentTermsDays: number | null };
+  visits: number;
+  completedVisits: number;
+  spendCents: number;
+  travelCents: number;
+  hours: number;
+  previousSpendCents: number;
+  locations: { key: string; label: string; visits: number; hours: number; spendCents: number }[];
+  services: { name: string; visits: number; spendCents: number }[];
+  invoices: {
+    issuedCount: number;
+    issuedCents: number;
+    openCount: number;
+    openCents: number;
+    overdueCount: number;
+    overdueCents: number;
+  };
+};
+
+export async function getPortalB2BSummary(slug: string | null, token: string, month?: string) {
+  const qs = month ? `?month=${encodeURIComponent(month)}` : "";
+  const result = await portalFetch(slug, `/b2b/summary${qs}`, { method: "GET" }, token);
+  return result.data as B2BSummary;
+}
+
+/** Fetches a B2B file (CSV or statement HTML) with the portal token. */
+export async function fetchPortalB2BFile(
+  slug: string | null,
+  token: string,
+  path: string,
+  accept: string
+): Promise<string> {
+  const base = slug
+    ? `${API_BASE_URL}/portal-embed/${encodeURIComponent(slug)}`
+    : `${API_BASE_URL}/portal`;
+  const res = await fetch(`${base}${path}`, { headers: { Authorization: `Bearer ${token}`, Accept: accept } });
+  if (!res.ok) {
+    const err = new Error("Request failed") as Error & { status?: number };
+    err.status = res.status;
+    throw err;
+  }
+  return res.text();
 }

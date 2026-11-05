@@ -549,6 +549,20 @@
       "newTitle": "Nieuwe klant",
       "notes": "Notities",
       "deleteConfirm": "Deze klant verwijderen?",
+      "business": {
+        "heading": "Zakelijk account",
+        "isBusiness": "Dit is een zakelijk account",
+        "companyName": "Bedrijfsnaam",
+        "kvkNumber": "KvK-nummer (8 cijfers)",
+        "vatNumber": "BTW-nummer (bijv. NL123456789B01)",
+        "billingEmail": "Factuur-e-mail (facturen gaan hierheen)",
+        "paymentTermsDays": "Betaaltermijn in dagen (bijv. 30)",
+        "none": "Particuliere klant",
+        "edit": "Bedrijfsgegevens wijzigen",
+        "makeBusiness": "Maak dit een zakelijk account",
+        "clearHint": "Wis de bedrijfsnaam om er weer een particuliere klant van te maken.",
+        "termsLine": "Betaalt binnen {days} dagen"
+      },
       "noEmail": "geen e-mail",
       "addresses": "Adressen",
       "noAddresses": "Geen adressen",
@@ -2193,6 +2207,24 @@
         "COMPLETED": "Schoonmaak klaar",
         "CANCELLED": "Geannuleerd"
       }
+    },
+    "b2b": {
+      "heading": "Zakelijk account",
+      "previousMonth": "Vorige maand",
+      "nextMonth": "Volgende maand",
+      "spend": "Uitgaven",
+      "visits": "Bezoeken",
+      "hours": "Uren",
+      "outstanding": "Openstaand",
+      "vsLastMonth": "{amount} t.o.v. vorige maand",
+      "noVisits": "Geen bezoeken deze maand",
+      "overdue": "{count} te laat ({amount})",
+      "terms": "Betaaltermijn: {days} dagen",
+      "byLocation": "Per locatie",
+      "byService": "Per dienst",
+      "locationLine": "{visits} bezoeken · {amount}",
+      "statement": "Maandoverzicht",
+      "exportCsv": "Bezoeken exporteren (CSV)"
     },
     "complaint": {
       "open": "Is er iets misgegaan? Meld een probleem",

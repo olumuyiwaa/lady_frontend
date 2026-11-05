@@ -14,6 +14,7 @@ import {
 } from "@/app/api/portal.api";
 import { referralLink } from "@/lib/referral";
 import { cleanerName } from "./portalSession";
+import { B2BPanel } from "./B2BPanel";
 
 type Props = {
     slug: string;
@@ -167,6 +168,10 @@ export function PortalHome({
     const availableRewards = referral.rewards.filter((r) => r.status === "AVAILABLE");
 
     return (
+        <div className="space-y-4">
+        {overview.company && (
+            <B2BPanel slug={slug} token={token} companyName={overview.company.name} money={money} onUnauthorized={onUnauthorized} />
+        )}
         <section aria-label={t("heading")} className="grid gap-4 lg:grid-cols-3">
             {/* Next visit */}
             <div className={card}>
@@ -311,5 +316,6 @@ export function PortalHome({
                 )}
             </div>
         </section>
+        </div>
     );
 }
