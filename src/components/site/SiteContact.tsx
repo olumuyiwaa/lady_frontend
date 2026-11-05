@@ -137,7 +137,7 @@ export function SiteContact({ subdomain, businessName, primaryColor, phoneNumber
     >
       <div className="site-container grid gap-12 lg:grid-cols-[minmax(0,0.75fr)_minmax(0,1fr)] lg:gap-20">
         <Reveal>
-          <div className="max-w-md">
+          <div className="max-w-[34rem]">
             <span className="site-eyebrow">
               <span className="site-eyebrow-dot" style={{ backgroundColor: primaryColor }} />
               {t("eyebrow")}
