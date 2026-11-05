@@ -228,6 +228,7 @@
       "bookings": "Boekingen",
       "calendar": "Agenda",
       "dispatch": "Planning",
+      "liveMap": "Live kaart",
       "cleaners": "Schoonmakers",
       "customers": "Klanten",
       "services": "Diensten",
@@ -552,6 +553,24 @@
       "addresses": "Adressen",
       "noAddresses": "Geen adressen",
       "recentBookings": "Recente boekingen"
+    },
+    "liveMap": {
+      "title": "Live kaart",
+      "subtitle": "Waar je schoonmakers nu zijn en welke klussen nog iemand nodig hebben. Ververst elke 15 seconden.",
+      "cleaners": "Schoonmakers",
+      "noCleaners": "Geen actieve schoonmakers",
+      "noPosition": "Nog geen positie",
+      "positionOld": "Positie is ouder dan 30 minuten",
+      "unassigned": "Heeft een schoonmaker nodig",
+      "unassignedHeading": "Niet toegewezen klussen ({count})",
+      "allAssigned": "Elke klus in de buurt heeft een schoonmaker",
+      "loadFailed": "Live kaart laden mislukt",
+      "state": {
+        "ON_JOB": "Aan het werk",
+        "EN_ROUTE": "Onderweg",
+        "NEXT_UP": "Volgende klus later",
+        "IDLE": "Vrij"
+      }
     },
     "dispatch": {
       "title": "Planning",

@@ -228,6 +228,7 @@
       "bookings": "Bookings",
       "calendar": "Calendar",
       "dispatch": "Dispatch",
+      "liveMap": "Live map",
       "cleaners": "Cleaners",
       "customers": "Customers",
       "services": "Services",
@@ -552,6 +553,24 @@
       "addresses": "Addresses",
       "noAddresses": "No addresses",
       "recentBookings": "Recent bookings"
+    },
+    "liveMap": {
+      "title": "Live map",
+      "subtitle": "Where your cleaners are right now and which jobs still need someone. Refreshes every 15 seconds.",
+      "cleaners": "Cleaners",
+      "noCleaners": "No active cleaners",
+      "noPosition": "No position yet",
+      "positionOld": "Position is more than 30 minutes old",
+      "unassigned": "Needs a cleaner",
+      "unassignedHeading": "Unassigned jobs ({count})",
+      "allAssigned": "Every job nearby has a cleaner",
+      "loadFailed": "Failed to load the live map",
+      "state": {
+        "ON_JOB": "Cleaning",
+        "EN_ROUTE": "On the way",
+        "NEXT_UP": "Next job later",
+        "IDLE": "Free"
+      }
     },
     "dispatch": {
       "title": "Dispatch",

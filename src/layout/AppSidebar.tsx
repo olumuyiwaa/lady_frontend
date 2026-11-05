@@ -70,6 +70,7 @@ const AppSidebar: React.FC = () => {
           { name: t("bookings"), path: "/bookings" },
           { name: t("bookingQuestions"), path: "/booking-questions" },
           { name: t("dispatch"), path: "/dispatch" },
+          { name: t("liveMap"), path: "/live-map" },
           { name: t("recurringSchedules"), path: "/recurring-schedules" },
         ],
       },

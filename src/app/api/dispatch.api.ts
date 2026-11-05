@@ -87,3 +87,40 @@ export async function getCleanerDayRoute(cleanerId: string, date: string) {
     const result = await authFetch(`/dispatch/route/${cleanerId}?date=${date}`, { method: "GET" });
     return result.data as DayRoute;
 }
+
+export type LiveCleanerState = "ON_JOB" | "EN_ROUTE" | "NEXT_UP" | "IDLE";
+
+export type LiveJob = {
+    bookingId: string;
+    status: string;
+    customerName: string | null;
+    serviceName: string | null;
+    address: string;
+    scheduledStart: string;
+    scheduledEnd: string;
+    latitude: number | null;
+    longitude: number | null;
+};
+
+export type LiveCleaner = {
+    id: string;
+    name: string;
+    phone: string | null;
+    state: LiveCleanerState;
+    latitude: number | null;
+    longitude: number | null;
+    positionAt: string | null;
+    stale: boolean;
+    job: LiveJob | null;
+};
+
+export type LiveBoard = {
+    generatedAt: string;
+    cleaners: LiveCleaner[];
+    jobs: (LiveJob & { unassigned: boolean; cleanerIds: string[] })[];
+};
+
+export async function getLiveBoard() {
+    const result = await authFetch(`/dispatch/live`, { method: "GET" });
+    return result.data as LiveBoard;
+}
