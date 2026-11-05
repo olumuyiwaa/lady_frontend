@@ -179,6 +179,15 @@ export type QuoteResponse = {
   priceCents: number;
   estimatedMinutes: number;
   breakdown?: Record<string, unknown>;
+  /** Present when the business charges for travel; cents is 0 inside the free radius. */
+  travelFee?: {
+    enabled: boolean;
+    cents: number;
+    distanceKm?: number | null;
+    billableKm?: number;
+    freeKm?: number;
+    perKmCents?: number;
+  } | null;
   coupon?: {
     valid: boolean;
     reason?: string;

@@ -9,6 +9,11 @@ export type BusinessPricing = {
     // platform default" — see backend lib/pricing.js DEFAULTS.
     perSqftCents: number | null;
     perRoomCents: number | null;
+    // Travel fee: free radius (km), rate per extra km and an optional cap, in cents.
+    // A null rate means no travel fee.
+    travelFreeKm: number | null;
+    travelFeePerKmCents: number | null;
+    travelFeeMaxCents: number | null;
     depositType: PolicyValueType | null;
     depositValue: number | null;
     cancellationWindowHours: number | null;

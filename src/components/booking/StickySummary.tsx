@@ -65,6 +65,9 @@ export function StickySummary({ state, service, primaryColor = "#3F6B52", cancel
           />
         )}
         {minutes != null && <Row label={t("estDuration")} value={t("estMinutes", { count: minutes })} />}
+        {state.quote?.travelFee && state.quote.travelFee.cents > 0 && (
+          <Row label={t("travelFee")} value={formatMoney(state.quote.travelFee.cents)} />
+        )}
       </div>
 
       <div className="mt-5 border-t border-gray-100 pt-4">

@@ -37,6 +37,7 @@ export function StepReview({
   const locale = useLocale();
   const price = state.quote?.priceCents;
   const tax = state.quote?.tax;
+  const travel = state.quote?.travelFee;
   const needsCaptcha = Boolean(TURNSTILE_SITE_KEY) && !captchaToken;
 
   return (
@@ -89,6 +90,12 @@ export function StepReview({
           }`}
         />
         {state.notes && <ReviewRow label={t("notes")} value={state.notes} />}
+        {travel && travel.cents > 0 && (
+          <ReviewRow
+            label={travel.distanceKm != null ? t("travelFee", { km: travel.distanceKm }) : t("travelFeeShort")}
+            value={formatMoney(travel.cents)}
+          />
+        )}
         <div className="flex justify-between items-center px-4 py-4 bg-gray-50">
           <dt className="text-sm font-semibold text-gray-700">{t("total")}</dt>
           <dd className="text-xl font-bold" style={{ color: primaryColor }}>

@@ -41,6 +41,8 @@ export default function PricingSettingsPage() {
     MONTHLY: "",
   });
 
+  const [travel, setTravel] = useState({ freeKm: "", perKm: "", max: "" });
+
   const [deposit, setDeposit] = useState<{ type: PolicyValueType | ""; value: string }>({
     type: "",
     value: "",
@@ -58,6 +60,11 @@ export default function PricingSettingsPage() {
     try {
       const p = await getPricing();
       setRates({ perSqft: centsToMajor(p.perSqftCents), perRoom: centsToMajor(p.perRoomCents) });
+      setTravel({
+        freeKm: p.travelFreeKm != null ? String(p.travelFreeKm) : "",
+        perKm: centsToMajor(p.travelFeePerKmCents),
+        max: centsToMajor(p.travelFeeMaxCents),
+      });
       const fd = p.frequencyDiscounts || {};
       setFreqDiscounts({
         WEEKLY: fd.WEEKLY != null ? String(Math.round(fd.WEEKLY * 100)) : "",
@@ -94,6 +101,27 @@ export default function PricingSettingsPage() {
       setSaved(t("ratesSaved"));
     } catch (err) {
       setError(err instanceof Error ? err.message : t("ratesSaveFailed"));
+    } finally {
+      setSaving(false);
+    }
+  };
+
+  const saveTravel = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setSaving(true);
+    setError("");
+    setSaved("");
+    try {
+      const perKm = majorToCents(travel.perKm);
+      await updatePricing({
+        // An empty rate switches the travel fee off, whatever else is filled in.
+        travelFeePerKmCents: perKm,
+        travelFreeKm: perKm != null && travel.freeKm.trim() !== "" ? Math.round(Number(travel.freeKm)) : null,
+        travelFeeMaxCents: perKm != null ? majorToCents(travel.max) : null,
+      });
+      setSaved(t("travelFeeSaved"));
+    } catch (err) {
+      setError(err instanceof Error ? err.message : t("travelFeeSaveFailed"));
     } finally {
       setSaving(false);
     }
@@ -234,6 +262,50 @@ export default function PricingSettingsPage() {
             </div>
           ))}
           <Button type="submit" disabled={saving}>{saving ? tc("loading") : t("saveDiscounts")}</Button>
+        </form>
+      </section>
+
+      {/* Travel fee */}
+      <section className="rounded-xl border border-gray-200 bg-white p-6 dark:border-gray-800 dark:bg-white/[0.02]">
+        <h2 className="mb-1 text-sm font-semibold uppercase tracking-wide text-gray-500 dark:text-gray-400">
+          {t("travelFee")}
+        </h2>
+        <p className="mb-4 max-w-xl text-xs text-gray-400">{t("travelFeeHint")}</p>
+        <form onSubmit={saveTravel} className="space-y-4 max-w-md">
+          <div>
+            <Label>{t("travelFreeKm")}</Label>
+            <Input
+              type="number"
+              min="0"
+              max="500"
+              step={1}
+              placeholder="0"
+              value={travel.freeKm}
+              onChange={(e) => setTravel({ ...travel, freeKm: e.target.value })}
+            />
+          </div>
+          <div>
+            <Label>{t("travelFeePerKm")}</Label>
+            <Input
+              type="number"
+              min="0"
+              step={0.05}
+              placeholder="0.50"
+              value={travel.perKm}
+              onChange={(e) => setTravel({ ...travel, perKm: e.target.value })}
+            />
+          </div>
+          <div>
+            <Label>{t("travelFeeMax")}</Label>
+            <Input
+              type="number"
+              min="0"
+              step={0.5}
+              value={travel.max}
+              onChange={(e) => setTravel({ ...travel, max: e.target.value })}
+            />
+          </div>
+          <Button type="submit" disabled={saving}>{saving ? tc("loading") : t("saveTravelFee")}</Button>
         </form>
       </section>
 
