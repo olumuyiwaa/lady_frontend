@@ -21,6 +21,8 @@ business slug (`NEXT_PUBLIC_BUSINESS_SLUG`, default `todcleaning`):
 |---|---|
 | `/` | Storefront |
 | `/portal` | Customer portal |
+| `/business` | Landing page for business customers, with a quote form |
+| `/en`, `/nl` (also `/en/business`, `/en/terms`, ...) | The same public pages in one language each |
 | `/signin`, `/dashboard`, ... | Staff sign-in and dashboard |
 | `/{slug}/...` | Redirects to the clean URL |
 | anything else | 404 |
@@ -38,6 +40,24 @@ Every "Book" CTA on the storefront (`SiteHero`, `SiteServices`, `SiteHeader`,
 opens `BookingWidgetModal`. The portal's "Book again" and "Book a cleaning"
 buttons do the same. Both use the same `BookingWizard` component (with
 `compact={true}` inside the modal).
+
+## Languages and SEO
+
+Public pages (`/`, `/business`, `/terms`, `/privacy`, `/cookies`) exist in English
+and Dutch at `/en/...` and `/nl/...`. `proxy.ts` rewrites them to the normal page and
+sets an `x-locale` header, which `src/i18n/request.ts` reads before the cookie.
+`/` stays the default (`x-default`). Staff and portal URLs never get a prefix.
+
+- `src/lib/localePath.ts`: prefix parsing and hreflang maps (add a new public page to `LOCALIZED_PATHS`, the proxy's storefront paths and `PUBLIC_SEGMENTS` in `hostRouting.ts`)
+- `src/lib/seo.ts`: canonical, hreflang and `og:locale` for a page; needs a known origin (custom domain or `NEXT_PUBLIC_STOREFRONT_ROOT_DOMAIN`), otherwise none are emitted
+- `src/app/sitemap.ts`: every page in every language with alternates
+- `src/app/llms.txt/route.ts`: `/llms.txt`, generated from live storefront data (`src/lib/llmsTxt.ts`)
+- Business enquiries post to the normal contact endpoint and arrive as tickets starting `[B2B enquiry]` (`src/lib/businessEnquiry.ts`)
+
+## Dashboard additions
+
+Dispatch has a "Plan the day" panel. The sidebar has Live map and Insights. Strings
+live in `messages/en.json` and `messages/nl.json`; keep both in step.
 
 ## Run it
 
