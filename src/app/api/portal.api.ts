@@ -246,6 +246,8 @@ export type PortalReward = {
 };
 
 export type PortalReferral = {
+  /** False when the business has switched the programme off. */
+  enabled: boolean;
   code: string;
   giveCents: number;
   getCents: number;

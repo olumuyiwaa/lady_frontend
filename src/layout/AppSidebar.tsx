@@ -160,6 +160,7 @@ const AppSidebar: React.FC = () => {
             subItems: [
               { name: t("giftCards"), path: "/gift-cards" },
               { name: t("coupons"), path: "/coupons" },
+              { name: t("referrals"), path: "/referrals" },
             ],
           },
         ],

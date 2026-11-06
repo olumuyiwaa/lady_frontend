@@ -212,7 +212,8 @@ export function PortalHome({
                 )}
             </div>
 
-            {/* Referral */}
+            {/* Referral (hidden when the business has switched it off) */}
+            {referral.enabled && (
             <div className={card}>
                 <p className={cardTitle}>
                     {t("referral.title", { give: money(referral.giveCents), get: money(referral.getCents) })}
@@ -277,6 +278,7 @@ export function PortalHome({
                     </div>
                 )}
             </div>
+            )}
 
             {/* Preferred cleaner */}
             <div className={card}>

@@ -234,6 +234,7 @@
       "services": "Services",
       "pricing": "Pricing",
       "coupons": "Coupons",
+      "referrals": "Referrals",
       "vouchers": "Vouchers",
       "giftCards": "Gift cards",
       "waitlist": "Waitlist",
@@ -567,6 +568,43 @@
       "addresses": "Addresses",
       "noAddresses": "No addresses",
       "recentBookings": "Recent bookings"
+    },
+    "referrals": {
+      "title": "Referrals",
+      "subtitle": "Customers who bring a friend get a reward. Set the offer, follow who referred whom and cancel rewards you do not trust.",
+      "stats": {
+        "referrals": "Referrals",
+        "completed": "Completed",
+        "discountGiven": "Discounts given",
+        "rewardsOutstanding": "Rewards waiting",
+        "rewardsUsed": "Rewards used"
+      },
+      "settings": {
+        "title": "Offer",
+        "enabled": "Referral programme is on",
+        "give": "Friend gets (off first booking)",
+        "get": "Referrer gets (reward coupon)",
+        "days": "Reward valid for (days)",
+        "min": "Minimum booking value",
+        "hint": "Changes apply to new bookings only. Referrals are ignored when the friend uses the same phone, email or address as the referrer.",
+        "saved": "Saved"
+      },
+      "list": {
+        "title": "Referral activity",
+        "flaggedOnly": "Only unusual activity",
+        "empty": "No referrals yet",
+        "date": "Date",
+        "referrer": "Referrer",
+        "friend": "New customer",
+        "discount": "Discount",
+        "reward": "Reward",
+        "highVolume": "Many referrals",
+        "cancelled": "booking cancelled",
+        "cancelReward": "Cancel reward"
+      },
+      "rewardStatus": { "AVAILABLE": "Available", "USED": "Used", "EXPIRED": "Expired", "CANCELLED": "Cancelled" },
+      "cancelConfirm": "Cancel this reward? The customer will no longer be able to use the coupon.",
+      "top": { "title": "Top referrers", "count": "{count} referrals" }
     },
     "liveMap": {
       "title": "Live map",

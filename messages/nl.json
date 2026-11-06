@@ -234,6 +234,7 @@
       "services": "Diensten",
       "pricing": "Prijzen",
       "coupons": "Kortingscodes",
+      "referrals": "Doorverwijzingen",
       "vouchers": "Waardebonnen",
       "giftCards": "Cadeaubonnen",
       "waitlist": "Wachtlijst",
@@ -567,6 +568,43 @@
       "addresses": "Adressen",
       "noAddresses": "Geen adressen",
       "recentBookings": "Recente boekingen"
+    },
+    "referrals": {
+      "title": "Doorverwijzingen",
+      "subtitle": "Klanten die een vriend meenemen krijgen een beloning. Stel de actie in, zie wie wie heeft doorverwezen en annuleer beloningen die je niet vertrouwt.",
+      "stats": {
+        "referrals": "Doorverwijzingen",
+        "completed": "Afgerond",
+        "discountGiven": "Gegeven korting",
+        "rewardsOutstanding": "Beloningen open",
+        "rewardsUsed": "Beloningen gebruikt"
+      },
+      "settings": {
+        "title": "Actie",
+        "enabled": "Doorverwijsactie staat aan",
+        "give": "Vriend krijgt (korting op eerste boeking)",
+        "get": "Doorverwijzer krijgt (kortingscode)",
+        "days": "Beloning geldig (dagen)",
+        "min": "Minimale boekingswaarde",
+        "hint": "Wijzigingen gelden alleen voor nieuwe boekingen. Doorverwijzingen tellen niet mee als de vriend hetzelfde telefoonnummer, e-mailadres of adres heeft als de doorverwijzer.",
+        "saved": "Opgeslagen"
+      },
+      "list": {
+        "title": "Activiteit",
+        "flaggedOnly": "Alleen opvallende activiteit",
+        "empty": "Nog geen doorverwijzingen",
+        "date": "Datum",
+        "referrer": "Doorverwijzer",
+        "friend": "Nieuwe klant",
+        "discount": "Korting",
+        "reward": "Beloning",
+        "highVolume": "Veel doorverwijzingen",
+        "cancelled": "boeking geannuleerd",
+        "cancelReward": "Beloning annuleren"
+      },
+      "rewardStatus": { "AVAILABLE": "Beschikbaar", "USED": "Gebruikt", "EXPIRED": "Verlopen", "CANCELLED": "Geannuleerd" },
+      "cancelConfirm": "Deze beloning annuleren? De klant kan de kortingscode dan niet meer gebruiken.",
+      "top": { "title": "Top doorverwijzers", "count": "{count} doorverwijzingen" }
     },
     "liveMap": {
       "title": "Live kaart",
