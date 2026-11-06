@@ -44,6 +44,7 @@ export function buildLlmsTxt(data: StorefrontResponse, origin: string): string {
     "",
     `- [Home (English)](${origin}${localizedPath("en", "/")})`,
     `- [Home (Nederlands)](${origin}${localizedPath("nl", "/")})`,
+    `- [Cleaning for businesses](${origin}${localizedPath("en", "/business")})`,
     `- [Terms and conditions](${origin}${localizedPath("en", "/terms")})`,
     `- [Privacy policy](${origin}${localizedPath("en", "/privacy")})`,
     ""

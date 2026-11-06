@@ -20,7 +20,7 @@ export const ADMIN_SEGMENTS = new Set([
 ]);
 
 /** First path segments that only make sense on the public site. */
-export const PUBLIC_SEGMENTS = new Set(["portal", "terms", "privacy", "cookies"]);
+export const PUBLIC_SEGMENTS = new Set(["portal", "business", "terms", "privacy", "cookies"]);
 
 const firstSegment = (pathname: string) => pathname.split("/")[1] || "";
 

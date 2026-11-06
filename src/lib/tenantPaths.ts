@@ -15,6 +15,7 @@ export function useTenantPaths(_slug: string) {
     portal: "/portal",
     // Written out, not built as `${home}/terms`: home is "/", which would give
     // "//terms", a protocol-relative URL that points at a host called "terms".
+    business: "/business",
     privacy: "/privacy",
     terms: "/terms",
     cookies: "/cookies",

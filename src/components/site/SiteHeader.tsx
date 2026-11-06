@@ -62,6 +62,7 @@ export function SiteHeader({
     ...(hasAbout ? [{ label: t("about"), href: `${paths.home}#about` }] : []),
     ...(hasTestimonials ? [{ label: t("reviews"), href: `${paths.home}#testimonials` }] : []),
     ...(hasFaq ? [{ label: t("faq"), href: `${paths.home}#faq` }] : []),
+    { label: t("forBusiness"), href: paths.business },
     { label: t("contact"), href: `${paths.home}#contact` },
   ];
 

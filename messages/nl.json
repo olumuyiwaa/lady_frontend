@@ -2041,6 +2041,71 @@
     "continue": "Doorgaan"
   },
   "Site": {
+    "business": {
+      "metaTitle": "Zakelijke schoonmaak voor bedrijven",
+      "metaDescription": "Betrouwbare kantoor- en bedrijfsschoonmaak met een vast team, maandelijkse facturatie en één plek om elke locatie te beheren.",
+      "eyebrow": "Voor bedrijven",
+      "title": "Schoonmaak waar je bedrijf op kan rekenen",
+      "subtitle": "Kantoren, winkels en gedeelde ruimtes schoongemaakt door een vast team, met één maandfactuur en een portaal om al je locaties te beheren.",
+      "cta": "Offerte aanvragen",
+      "benefitsTitle": "Waarom bedrijven voor ons kiezen",
+      "benefits": {
+        "invoice": { "title": "Eén factuur per maand", "body": "Alle schoonmaakbeurten van al je locaties komen in één maandoverzicht met een duidelijke betaaltermijn, zodat de administratie maar één ding hoeft te controleren." },
+        "team": { "title": "Een team dat jouw ruimte kent", "body": "We sturen zoveel mogelijk steeds dezelfde schoonmakers, zodat ze je gebouw, de toegang en je wensen kennen." },
+        "locations": { "title": "Alle locaties op één plek", "body": "Boek en bekijk schoonmaakbeurten voor al je vestigingen vanuit één account." },
+        "portal": { "title": "Je eigen portaal", "body": "Bekijk geplande en afgeronde beurten, vraag wijzigingen aan en download overzichten wanneer je wilt." },
+        "reliability": { "title": "Gevolgd en op tijd", "body": "Schoonmakers checken in bij aankomst en wij volgen de aankomsttijden, zodat een late of gemiste beurt snel wordt opgemerkt en opgelost." },
+        "compliance": { "title": "Helder en transparant", "body": "Onze bedrijfsgegevens, btw-nummer en voorwaarden staan op deze site en op elke factuur." }
+      },
+      "audienceTitle": "Voor wie we schoonmaken",
+      "audience": {
+        "offices": "Kantoren en flexwerkplekken",
+        "retail": "Winkels en showrooms",
+        "hospitality": "Restaurants, cafés en hotels",
+        "property": "Vastgoedbeheerders en gedeelde gebouwen",
+        "health": "Klinieken en praktijken",
+        "education": "Scholen en kinderopvang"
+      },
+      "stepsTitle": "Zo werkt het",
+      "steps": {
+        "enquire": { "title": "Vertel wat je nodig hebt", "body": "Stuur het formulier hieronder met je locaties en hoe vaak je schoonmaak wilt." },
+        "walkthrough": { "title": "We spreken de details af", "body": "We bevestigen omvang, planning en prijs met je en komen vooraf langs waar dat helpt." },
+        "start": { "title": "De schoonmaak start", "body": "Je team begint op de afgesproken dag en je krijgt een portaallogin om alles te volgen." }
+      },
+      "faqTitle": "Vragen die bedrijven stellen",
+      "faq": {
+        "contract": { "q": "Is er een langlopend contract?", "a": "De voorwaarden spreken we af in je offerte. Vertel wat je nodig hebt en we doen een voorstel voor planning en opzegtermijn." },
+        "invoice": { "q": "Hoe werkt de facturatie?", "a": "Je ontvangt één overzicht per maand voor al je locaties, met vooraf afgesproken betaaltermijn." },
+        "insurance": { "q": "Kunnen jullie verzekeringsgegevens delen?", "a": "Ja. Vraag ernaar in je aanvraag en we voegen ze toe aan je offerte." },
+        "start": { "q": "Hoe snel kunnen we starten?", "a": "Dat hangt af van de omvang en onze planning. Je krijgt een startdatum bij je offerte." }
+      },
+      "enquiryTitle": "Offerte aanvragen",
+      "enquirySubtitle": "Vertel ons over je bedrijf en we reageren per e-mail.",
+      "form": {
+        "company": "Bedrijf",
+        "name": "Je naam",
+        "email": "Zakelijk e-mailadres",
+        "phone": "Telefoon (optioneel)",
+        "sites": "Aantal locaties",
+        "frequency": "Hoe vaak",
+        "freq": { "WEEKLY": "Wekelijks", "BIWEEKLY": "Om de week", "MONTHLY": "Maandelijks", "ONEOFF": "Eenmalig", "UNSURE": "Nog niet zeker" },
+        "details": "Nog iets?",
+        "detailsPlaceholder": "Soort ruimte, grootte, toegang, voorkeursdagen.",
+        "send": "Aanvraag versturen",
+        "sending": "Versturen…",
+        "privacy": "We gebruiken je gegevens alleen om te reageren op je aanvraag.",
+        "sentTitle": "Aanvraag verstuurd",
+        "sentBody": "Bedankt. We reageren binnenkort per e-mail.",
+        "reference": "Referentie {reference}",
+        "errCompany": "Vul de bedrijfsnaam in",
+        "errName": "Vul je naam in",
+        "errEmail": "Vul een geldig e-mailadres in",
+        "errPhone": "Vul een geldig telefoonnummer in",
+        "errCaptcha": "Rond eerst de verificatie af",
+        "errRateLimit": "Je hebt al meerdere berichten gestuurd. Wacht op een reactie.",
+        "errGeneric": "We konden je aanvraag niet versturen. Probeer het opnieuw."
+      }
+    },
       "errorTitle": "Deze pagina kon niet worden geladen",
       "errorBody": "Er ging iets mis aan onze kant. Probeer het zo opnieuw.",
       "retry": "Opnieuw proberen",
@@ -2056,6 +2121,7 @@
     "notFoundBody": "We konden geen actief bedrijf vinden voor deze link. Controleer de URL of neem contact op met het bedrijf.",
     "nav": {
       "skipToContent": "Naar de hoofdinhoud",
+      "forBusiness": "Voor bedrijven",
       "services": "Diensten",
       "howItWorks": "Hoe het werkt",
       "about": "Over ons",

@@ -1,7 +1,7 @@
 import { locales, type AppLocale } from "../i18n/locales.ts";
 
 /** Public pages that exist in every language under /en and /nl. "/" is the home page. */
-export const LOCALIZED_PATHS = ["/", "/terms", "/privacy", "/cookies"] as const;
+export const LOCALIZED_PATHS = ["/", "/business", "/terms", "/privacy", "/cookies"] as const;
 
 const norm = (p: string) => (p.length > 1 ? p.replace(/\/+$/, "") : p) || "/";
 

@@ -2041,6 +2041,71 @@
     "continue": "Continue"
   },
   "Site": {
+    "business": {
+      "metaTitle": "Commercial cleaning for businesses",
+      "metaDescription": "Reliable office and commercial cleaning with a dedicated team, monthly invoicing and one place to manage every location.",
+      "eyebrow": "For business",
+      "title": "Cleaning that your business can rely on",
+      "subtitle": "Offices, shops and shared spaces cleaned by a dedicated team, with one monthly invoice and a portal where you manage every location.",
+      "cta": "Request a quote",
+      "benefitsTitle": "Why businesses choose us",
+      "benefits": {
+        "invoice": { "title": "One monthly invoice", "body": "Every clean across your locations is collected into a single monthly statement with a clear payment term, so finance has one thing to check." },
+        "team": { "title": "A team that knows your space", "body": "We aim to send the same cleaners each time, so they learn your building, your access and your standards." },
+        "locations": { "title": "Every location in one place", "body": "Book and review cleans for all your sites from one account instead of chasing separate arrangements." },
+        "portal": { "title": "Your own portal", "body": "See upcoming and past cleans, request changes and download statements whenever you need them." },
+        "reliability": { "title": "Tracked and on time", "body": "Cleaners check in on arrival and we monitor arrivals, so a late or missed visit is caught and fixed quickly." },
+        "compliance": { "title": "Clear and transparent", "body": "Our company details, VAT number and terms are published on this site, and every invoice carries them." }
+      },
+      "audienceTitle": "Who we clean for",
+      "audience": {
+        "offices": "Offices and co-working spaces",
+        "retail": "Shops and showrooms",
+        "hospitality": "Restaurants, cafés and hotels",
+        "property": "Property managers and shared buildings",
+        "health": "Clinics and practices",
+        "education": "Schools and childcare"
+      },
+      "stepsTitle": "How it works",
+      "steps": {
+        "enquire": { "title": "Tell us what you need", "body": "Send the form below with your locations and how often you need cleaning." },
+        "walkthrough": { "title": "We agree the details", "body": "We confirm the scope, schedule and price with you, and visit the site first where it helps." },
+        "start": { "title": "Cleaning starts", "body": "Your team begins on the agreed day, and you get your portal login to follow everything." }
+      },
+      "faqTitle": "Questions businesses ask",
+      "faq": {
+        "contract": { "q": "Is there a long contract?", "a": "Terms are agreed in your quote. Tell us what you need and we will propose a schedule and notice period that fits." },
+        "invoice": { "q": "How does invoicing work?", "a": "You receive one statement per month covering all your locations, with a payment term agreed up front." },
+        "insurance": { "q": "Can you share insurance details?", "a": "Yes. Ask in your enquiry and we will include them with your quote." },
+        "start": { "q": "How quickly can we start?", "a": "It depends on the size of the job and our current schedule. We will give you a start date with your quote." }
+      },
+      "enquiryTitle": "Request a quote",
+      "enquirySubtitle": "Tell us about your business and we will reply by email.",
+      "form": {
+        "company": "Company",
+        "name": "Your name",
+        "email": "Work email",
+        "phone": "Phone (optional)",
+        "sites": "Number of locations",
+        "frequency": "How often",
+        "freq": { "WEEKLY": "Weekly", "BIWEEKLY": "Every two weeks", "MONTHLY": "Monthly", "ONEOFF": "One-off", "UNSURE": "Not sure yet" },
+        "details": "Anything else?",
+        "detailsPlaceholder": "Type of space, size, access arrangements, preferred days.",
+        "send": "Send enquiry",
+        "sending": "Sending…",
+        "privacy": "We only use your details to reply to your enquiry.",
+        "sentTitle": "Enquiry sent",
+        "sentBody": "Thank you. We will reply by email shortly.",
+        "reference": "Reference {reference}",
+        "errCompany": "Please enter your company name",
+        "errName": "Please enter your name",
+        "errEmail": "Please enter a valid email address",
+        "errPhone": "Please enter a valid phone number",
+        "errCaptcha": "Please complete the verification first",
+        "errRateLimit": "You have sent several messages already. Please wait for a reply.",
+        "errGeneric": "We could not send your enquiry. Please try again."
+      }
+    },
       "errorTitle": "We couldn't load this page",
       "errorBody": "Something went wrong on our side. Please try again in a moment.",
       "retry": "Try again",
@@ -2056,6 +2121,7 @@
     "notFoundBody": "We couldn't find an active business for this link. Check the URL or contact the business.",
     "nav": {
       "skipToContent": "Skip to main content",
+      "forBusiness": "For business",
       "services": "Services",
       "howItWorks": "How it works",
       "about": "About",

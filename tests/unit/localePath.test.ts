@@ -44,3 +44,17 @@ test("llms.txt lists services, contact and pages without inventing prices", () =
   assert.match(txt, /Address: Dam 1, 1012 JS Amsterdam/);
   assert.match(txt, /\(https:\/\/todcleaning\.nl\/nl\)/);
 });
+
+import { composeBusinessMessage } from "../../src/lib/businessEnquiry.ts";
+
+test("business page is a localised public page", () => {
+  assert.deepEqual(splitLocalePrefix("/nl/business"), { locale: "nl", path: "/business" });
+  assert.deepEqual(languageAlternates("/business"), { en: "/en/business", nl: "/nl/business" });
+});
+
+test("business enquiry message is tagged, labelled and capped", () => {
+  const labels = { company: "Company", sites: "Locations", frequency: "Frequency" };
+  const m = composeBusinessMessage({ company: " Acme ", sites: "3", frequency: "Weekly", details: "Offices" }, labels);
+  assert.equal(m, "[B2B enquiry]\nCompany: Acme\nLocations: 3\nFrequency: Weekly\n\nOffices");
+  assert.equal(composeBusinessMessage({ company: "A", sites: "1", frequency: "x", details: "y".repeat(5000) }, labels).length, 3000);
+});

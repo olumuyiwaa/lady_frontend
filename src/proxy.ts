@@ -74,7 +74,7 @@ export function proxy(req: NextRequest) {
   }
 
   // Paths that belong to the storefront and need rewriting to /{slug}/...
-  const STOREFRONT_PATHS = ["/portal", "/terms", "/privacy", "/cookies"];
+  const STOREFRONT_PATHS = ["/portal", "/business", "/terms", "/privacy", "/cookies"];
   const isStorefrontPath =
     pathname === "/" ||
     STOREFRONT_PATHS.some((p) => pathname === p || pathname.startsWith(`${p}/`));
