@@ -655,7 +655,7 @@
 .site-cta-band {
   position: relative;
   overflow: hidden;
-  background-color: var(--site-primary, #0a2e22);
+  background-color: color-mix(in srgb, #0a2e22 85%, #000);
   background-image:
     linear-gradient(135deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
     linear-gradient(45deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
@@ -688,7 +688,7 @@
 /* ── Footer ───────────────────────────────────────────────────── */
 
 .site-footer {
-  background: color-mix(in srgb, var(--site-primary, #0a2e22) 85%, #000);
+  background: color-mix(in srgb, #0a2e22 85%, #000);
   color: #fff;
 }
 
