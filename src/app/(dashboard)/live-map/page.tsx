@@ -7,7 +7,7 @@ import { getLiveBoard, type LiveBoard, type LiveCleanerState } from "@/app/api/d
 
 const LiveMapCanvas = dynamic(() => import("./LiveMapCanvas"), {
   ssr: false,
-  loading: () => <div className="h-[560px] w-full animate-pulse rounded-xl bg-gray-100 dark:bg-gray-800" />,
+  loading: () => <div className="h-[480px] lg:h-[calc(100vh-15rem)] lg:min-h-[480px] w-full animate-pulse rounded-xl bg-gray-100 dark:bg-gray-800" />,
 });
 
 const POLL_MS = 15_000;

@@ -26,6 +26,7 @@ import {
   Business,
   CheckLineIcon,
   DocsIcon,
+  MapIcon,
 } from "../icons/index";
 import { useAuth } from "@/app/auth/useAuth";
 
@@ -105,7 +106,7 @@ const AppSidebar: React.FC = () => {
             path: "/dispatch",
           },
           {
-            icon: <GridIcon />,
+            icon: <MapIcon />,
             name: t("liveMap"),
             path: "/live-map",
           },

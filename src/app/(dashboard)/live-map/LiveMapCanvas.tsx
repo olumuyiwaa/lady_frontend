@@ -103,5 +103,5 @@ export default function LiveMapCanvas({ board, selectedCleanerId, labels }: Prop
         if (c?.latitude != null && c.longitude != null) map.current.setView([c.latitude, c.longitude], Math.max(map.current.getZoom(), 13));
     }, [selectedCleanerId, board]);
 
-    return <div ref={el} className="h-[560px] w-full rounded-xl border border-gray-200 dark:border-gray-800" />;
+    return <div ref={el} className="h-[480px] lg:h-[calc(100vh-15rem)] lg:min-h-[480px] w-full rounded-xl border border-gray-200 dark:border-gray-800" />;
 }

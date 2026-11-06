@@ -46,6 +46,7 @@ import PieChartIcon from "./pie-chart.svg";
 import BoxCubeIcon from "./box-cube.svg";
 import PlugInIcon from "./plug-in.svg";
 import DocsIcon from "./docs.svg";
+import MapIcon from "./map.svg";
 import MailIcon from "./mail-line.svg";
 import HorizontaLDots from "./horizontal-dots.svg";
 import ChatIcon from "./chat.svg";
@@ -103,6 +104,7 @@ export {
   BoxCubeIcon,
   PlugInIcon,
   DocsIcon,
+  MapIcon,
   MailIcon,
   HorizontaLDots,
   ChevronUpIcon,
