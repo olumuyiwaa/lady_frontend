@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { resolveHostRoute } from "@/lib/hostRouting";
+import { splitLocalePrefix } from "@/lib/localePath";
 
 /**
  * Tod Cleaning Services is one business, so there is no host or subdomain lookup.
@@ -10,6 +11,7 @@ import { resolveHostRoute } from "@/lib/hostRouting";
  *
  *   /          -> /{slug}
  *   /portal/*  -> /{slug}/portal/*
+ *   /en, /nl (+ /terms etc.) -> the same page in that language (x-locale header)
  *   /{slug}/*  -> redirected to the clean URL without the slug
  *
  * When NEXT_PUBLIC_ADMIN_URL is set (admin.todcleaning.nl), staff pages live on
@@ -22,11 +24,15 @@ const SLUG = (process.env.NEXT_PUBLIC_BUSINESS_SLUG || "todcleaning").toLowerCas
 const TENANT_HEADER = "x-tenant-slug";
 
 const BYPASS_PREFIXES = ["/_next", "/favicon.ico", "/api/", "/images/", "/lottie/", "/embed.js"];
-const META_FILES = new Set(["/robots.txt", "/sitemap.xml"]);
+const META_FILES = new Set(["/robots.txt", "/sitemap.xml", "/llms.txt"]);
 
-function withTenant(req: NextRequest, url?: URL) {
+const LOCALE_HEADER = "x-locale";
+
+function withTenant(req: NextRequest, url?: URL, locale?: string) {
   const headers = new Headers(req.headers);
   headers.set(TENANT_HEADER, SLUG); // never trust a client-supplied value
+  headers.delete(LOCALE_HEADER);
+  if (locale) headers.set(LOCALE_HEADER, locale); // only ever set here, from the URL prefix
   return url ? NextResponse.rewrite(url, { request: { headers } }) : NextResponse.next({ request: { headers } });
 }
 
@@ -56,6 +62,15 @@ export function proxy(req: NextRequest) {
     const clean = req.nextUrl.clone();
     clean.pathname = pathname.slice(prefix.length) || "/";
     return NextResponse.redirect(clean, 307);
+  }
+
+  // /en and /nl (and /nl/terms ...): a crawlable URL per language. The page is
+  // the same one served at the unprefixed path, rendered in that language.
+  const split = splitLocalePrefix(pathname);
+  if (split.locale) {
+    const url = req.nextUrl.clone();
+    url.pathname = `${prefix}${split.path === "/" ? "" : split.path}`;
+    return withTenant(req, url, split.locale);
   }
 
   // Paths that belong to the storefront and need rewriting to /{slug}/...

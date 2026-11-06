@@ -4,6 +4,7 @@ import { useState, useTransition } from "react";
 import { useLocale, useTranslations } from "next-intl";
 import { setLocale } from "@/i18n/setLocale";
 import { locales, type AppLocale } from "@/i18n/locales";
+import { LOCALIZED_PATHS, localizedPath, splitLocalePrefix } from "@/lib/localePath";
 
 const LABELS: Record<AppLocale, string> = { en: "EN", nl: "NL" };
 
@@ -26,6 +27,15 @@ export function LanguageSwitcher({ className = "" }: { className?: string }) {
     setOptimistic(locale);
     startTransition(async () => {
       await setLocale(locale);
+      // On the public pages each language has its own URL: go there so the
+      // address bar, shares and search engines all agree with what is shown.
+      const { path } = splitLocalePrefix(window.location.pathname);
+      const here = window.location.pathname.replace(/\/+$/, "") || "/";
+      const onLocalised = splitLocalePrefix(here).locale !== null || (LOCALIZED_PATHS as readonly string[]).includes(here);
+      if (onLocalised) {
+        window.location.assign(localizedPath(locale, path) + window.location.search + window.location.hash);
+        return;
+      }
       // Full reload rather than router.refresh(): this app has no client
       // router instance threaded down to every widget entry point (the
       // embeddable modal, the standalone /book-now page), and a reload is

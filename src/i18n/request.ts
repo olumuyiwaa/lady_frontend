@@ -61,9 +61,14 @@ async function localeFromTenant(slug: string | null): Promise<AppLocale | null> 
 export default getRequestConfig(async () => {
   const cookieStore = await cookies();
   const cookieLocale = cookieStore.get(LOCALE_COOKIE)?.value;
+  // Set by proxy.ts from a /en or /nl URL prefix; the URL beats the cookie so
+  // each language URL always shows its own language (and can be indexed).
+  const urlLocale = (await headers()).get("x-locale");
 
   let locale: AppLocale;
-  if (isSupportedLocale(cookieLocale)) {
+  if (isSupportedLocale(urlLocale)) {
+    locale = urlLocale;
+  } else if (isSupportedLocale(cookieLocale)) {
     // 1. An explicit choice (language switcher) always wins.
     locale = cookieLocale;
   } else {

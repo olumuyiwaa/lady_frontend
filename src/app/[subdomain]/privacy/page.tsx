@@ -1,5 +1,9 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
+import { getLocale } from "next-intl/server";
+import type { AppLocale } from "@/i18n/locales";
+import { canonicalOrigin } from "@/lib/tenantUrl";
+import { pageSeo } from "@/lib/seo";
 import { getStorefrontServer } from "@/app/api/storefront.server";
 import { LegalPage } from "@/components/site/LegalPage";
 
@@ -9,9 +13,14 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const { subdomain } = await params;
   const data = await getStorefrontServer(subdomain);
   if (!data) return { title: "Not found", robots: { index: false, follow: false } };
+  const locale = (await getLocale()) as AppLocale;
+  const seo = pageSeo(canonicalOrigin(data.business, subdomain), "/privacy", locale);
   return {
+    ...(seo.metadataBase ? { metadataBase: seo.metadataBase } : {}),
+    ...(seo.alternates ? { alternates: seo.alternates } : {}),
     title: `Privacy Policy | ${data.business.name}`,
     description: `How ${data.business.name} collects, uses, and protects your personal information.`,
+    openGraph: seo.openGraph,
   };
 }
 

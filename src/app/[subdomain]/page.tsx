@@ -3,6 +3,9 @@ import { notFound } from "next/navigation";
 import { getStorefrontServer } from "@/app/api/storefront.server";
 import { safeJsonLd } from "@/lib/jsonLd";
 import { canonicalOrigin } from "@/lib/tenantUrl";
+import { pageSeo } from "@/lib/seo";
+import { getLocale } from "next-intl/server";
+import type { AppLocale } from "@/i18n/locales";
 import { StorefrontClient } from "./StorefrontClient";
 
 type PageProps = { params: Promise<{ subdomain: string }> };
@@ -33,17 +36,21 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const image = branding?.heroImageUrl || branding?.logoUrl || undefined;
   const origin = canonicalOrigin(business, subdomain);
 
+  const locale = (await getLocale()) as AppLocale;
+  // metadataBase lets relative URLs (canonical, hreflang, og:url) resolve
+  // against the business's own domain; without it Next falls back to localhost.
+  const seo = pageSeo(origin, "/", locale);
+
   return {
-    // Lets relative URLs (canonical, og:url) resolve against the business's
-    // own domain; without it Next falls back to localhost/the app host.
-    ...(origin ? { metadataBase: new URL(origin), alternates: { canonical: "/" } } : {}),
+    ...(seo.metadataBase ? { metadataBase: seo.metadataBase } : {}),
+    ...(seo.alternates ? { alternates: seo.alternates } : {}),
     title: business.name,
     description: description || undefined,
     openGraph: {
       title: business.name,
       description: description || undefined,
       type: "website",
-      ...(origin ? { url: origin } : {}),
+      ...seo.openGraph,
       ...(image ? { images: [{ url: image }] } : {}),
     },
     twitter: { card: image ? "summary_large_image" : "summary", title: business.name },
@@ -94,6 +101,12 @@ export default async function BusinessSitePage({ params }: PageProps) {
     "@type": "LocalBusiness",
     name: business.name,
     ...(origin ? { url: origin } : {}),
+    inLanguage: ["nl", "en"],
+    knowsLanguage: ["nl", "en"],
+    ...(business.legal?.vatNumber ? { vatID: business.legal.vatNumber } : {}),
+    ...(business.legal?.kvkNumber
+      ? { identifier: { "@type": "PropertyValue", propertyID: "KvK", value: business.legal.kvkNumber } }
+      : {}),
     ...(business.phone ? { telephone: business.phone } : {}),
     ...(address
       ? {
