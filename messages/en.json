@@ -2077,7 +2077,9 @@
         "contract": { "q": "Is there a long contract?", "a": "Terms are agreed in your quote. Tell us what you need and we will propose a schedule and notice period that fits." },
         "invoice": { "q": "How does invoicing work?", "a": "You receive one statement per month covering all your locations, with a payment term agreed up front." },
         "insurance": { "q": "Can you share insurance details?", "a": "Yes. Ask in your enquiry and we will include them with your quote." },
-        "start": { "q": "How quickly can we start?", "a": "It depends on the size of the job and our current schedule. We will give you a start date with your quote." }
+        "start": { "q": "How quickly can we start?", "a": "It depends on the size of the job and our current schedule. We will give you a start date with your quote." },
+        "sites": { "q": "Can you cover multiple locations?", "a": "Yes. We can manage clean standards across several sites and combine them into one monthly invoice." },
+        "changes": { "q": "Can we change the schedule later?", "a": "Yes. We can usually adjust the frequency, times or scope as your needs change, provided we have enough notice." }
       },
       "enquiryTitle": "Request a quote",
       "enquirySubtitle": "Tell us about your business and we will reply by email.",

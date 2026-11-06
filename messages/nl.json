@@ -2077,7 +2077,9 @@
         "contract": { "q": "Is er een langlopend contract?", "a": "De voorwaarden spreken we af in je offerte. Vertel wat je nodig hebt en we doen een voorstel voor planning en opzegtermijn." },
         "invoice": { "q": "Hoe werkt de facturatie?", "a": "Je ontvangt één overzicht per maand voor al je locaties, met vooraf afgesproken betaaltermijn." },
         "insurance": { "q": "Kunnen jullie verzekeringsgegevens delen?", "a": "Ja. Vraag ernaar in je aanvraag en we voegen ze toe aan je offerte." },
-        "start": { "q": "Hoe snel kunnen we starten?", "a": "Dat hangt af van de omvang en onze planning. Je krijgt een startdatum bij je offerte." }
+        "start": { "q": "Hoe snel kunnen we starten?", "a": "Dat hangt af van de omvang en onze planning. Je krijgt een startdatum bij je offerte." },
+        "sites": { "q": "Kunnen jullie meerdere locaties verzorgen?", "a": "Ja. We kunnen meerdere vestigingen tegelijk beheren en ze samen in één maandfactuur verwerken." },
+        "changes": { "q": "Kunnen we de planning later aanpassen?", "a": "Ja. We kunnen meestal de frequentie, tijden of scope aanpassen als jouw wensen veranderen, zolang er voldoende op tijd wordt doorgegeven." }
       },
       "enquiryTitle": "Offerte aanvragen",
       "enquirySubtitle": "Vertel ons over je bedrijf en we reageren per e-mail.",

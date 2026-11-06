@@ -15,7 +15,7 @@ type PageProps = { params: Promise<{ subdomain: string }> };
 const BENEFITS = ["invoice", "team", "locations", "portal", "reliability", "compliance"] as const;
 const AUDIENCE = ["offices", "retail", "hospitality", "property", "health", "education"] as const;
 const STEPS = ["enquire", "walkthrough", "start"] as const;
-const FAQ = ["contract", "invoice", "insurance", "start"] as const;
+const FAQ = ["contract", "invoice", "insurance", "start", "sites", "changes"] as const;
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { subdomain } = await params;
@@ -139,26 +139,26 @@ export default async function BusinessPage({ params }: PageProps) {
           </div>
         </section>
 
-        <section className="border-t border-[#e4dfd4] bg-white py-14 sm:py-20" aria-labelledby="faq">
-          <div className="site-container max-w-3xl">
-            <h2 id="faq" className="text-2xl font-bold text-[#0B2820] sm:text-3xl">{t("faqTitle")}</h2>
-            <dl className="mt-8 space-y-6">
-              {FAQ.map((k) => (
-                <div key={k}>
-                  <dt className="font-semibold text-[#0B2820]">{t(`faq.${k}.q`)}</dt>
-                  <dd className="mt-1 text-sm leading-relaxed text-[#374b43]">{t(`faq.${k}.a`)}</dd>
-                </div>
-              ))}
-            </dl>
-          </div>
-        </section>
-
         <section id="enquiry" className="scroll-mt-24 py-14 sm:py-20" aria-labelledby="enquiry-title">
-          <div className="site-container max-w-3xl">
+          <div className="site-container max-w-6xl">
             <h2 id="enquiry-title" className="text-2xl font-bold text-[#0B2820] sm:text-3xl">{t("enquiryTitle")}</h2>
             <p className="mt-3 text-[#374b43]">{t("enquirySubtitle")}</p>
-            <div className="mt-8 rounded-3xl border border-[#e8e3d8] bg-white p-7 shadow-sm sm:p-10">
-              <BusinessEnquiryForm subdomain={subdomain} primaryColor={primary} />
+            <div className="mt-8 grid gap-8 lg:grid-cols-[1.2fr_0.8fr]">
+              <div className="rounded-3xl border border-[#e8e3d8] bg-white p-7 shadow-sm sm:p-10">
+                <BusinessEnquiryForm subdomain={subdomain} primaryColor={primary} />
+              </div>
+
+              <aside className="rounded-3xl border border-[#e8e3d8] bg-white p-7 shadow-sm sm:p-8">
+                <h3 className="text-xl font-bold text-[#0B2820]">{t("faqTitle")}</h3>
+                <dl className="mt-6 space-y-5">
+                  {FAQ.map((k) => (
+                    <div key={k}>
+                      <dt className="font-semibold text-[#0B2820]">{t(`faq.${k}.q`)}</dt>
+                      <dd className="mt-1 text-sm leading-relaxed text-[#374b43]">{t(`faq.${k}.a`)}</dd>
+                    </div>
+                  ))}
+                </dl>
+              </aside>
             </div>
           </div>
         </section>
