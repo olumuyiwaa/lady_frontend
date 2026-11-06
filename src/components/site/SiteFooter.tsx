@@ -62,15 +62,7 @@ export function SiteFooter({
                   className="h-10 w-10 rounded-full object-contain"
                 />
               ) : (
-                // eslint-disable-next-line @next/next/no-img-element
-                <img
-                  src="/images/logo/todcleaning-logo.png"
-                  alt={businessName}
-                  width={40}
-                  height={40}
-                  className="h-10 w-10 rounded-full object-contain"
-                  loading="lazy"
-                />
+                <span aria-hidden="true" className="site-logo-fallback site-logo-fallback-light h-10 w-10 rounded-full" />
               )}
               <span className="text-base font-semibold text-white/85 hover:text-white">
                 {businessName}

@@ -87,14 +87,9 @@ export function SiteHeader({
                     className="h-11 w-11 rounded-full object-contain sm:h-[52px] sm:w-[52px]"
                 />
             ) : (
-                <img
-                    src="/images/logo/todcleaning-logo.png"
-                    alt={businessName}
-                    width={52}
-                    height={52}
-                    className="h-11 w-11 rounded-full object-contain sm:h-[52px] sm:w-[52px]"
-                    loading="eager"
-                    fetchPriority="high"
+                <span
+                    aria-hidden="true"
+                    className="site-logo-fallback h-11 w-11 rounded-full sm:h-[52px] sm:w-[52px]"
                 />
             )}
             <span className="truncate text-base font-semibold tracking-tight text-[#0a2e22] sm:text-lg">
