@@ -16,6 +16,7 @@ import { listDispatchItems, createAssignment, suggestCleaners, getCleanerDayRout
 import { listBookings } from "@/app/api/bookings.api";
 import { listCleaners } from "@/app/api/cleaners.api";
 import { Booking, Cleaner, cleanerDisplayName } from "@/app/api/app-types";
+import DayPlanPanel from "./DayPlanPanel";
 
 export default function DispatchPage() {
   const t = useTranslations("Dashboard.dispatch");
@@ -121,6 +122,8 @@ export default function DispatchPage() {
           {error}
         </div>
       )}
+
+      <DayPlanPanel onApplied={load} />
 
       <div className="mb-8 rounded-xl border border-gray-200 bg-white p-4 dark:border-gray-800 dark:bg-white/[0.02]">
         <h2 className="mb-1 text-sm font-semibold uppercase tracking-wide text-gray-500 dark:text-gray-400">

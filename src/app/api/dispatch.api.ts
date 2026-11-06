@@ -124,3 +124,45 @@ export async function getLiveBoard() {
     const result = await authFetch(`/dispatch/live`, { method: "GET" });
     return result.data as LiveBoard;
 }
+
+export type PlanAssignment = {
+    bookingId: string;
+    cleanerId: string;
+    cleanerName: string;
+    addedKm: number | null;
+    approximate: boolean;
+    alternatives: { cleanerId: string; cleanerName: string; addedKm: number | null }[];
+    customerName: string | null;
+    address: string;
+    scheduledStart: string;
+    scheduledEnd: string;
+};
+
+export type DayPlan = {
+    date: string;
+    jobs: number;
+    assignments: PlanAssignment[];
+    unassigned: { bookingId: string; customerName: string | null; address: string; scheduledStart: string; scheduledEnd: string }[];
+    totalKm: number;
+    naiveKm: number;
+    savedKm: number;
+};
+
+export async function getDayPlan(date: string) {
+    const result = await authFetch(`/dispatch/plan?date=${date}`, { method: "GET" });
+    return result.data as DayPlan;
+}
+
+export type ApplyPlanResult = {
+    applied: number;
+    failed: number;
+    results: { bookingId: string; ok: boolean; error?: string }[];
+};
+
+export async function applyDayPlan(assignments: { bookingId: string; cleanerId: string }[]) {
+    const result = await authFetch(`/dispatch/plan/apply`, {
+        method: "POST",
+        body: JSON.stringify({ assignments }),
+    });
+    return result.data as ApplyPlanResult;
+}

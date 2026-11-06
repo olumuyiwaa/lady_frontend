@@ -61,3 +61,41 @@ export async function getCleanerPerformance(from?: string, to?: string) {
     const result = await authFetch(`/reports/cleaner-performance${qs}`, { method: "GET" });
     return result.data as CleanerPerfRow[];
 }
+
+export type InsightFinding = { key: string; params: Record<string, string | number | null> };
+
+export type Insights = {
+    bookings: number;
+    revenueCents: number;
+    previous: { bookings: number; revenueCents: number };
+    revenueChangePct: number | null;
+    avgBookingCents: number;
+    cancelledCount: number;
+    cancelRate: number | null;
+    customers: { total: number; new: number; returning: number; returningRate: number | null };
+    recurringShare: number | null;
+    unassigned: number;
+    byWeekday: { bookings: number; revenueCents: number }[];
+    byHour: number[];
+    services: { name: string; bookings: number; revenueCents: number }[];
+    cleaners: {
+        cleanerId: string;
+        name: string | null;
+        jobs: number;
+        hours: number;
+        revenueCents: number;
+        avgRating: number | null;
+        ratings: number;
+        onTimeRate: number | null;
+    }[];
+    findings: InsightFinding[];
+};
+
+export async function getInsights(from?: string, to?: string) {
+    const params = new URLSearchParams();
+    if (from) params.set("from", from);
+    if (to) params.set("to", to);
+    const qs = params.toString() ? `?${params}` : "";
+    const result = await authFetch(`/reports/insights${qs}`, { method: "GET" });
+    return result.data as Insights;
+}

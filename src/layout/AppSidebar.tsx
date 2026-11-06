@@ -65,6 +65,11 @@ const AppSidebar: React.FC = () => {
             name: t("reports"),
             path: "/reports",
           },
+          {
+            icon: <ShootingStarIcon />,
+            name: t("insights"),
+            path: "/insights",
+          },
         ],
       },
       {
@@ -98,6 +103,11 @@ const AppSidebar: React.FC = () => {
             icon: <HorizontaLDots />,
             name: t("dispatch"),
             path: "/dispatch",
+          },
+          {
+            icon: <GridIcon />,
+            name: t("liveMap"),
+            path: "/live-map",
           },
           {
             icon: <TaskIcon />,
