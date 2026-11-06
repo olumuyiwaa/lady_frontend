@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { useLocale, useTranslations } from "next-intl";
 import {
   cancelReferralReward,
+  forfeitPendingReward,
   getReferralSettings,
   getReferralStats,
   listReferrals,
@@ -31,7 +32,7 @@ export default function ReferralsPage() {
   const [flagged, setFlagged] = useState(false);
   const [error, setError] = useState("");
 
-  const [form, setForm] = useState({ enabled: true, give: "20.00", get: "20.00", days: "90", min: "0.00" });
+  const [form, setForm] = useState({ enabled: true, give: "20.00", get: "20.00", days: "90", min: "0.00", hold: "0" });
   const [saving, setSaving] = useState(false);
   const [saved, setSaved] = useState(false);
 
@@ -48,7 +49,7 @@ export default function ReferralsPage() {
         if (stopped) return;
         if (s.success) {
           const v = s.data as ReferralSettings;
-          setForm({ enabled: v.enabled, give: toUnits(v.discountCents), get: toUnits(v.rewardCents), days: String(v.rewardValidDays), min: toUnits(v.minBookingCents) });
+          setForm({ enabled: v.enabled, give: toUnits(v.discountCents), get: toUnits(v.rewardCents), days: String(v.rewardValidDays), min: toUnits(v.minBookingCents), hold: String(v.holdDays ?? 0) });
         }
         if (st.success) setStats(st.data as ReferralStats);
         if (list.success) {
@@ -77,6 +78,7 @@ export default function ReferralsPage() {
         rewardCents: toCents(form.get),
         rewardValidDays: Number(form.days),
         minBookingCents: toCents(form.min),
+        holdDays: Number(form.hold),
       });
       if (!res.success) throw new Error(res.message || tc("errorGeneric"));
       setSaved(true);
@@ -98,6 +100,17 @@ export default function ReferralsPage() {
     }
   };
 
+  const forfeit = async (bookingId: string) => {
+    if (!confirm(t("forfeitConfirm"))) return;
+    try {
+      const res = await forfeitPendingReward(bookingId);
+      if (!res.success) throw new Error(res.message || tc("errorGeneric"));
+      reload();
+    } catch (err) {
+      setError(err instanceof Error ? err.message : tc("errorGeneric"));
+    }
+  };
+
   const date = (iso: string) => new Intl.DateTimeFormat(locale, { dateStyle: "medium" }).format(new Date(iso));
   const pages = Math.max(1, Math.ceil(total / PAGE_SIZE));
 
@@ -106,6 +119,7 @@ export default function ReferralsPage() {
         { label: t("stats.referrals"), value: String(stats.referrals) },
         { label: t("stats.completed"), value: String(stats.completed) },
         { label: t("stats.discountGiven"), value: formatMoney(stats.discountGivenCents) },
+        { label: t("stats.rewardsPending"), value: formatMoney(stats.rewardsPendingCents) },
         { label: t("stats.rewardsOutstanding"), value: formatMoney(stats.rewardsOutstandingCents) },
         { label: t("stats.rewardsUsed"), value: formatMoney(stats.rewardsUsedCents) },
       ]
@@ -120,7 +134,7 @@ export default function ReferralsPage() {
       {error && <p className="rounded-lg bg-red-50 px-4 py-2 text-sm text-red-600 dark:bg-red-500/10">{error}</p>}
 
       {stats && (
-        <div className="grid grid-cols-2 gap-3 md:grid-cols-5">
+        <div className="grid grid-cols-2 gap-3 md:grid-cols-6">
           {statCards.map((c) => (
             <div key={c.label} className={card}>
               <p className="text-xs text-gray-500 dark:text-gray-400">{c.label}</p>
@@ -136,13 +150,14 @@ export default function ReferralsPage() {
           <input type="checkbox" checked={form.enabled} onChange={(e) => setForm({ ...form, enabled: e.target.checked })} />
           {t("settings.enabled")}
         </label>
-        <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-5">
           {(
             [
               ["give", t("settings.give"), "decimal"],
               ["get", t("settings.get"), "decimal"],
               ["days", t("settings.days"), "numeric"],
               ["min", t("settings.min"), "decimal"],
+              ["hold", t("settings.hold"), "numeric"],
             ] as const
           ).map(([key, label, mode]) => (
             <label key={key} className="text-xs text-gray-600 dark:text-gray-300">
@@ -216,16 +231,24 @@ export default function ReferralsPage() {
                     <td className="py-2 pr-3">
                       {r.reward ? (
                         <span>
-                          {formatMoney(r.reward.valueCents)} · {t(`rewardStatus.${r.reward.status}`)}
+                          {formatMoney(r.reward.valueCents)} ·{" "}
+                          {r.reward.status === "PENDING"
+                            ? t(r.reward.waitingFor === "HOLD" ? "rewardStatus.PENDING_HOLD" : "rewardStatus.PENDING_VISIT")
+                            : t(`rewardStatus.${r.reward.status}`)}
                         </span>
                       ) : (
                         "—"
                       )}
                     </td>
                     <td className="py-2 text-right">
-                      {r.reward?.status === "AVAILABLE" && (
-                        <button type="button" onClick={() => cancelReward(r.reward!.couponId)} className="text-xs font-medium text-red-600 hover:underline">
+                      {r.reward?.status === "AVAILABLE" && r.reward.couponId && (
+                        <button type="button" onClick={() => cancelReward(r.reward!.couponId!)} className="text-xs font-medium text-red-600 hover:underline">
                           {t("list.cancelReward")}
+                        </button>
+                      )}
+                      {r.reward?.status === "PENDING" && (
+                        <button type="button" onClick={() => forfeit(r.bookingId)} className="text-xs font-medium text-red-600 hover:underline">
+                          {t("list.forfeitReward")}
                         </button>
                       )}
                     </td>

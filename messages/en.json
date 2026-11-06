@@ -573,6 +573,7 @@
       "title": "Referrals",
       "subtitle": "Customers who bring a friend get a reward. Set the offer, follow who referred whom and cancel rewards you do not trust.",
       "stats": {
+        "rewardsPending": "Rewards pending",
         "referrals": "Referrals",
         "completed": "Completed",
         "discountGiven": "Discounts given",
@@ -585,8 +586,9 @@
         "give": "Friend gets (off first booking)",
         "get": "Referrer gets (reward coupon)",
         "days": "Reward valid for (days)",
+        "hold": "Hold after the visit (days)",
         "min": "Minimum booking value",
-        "hint": "Changes apply to new bookings only. Referrals are ignored when the friend uses the same phone, email or address as the referrer.",
+        "hint": "Changes apply to new bookings only. Rewards are issued after the new customer's first visit is completed, plus the hold days. Referrals are ignored when the friend uses the same phone, email or address as the referrer.",
         "saved": "Saved"
       },
       "list": {
@@ -600,9 +602,11 @@
         "reward": "Reward",
         "highVolume": "Many referrals",
         "cancelled": "booking cancelled",
+        "forfeitReward": "Withdraw reward",
         "cancelReward": "Cancel reward"
       },
-      "rewardStatus": { "AVAILABLE": "Available", "USED": "Used", "EXPIRED": "Expired", "CANCELLED": "Cancelled" },
+      "rewardStatus": { "PENDING_VISIT": "Waiting for first visit", "PENDING_HOLD": "In hold period", "AVAILABLE": "Available", "USED": "Used", "EXPIRED": "Expired", "CANCELLED": "Cancelled" },
+      "forfeitConfirm": "Withdraw this reward? The referrer will not receive it.",
       "cancelConfirm": "Cancel this reward? The customer will no longer be able to use the coupon.",
       "top": { "title": "Top referrers", "count": "{count} referrals" }
     },
@@ -2214,7 +2218,8 @@
       "share": "Share",
       "shareMessage": "Book a cleaning with {business} and get {give} off your first clean: {link}",
       "friends": "{count, plural, one {# friend has booked with your link} other {# friends have booked with your link}}",
-      "noFriends": "No friends have booked yet. Rewards show up here as soon as they do.",
+      "noFriends": "No friends have booked yet. Your reward appears here once their first clean is done.",
+      "pending": "{amount} on its way once your friends' first cleans are done",
       "rewards": "Your reward coupons ({count} available)",
       "expires": "Expires {date}",
       "status": {

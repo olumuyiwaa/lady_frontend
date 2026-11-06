@@ -573,6 +573,7 @@
       "title": "Doorverwijzingen",
       "subtitle": "Klanten die een vriend meenemen krijgen een beloning. Stel de actie in, zie wie wie heeft doorverwezen en annuleer beloningen die je niet vertrouwt.",
       "stats": {
+        "rewardsPending": "Beloningen in afwachting",
         "referrals": "Doorverwijzingen",
         "completed": "Afgerond",
         "discountGiven": "Gegeven korting",
@@ -585,8 +586,9 @@
         "give": "Vriend krijgt (korting op eerste boeking)",
         "get": "Doorverwijzer krijgt (kortingscode)",
         "days": "Beloning geldig (dagen)",
+        "hold": "Wachttijd na de afspraak (dagen)",
         "min": "Minimale boekingswaarde",
-        "hint": "Wijzigingen gelden alleen voor nieuwe boekingen. Doorverwijzingen tellen niet mee als de vriend hetzelfde telefoonnummer, e-mailadres of adres heeft als de doorverwijzer.",
+        "hint": "Wijzigingen gelden alleen voor nieuwe boekingen. Beloningen worden uitgekeerd nadat de eerste afspraak van de nieuwe klant is afgerond, plus de wachttijd. Doorverwijzingen tellen niet mee als de vriend hetzelfde telefoonnummer, e-mailadres of adres heeft als de doorverwijzer.",
         "saved": "Opgeslagen"
       },
       "list": {
@@ -600,9 +602,11 @@
         "reward": "Beloning",
         "highVolume": "Veel doorverwijzingen",
         "cancelled": "boeking geannuleerd",
+        "forfeitReward": "Beloning intrekken",
         "cancelReward": "Beloning annuleren"
       },
-      "rewardStatus": { "AVAILABLE": "Beschikbaar", "USED": "Gebruikt", "EXPIRED": "Verlopen", "CANCELLED": "Geannuleerd" },
+      "rewardStatus": { "PENDING_VISIT": "Wacht op eerste afspraak", "PENDING_HOLD": "In wachttijd", "AVAILABLE": "Beschikbaar", "USED": "Gebruikt", "EXPIRED": "Verlopen", "CANCELLED": "Geannuleerd" },
+      "forfeitConfirm": "Deze beloning intrekken? De doorverwijzer ontvangt hem dan niet.",
       "cancelConfirm": "Deze beloning annuleren? De klant kan de kortingscode dan niet meer gebruiken.",
       "top": { "title": "Top doorverwijzers", "count": "{count} doorverwijzingen" }
     },
@@ -2214,7 +2218,8 @@
       "share": "Delen",
       "shareMessage": "Boek een schoonmaak bij {business} en krijg {give} korting op je eerste keer: {link}",
       "friends": "{count, plural, one {# vriend heeft geboekt met jouw link} other {# vrienden hebben geboekt met jouw link}}",
-      "noFriends": "Er heeft nog niemand geboekt. Je beloningen verschijnen hier zodra dat gebeurt.",
+      "noFriends": "Er heeft nog niemand geboekt. Je beloning verschijnt hier zodra hun eerste schoonmaak klaar is.",
+      "pending": "{amount} onderweg zodra de eerste schoonmaak van je vrienden klaar is",
       "rewards": "Je kortingscodes ({count} beschikbaar)",
       "expires": "Verloopt op {date}",
       "status": {

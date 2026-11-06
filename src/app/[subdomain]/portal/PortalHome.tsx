@@ -248,6 +248,11 @@ export function PortalHome({
                         ? t("referral.friends", { count: referral.friendsBooked })
                         : t("referral.noFriends")}
                 </p>
+                {referral.pendingCents > 0 && (
+                    <p className="mt-1 text-xs font-medium text-brand-500 dark:text-brand-400">
+                        {t("referral.pending", { amount: money(referral.pendingCents) })}
+                    </p>
+                )}
                 {referral.rewards.length > 0 && (
                     <div className="mt-3 border-t border-gray-100 pt-3 dark:border-gray-800">
                         <p className="mb-1.5 text-xs font-medium text-gray-500 dark:text-gray-400">

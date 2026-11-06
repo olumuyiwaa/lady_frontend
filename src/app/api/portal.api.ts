@@ -253,6 +253,9 @@ export type PortalReferral = {
   getCents: number;
   friendsBooked: number;
   friendsCompleted: number;
+  /** Promised for friends whose first visit is not done yet (or still in the hold period). */
+  pendingCount: number;
+  pendingCents: number;
   earnedCents: number;
   rewards: PortalReward[];
 };

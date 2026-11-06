@@ -6,6 +6,7 @@ export type ReferralSettings = {
   rewardCents: number;
   rewardValidDays: number;
   minBookingCents: number;
+  holdDays: number;
 };
 
 export type ReferralStats = {
@@ -15,10 +16,11 @@ export type ReferralStats = {
   rewardsIssuedCents: number;
   rewardsUsedCents: number;
   rewardsOutstandingCents: number;
+  rewardsPendingCents: number;
   topReferrers: { customerId: string; name: string | null; count: number }[];
 };
 
-export type ReferralRewardStatus = "AVAILABLE" | "USED" | "EXPIRED" | "CANCELLED";
+export type ReferralRewardStatus = "AVAILABLE" | "USED" | "EXPIRED" | "CANCELLED" | "PENDING";
 
 export type ReferralRow = {
   bookingId: string;
@@ -27,7 +29,15 @@ export type ReferralRow = {
   referredCustomer: { id: string; name: string | null };
   referrer: { id: string; name: string | null; code: string | null };
   discountCents: number;
-  reward: { couponId: string; code: string; valueCents: number; status: ReferralRewardStatus; expiresAt: string | null } | null;
+  reward: {
+    couponId: string | null;
+    code: string | null;
+    valueCents: number;
+    status: ReferralRewardStatus;
+    /** For PENDING: still waiting for the visit, or in the hold period. */
+    waitingFor?: "VISIT" | "HOLD";
+    expiresAt: string | null;
+  } | null;
   flags: string[];
 };
 
@@ -47,3 +57,6 @@ export function listReferrals(params: { page?: number; flagged?: boolean } = {})
 
 export const cancelReferralReward = (couponId: string) =>
   authFetch(`/referrals/rewards/${couponId}/cancel`, { method: "POST" });
+
+export const forfeitPendingReward = (bookingId: string) =>
+  authFetch(`/referrals/${bookingId}/forfeit`, { method: "POST" });
