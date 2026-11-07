@@ -81,6 +81,7 @@ const AppSidebar: React.FC = () => {
             name: t("usersGroup"),
             subItems: [
               { name: t("customers"), path: "/customers" },
+              { name: t("businessAccounts"), path: "/business-accounts" },
               { name: t("cleaners"), path: "/cleaners" },
               { name: t("team"), path: "/team" },
             ],
@@ -129,11 +130,6 @@ const AppSidebar: React.FC = () => {
             icon: <CalenderIcon />,
             name: t("leave"),
             path: "/leave",
-          },
-          {
-            icon: <UserCircleIcon />,
-            name: t("businessAccounts"),
-            path: "/business-accounts",
           },
         ],
       },
