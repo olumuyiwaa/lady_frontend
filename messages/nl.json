@@ -271,7 +271,8 @@
       "overview": "Overzicht",
       "businesses": "Bedrijven",
       "subscriptions": "Abonnementen",
-      "leave": "Verlof"
+      "leave": "Verlof",
+      "businessAccounts": "Zakelijke accounts"
     },
     "navGroups": {
       "operations": "Operatie",
@@ -1911,6 +1912,40 @@
       "actionsFor": "Acties voor verlof van {name}",
       "conflictsTitle": "{count, plural, one {# geplande afspraak valt binnen dit verlof} other {# geplande afspraken vallen binnen dit verlof}}",
       "conflictsHelp": "Ze blijven toegewezen totdat je ze opnieuw toewijst via Planning."
+    },
+    "businessAccounts": {
+      "title": "Zakelijke accounts",
+      "subtitle": "Bedrijven die u bedient, met hun kwaliteitscijfers van de maand. Open er een voor het rapport per vestiging, de PDF en de teamlogins.",
+      "search": "Bedrijven zoeken",
+      "sortBy": "Sorteren op",
+      "sort": {
+        "company": "Bedrijf",
+        "rating": "Laagste beoordeling",
+        "punctuality": "Laagste stiptheid",
+        "checklist": "Laagste checklist",
+        "complaints": "Meeste klachten"
+      },
+      "month": "Maand",
+      "loading": "Laden…",
+      "loadFailed": "Zakelijke accounts laden mislukt",
+      "actionFailed": "Dat is niet gelukt",
+      "empty": "Geen zakelijke accounts gevonden.",
+      "company": "Bedrijf",
+      "branches": "Vestigingen",
+      "branch": "Vestiging",
+      "visits": "Bezoeken",
+      "rating": "Beoordeling",
+      "checklist": "Checklist",
+      "punctuality": "Stiptheid",
+      "complaints": "Klachten",
+      "spend": "Omzet",
+      "overdue": "Achterstallige facturen",
+      "total": "Totaal",
+      "team": "Team",
+      "qualityTab": "Kwaliteit",
+      "downloadPdf": "PDF downloaden",
+      "noVisits": "Geen bezoeken deze maand.",
+      "graceNote": "Stiptheid telt een eerste check-in tot {minutes} minuten na de geplande start als op tijd. Beoordeling is het gemiddelde van klantreviews."
     }
   },
   "Portal": {
@@ -2500,5 +2535,39 @@
     "error": "Sorry, ik kan nu niet antwoorden. Probeer het zo meteen opnieuw.",
     "limit": "Je hebt in korte tijd veel vragen gesteld. Probeer het over een paar minuten opnieuw.",
     "disclaimer": "AI-assistent. Controleer belangrijke details bij ons voordat je erop vertrouwt."
+  },
+  "B2BTeam": {
+    "title": "Team",
+    "manage": "Team beheren",
+    "hide": "Verbergen",
+    "intro": "Geef collega's een eigen login. Vestigingsmanagers zien alleen de locaties die u kiest.",
+    "add": "Teamlid toevoegen",
+    "firstName": "Voornaam",
+    "lastName": "Achternaam",
+    "email": "E-mail",
+    "phone": "Telefoon",
+    "loginHelp": "Zij loggen in met een eenmalige code naar dit e-mailadres of telefoonnummer. Vul minstens één in.",
+    "role": "Rol",
+    "roles": {
+      "ADMIN": "Beheerder",
+      "BRANCH_MANAGER": "Vestigingsmanager"
+    },
+    "roleHelp": {
+      "ADMIN": "Ziet alle locaties en facturen en beheert het team.",
+      "BRANCH_MANAGER": "Ziet alleen boekingen, rapporten en klachten van de gekozen locaties."
+    },
+    "locations": "Locaties",
+    "noLocations": "Locaties verschijnen hier na de eerste boeking op een adres.",
+    "allLocations": "Alle locaties",
+    "save": "Opslaan",
+    "saving": "Opslaan…",
+    "cancel": "Annuleren",
+    "edit": "Bewerken",
+    "deactivate": "Uitschakelen",
+    "reactivate": "Inschakelen",
+    "inactive": "(uitgeschakeld)",
+    "deactivateConfirm": "Toegang van {name} uitschakelen?",
+    "empty": "Nog geen teamleden.",
+    "failed": "Er ging iets mis. Probeer het opnieuw."
   }
 }

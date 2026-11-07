@@ -10,6 +10,8 @@ type Props = {
     companyName: string;
     money: (cents: number) => string;
     onUnauthorized: () => void;
+    /** Branch manager: their locations only, and no company statement. */
+    limited?: boolean;
 };
 
 const card = "rounded-2xl bg-white p-5 shadow-sm ring-1 ring-gray-200 dark:bg-white/[0.04] dark:ring-white/10";
@@ -22,7 +24,7 @@ function shiftMonth(month: string, delta: number) {
 }
 
 /** Business view of the portal: spend per month, per location and service, open invoices and exports. */
-export function B2BPanel({ slug, token, companyName, money, onUnauthorized }: Props) {
+export function B2BPanel({ slug, token, companyName, money, onUnauthorized, limited = false }: Props) {
     const t = useTranslations("PortalHome.b2b");
     const locale = useLocale();
     const [month, setMonth] = useState<string | undefined>(undefined);
@@ -185,9 +187,9 @@ export function B2BPanel({ slug, token, companyName, money, onUnauthorized }: Pr
             )}
 
             <div className="mt-6 flex flex-wrap gap-2">
-                <button type="button" onClick={openStatement} disabled={busy !== null} className="rounded-xl border border-gray-200 px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50 disabled:opacity-60 dark:border-gray-700 dark:text-gray-300 dark:hover:bg-white/5">
+                {!limited && <button type="button" onClick={openStatement} disabled={busy !== null} className="rounded-xl border border-gray-200 px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50 disabled:opacity-60 dark:border-gray-700 dark:text-gray-300 dark:hover:bg-white/5">
                     {t("statement")}
-                </button>
+                </button>}
                 <button type="button" onClick={download} disabled={busy !== null} className="rounded-xl border border-gray-200 px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50 disabled:opacity-60 dark:border-gray-700 dark:text-gray-300 dark:hover:bg-white/5">
                     {t("exportCsv")}
                 </button>

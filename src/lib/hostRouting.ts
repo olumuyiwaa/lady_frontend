@@ -12,7 +12,7 @@
 /** First path segments that belong to the staff dashboard and its sign-in flow. */
 export const ADMIN_SEGMENTS = new Set([
   "signin", "forgot-password", "reset-password", "verify-email", "onboarding",
-  "audit-trail", "booking-questions", "bookings", "business-settings", "calendar",
+  "audit-trail", "booking-questions", "bookings", "business-accounts", "business-settings", "calendar",
   "checklist-templates", "cleaner-documents", "cleaners", "compliance", "coupons",
   "customers", "dashboard", "dispatch", "gift-cards", "inventory", "leave", "messages",
   "notifications", "payroll", "pricing", "profile", "recurring-schedules", "reports",

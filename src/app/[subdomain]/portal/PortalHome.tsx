@@ -16,6 +16,7 @@ import { referralLink } from "@/lib/referral";
 import { cleanerName } from "./portalSession";
 import { B2BPanel } from "./B2BPanel";
 import { PortalPreferencesCard } from "./PortalPreferencesCard";
+import { TeamPanel } from "./TeamPanel";
 
 type Props = {
     slug: string;
@@ -74,11 +75,12 @@ export function PortalHome({
         mounted.current = true;
         (async () => {
             try {
-                const [o, r, c] = await Promise.all([
-                    getPortalOverview(slug, token),
-                    getPortalReferral(slug, token),
-                    listPortalCleaners(slug, token),
-                ]);
+                const o = await getPortalOverview(slug, token);
+                // A branch manager has no referral code or preferred cleaner: those belong to the company.
+                const limited = o.access?.role === "BRANCH_MANAGER";
+                const [r, c] = limited
+                    ? [null, null]
+                    : await Promise.all([getPortalReferral(slug, token), listPortalCleaners(slug, token)]);
                 if (!mounted.current) return;
                 setOverview(o);
                 setReferral(r);
@@ -95,7 +97,8 @@ export function PortalHome({
     }, [slug, token, refreshKey, handleError]);
 
     if (failed && !overview) return null; // the bookings list below still works without the extras
-    if (!overview || !referral || !cleaners) {
+    const limited = overview?.access?.role === "BRANCH_MANAGER";
+    if (!overview || (!limited && (!referral || !cleaners))) {
         return (
             <div className="grid gap-4 lg:grid-cols-3" aria-hidden>
                 {[0, 1, 2].map((i) => (
@@ -107,7 +110,7 @@ export function PortalHome({
 
     const next = overview.nextBooking;
     const cleaner = next ? cleanerName(next) : null;
-    const link = referralLink(referral.code);
+    const link = referral ? referralLink(referral.code) : "";
 
     const copyLink = async () => {
         try {
@@ -132,6 +135,7 @@ export function PortalHome({
     };
 
     const share = async () => {
+        if (!referral) return;
         const message = t("referral.shareMessage", {
             business: businessName,
             give: money(referral.giveCents),
@@ -166,12 +170,15 @@ export function PortalHome({
         }
     };
 
-    const availableRewards = referral.rewards.filter((r) => r.status === "AVAILABLE");
+    const availableRewards = (referral?.rewards ?? []).filter((r) => r.status === "AVAILABLE");
 
     return (
         <div className="space-y-4">
         {overview.company && (
-            <B2BPanel slug={slug} token={token} companyName={overview.company.name} money={money} onUnauthorized={onUnauthorized} />
+            <B2BPanel slug={slug} token={token} companyName={overview.company.name} money={money} onUnauthorized={onUnauthorized} limited={limited} />
+        )}
+        {overview.company && !limited && (
+            <TeamPanel slug={slug} token={token} onUnauthorized={onUnauthorized} />
         )}
         <section aria-label={t("heading")} className="grid gap-4 lg:grid-cols-3">
             {/* Next visit */}
@@ -214,7 +221,7 @@ export function PortalHome({
             </div>
 
             {/* Referral (hidden when the business has switched it off) */}
-            {referral.enabled && (
+            {referral && referral.enabled && (
             <div className={card}>
                 <p className={cardTitle}>
                     {t("referral.title", { give: money(referral.giveCents), get: money(referral.getCents) })}
@@ -287,7 +294,7 @@ export function PortalHome({
             )}
 
             {/* Preferred cleaner */}
-            <div className={card}>
+            {cleaners && <div className={card}>
                 <p className={cardTitle}>{t("preferred.title")}</p>
                 {cleaners.cleaners.length === 0 ? (
                     <p className="mt-3 text-sm text-gray-500 dark:text-gray-400">{t("preferred.empty")}</p>
@@ -322,9 +329,9 @@ export function PortalHome({
                         </p>
                     </>
                 )}
-            </div>
+            </div>}
         </section>
-        {overview.preferences && (
+        {overview.preferences && !limited && (
             <PortalPreferencesCard slug={slug} token={token} initial={overview.preferences} onUnauthorized={onUnauthorized} />
         )}
         </div>

@@ -278,7 +278,11 @@ export async function setPortalPreferences(
   return result.data as PortalPreferences;
 }
 
+/** What the signed-in person may do: the account holder, a company admin, or a branch manager. */
+export type PortalAccess = { role: "OWNER" | "ADMIN" | "BRANCH_MANAGER"; locationKeys: string[] };
+
 export type PortalOverview = {
+  access?: PortalAccess;
   /** Set when the customer is a business account. */
   company: { name: string; paymentTermsDays: number | null } | null;
   nextBooking: PortalBooking | null;
@@ -287,13 +291,14 @@ export type PortalOverview = {
   /** How we message this customer. */
   preferences?: PortalPreferences;
   preferredCleaner: PortalCleanerChoice | null;
+  /** Null for a branch manager. */
   referral: {
     code: string;
     giveCents: number;
     getCents: number;
     friendsBooked: number;
     availableRewards: number;
-  };
+  } | null;
 };
 
 export type PortalChatMessage = {
@@ -508,4 +513,57 @@ export async function fetchPortalB2BFile(
     throw err;
   }
   return res.text();
+}
+
+
+// ── Company team (business accounts) ────────────────────────────────────────
+
+export type CompanyMemberRole = "ADMIN" | "BRANCH_MANAGER";
+
+export type CompanyMember = {
+  id: string;
+  firstName: string;
+  lastName: string;
+  email: string | null;
+  phone: string | null;
+  role: CompanyMemberRole;
+  locationKeys: string[];
+  isActive: boolean;
+};
+
+export type CompanyLocation = { key: string; label: string };
+
+export type CompanyMemberInput = {
+  firstName?: string;
+  lastName?: string;
+  email?: string;
+  phone?: string;
+  role?: CompanyMemberRole;
+  locationKeys?: string[];
+  isActive?: boolean;
+};
+
+export async function listPortalMembers(slug: string | null, token: string) {
+  const result = await portalFetch(slug, `/b2b/members`, { method: "GET" }, token);
+  return result.data as CompanyMember[];
+}
+
+export async function listPortalLocations(slug: string | null, token: string) {
+  const result = await portalFetch(slug, `/b2b/locations`, { method: "GET" }, token);
+  return result.data as CompanyLocation[];
+}
+
+export async function createPortalMember(slug: string | null, token: string, input: CompanyMemberInput) {
+  const result = await portalFetch(slug, `/b2b/members`, { method: "POST", body: JSON.stringify(input) }, token);
+  return result.data as CompanyMember;
+}
+
+export async function updatePortalMember(slug: string | null, token: string, id: string, input: CompanyMemberInput) {
+  const result = await portalFetch(slug, `/b2b/members/${id}`, { method: "PUT", body: JSON.stringify(input) }, token);
+  return result.data as CompanyMember;
+}
+
+export async function removePortalMember(slug: string | null, token: string, id: string) {
+  const result = await portalFetch(slug, `/b2b/members/${id}`, { method: "DELETE" }, token);
+  return result.data as CompanyMember;
 }

@@ -130,6 +130,11 @@ const AppSidebar: React.FC = () => {
             name: t("leave"),
             path: "/leave",
           },
+          {
+            icon: <UserCircleIcon />,
+            name: t("businessAccounts"),
+            path: "/business-accounts",
+          },
         ],
       },
       {

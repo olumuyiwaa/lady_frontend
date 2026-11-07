@@ -271,7 +271,8 @@
       "overview": "Overview",
       "businesses": "Businesses",
       "subscriptions": "Subscriptions",
-      "leave": "Leave"
+      "leave": "Leave",
+      "businessAccounts": "Business accounts"
     },
     "navGroups": {
       "operations": "Operations",
@@ -1911,6 +1912,40 @@
       "actionsFor": "Actions for leave of {name}",
       "conflictsTitle": "{count, plural, one {# booked visit falls inside this leave} other {# booked visits fall inside this leave}}",
       "conflictsHelp": "They stay assigned until you reassign them from Dispatch."
+    },
+    "businessAccounts": {
+      "title": "Business accounts",
+      "subtitle": "Companies you serve, with their quality figures for the month. Open one for the per-branch report, PDF and team logins.",
+      "search": "Search companies",
+      "sortBy": "Sort by",
+      "sort": {
+        "company": "Company",
+        "rating": "Lowest rating",
+        "punctuality": "Lowest punctuality",
+        "checklist": "Lowest checklist",
+        "complaints": "Most complaints"
+      },
+      "month": "Month",
+      "loading": "Loading…",
+      "loadFailed": "Failed to load business accounts",
+      "actionFailed": "That did not work",
+      "empty": "No business accounts found.",
+      "company": "Company",
+      "branches": "Branches",
+      "branch": "Branch",
+      "visits": "Visits",
+      "rating": "Rating",
+      "checklist": "Checklist",
+      "punctuality": "Punctuality",
+      "complaints": "Complaints",
+      "spend": "Spend",
+      "overdue": "Overdue invoices",
+      "total": "Total",
+      "team": "Team",
+      "qualityTab": "Quality",
+      "downloadPdf": "Download PDF",
+      "noVisits": "No visits this month.",
+      "graceNote": "Punctuality counts a first check-in up to {minutes} minutes after the booked start as on time. Rating is the customer review average."
     }
   },
   "Portal": {
@@ -2500,5 +2535,39 @@
     "error": "Sorry, I can't answer right now. Please try again in a moment.",
     "limit": "You've asked a lot of questions in a short time. Please try again in a few minutes.",
     "disclaimer": "AI assistant. Check important details with us before you rely on them."
+  },
+  "B2BTeam": {
+    "title": "Team",
+    "manage": "Manage team",
+    "hide": "Hide",
+    "intro": "Give colleagues their own login. Branch managers only see the locations you choose.",
+    "add": "Add team member",
+    "firstName": "First name",
+    "lastName": "Last name",
+    "email": "Email",
+    "phone": "Phone",
+    "loginHelp": "They sign in with a one-time code sent to this email address or phone number. Fill in at least one.",
+    "role": "Role",
+    "roles": {
+      "ADMIN": "Admin",
+      "BRANCH_MANAGER": "Branch manager"
+    },
+    "roleHelp": {
+      "ADMIN": "Sees every location and invoices, and manages the team.",
+      "BRANCH_MANAGER": "Sees bookings, reports and complaints of the chosen locations only."
+    },
+    "locations": "Locations",
+    "noLocations": "Locations appear here after the first booking at an address.",
+    "allLocations": "All locations",
+    "save": "Save",
+    "saving": "Saving…",
+    "cancel": "Cancel",
+    "edit": "Edit",
+    "deactivate": "Switch off",
+    "reactivate": "Switch on",
+    "inactive": "(switched off)",
+    "deactivateConfirm": "Switch off access for {name}?",
+    "empty": "No team members yet.",
+    "failed": "Something went wrong. Please try again."
   }
 }
