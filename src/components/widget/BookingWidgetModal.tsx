@@ -31,10 +31,9 @@ type BookingWidgetModalProps = {
  * Full-screen overlay modal that hosts the booking form.
  * Locks body scroll while open; closes on Escape or backdrop click.
  *
- * Booking itself is the same BookingWizard used at /book-now/[slug]
- * (rendered with compact), rather than a separate form implementation —
- * so the two entry points can't drift out of sync on validation, pricing,
- * or copy.
+ * Booking itself is the BookingWizard (rendered with compact), shared by the
+ * storefront and the customer portal so they can't drift out of sync on
+ * validation, pricing or copy.
  */
 export function BookingWidgetModal({
                                      open,

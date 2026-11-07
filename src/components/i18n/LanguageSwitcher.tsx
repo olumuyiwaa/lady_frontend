@@ -37,9 +37,8 @@ export function LanguageSwitcher({ className = "" }: { className?: string }) {
         return;
       }
       // Full reload rather than router.refresh(): this app has no client
-      // router instance threaded down to every widget entry point (the
-      // embeddable modal, the standalone /book-now page), and a reload is
-      // the one approach that works identically from all of them.
+      // router instance threaded down to every place the switcher appears, and a
+      // reload is the one approach that works identically from all of them.
       window.location.reload();
     });
   }

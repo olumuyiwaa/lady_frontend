@@ -6,7 +6,7 @@
  *   - Slug-based:  /api/v1/portal-embed/:subdomain/...
  *
  * We prefer the slug path so each business works with zero DNS setup,
- * matching /book-now/[slug] → /widget-embed/[slug].
+ * the same slug-based pattern as the booking API (/widget-embed/[slug]).
  */
 
 import { getActiveCurrency } from "@/app/services/currency";
