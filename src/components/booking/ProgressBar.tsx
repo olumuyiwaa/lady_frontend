@@ -8,7 +8,7 @@ type Props = {
   primaryColor?: string;
 };
 
-export function ProgressBar({ current, primaryColor = "#3F6B52" }: Props) {
+export function ProgressBar({ current, primaryColor = "#20407A" }: Props) {
   const t = useTranslations("Booking.steps");
   return (
     <nav aria-label={t("navAriaLabel")} className="mb-8">

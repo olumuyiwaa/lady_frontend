@@ -37,8 +37,8 @@ export function SiteFooter({
   onBook,
   phoneNumber,
   socialLinks,
-  primaryColor = "#0B352A",
-  accentColor = "#D0AA62",
+  primaryColor = "#0b1a35",
+  accentColor = "#6bb5e4",
   legal,
 }: SiteFooterProps) {
   const t = useTranslations("Site.footer");
@@ -47,7 +47,7 @@ export function SiteFooter({
   const socialEntries = Object.entries(socialLinks || {}).filter(([, url]) => !!url);
 
   return (
-    <footer id="site-footer" className="site-footer border-t border-[#e4dfd4]">
+    <footer id="site-footer" className="site-footer border-t border-[#d0dce8]">
       <div className="site-container py-12 sm:py-14">
         <div className="grid gap-10 sm:grid-cols-[1.5fr_1fr_1fr_1fr] sm:gap-12">
           <div>
@@ -68,7 +68,7 @@ export function SiteFooter({
                 {businessName}
               </span>
             </div>
-            <p className="mt-4 max-w-sm text-sm leading-relaxed text-[#c7d1cb]">
+            <p className="mt-4 max-w-sm text-sm leading-relaxed text-[#b3c5e6]">
               {t("blurb")}
             </p>
             {phoneNumber && (
@@ -137,7 +137,7 @@ export function SiteFooter({
               type="button"
               onClick={onBook}
               className="inline-flex min-h-[46px] items-center justify-center rounded-full px-6 text-sm font-bold"
-              style={{ backgroundColor: accentColor, color: readableTextOn(accentColor, "#092f26") }}
+              style={{ backgroundColor: accentColor, color: readableTextOn(accentColor, "#09172f") }}
             >
               {t("book")}
             </button>

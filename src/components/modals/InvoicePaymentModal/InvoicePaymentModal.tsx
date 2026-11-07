@@ -121,7 +121,7 @@ export default function InvoicePaymentModal({
                 appearance: {
                     theme: isDark ? "night" : "stripe",
                     variables: {
-                        colorPrimary: "#0a2e22",
+                        colorPrimary: "#20407a",
                         colorBackground: isDark ? "#111827" : "#ffffff",
                         colorText: isDark ? "#e5e7eb" : "#1d2939",
                         colorDanger: "#d92d20",

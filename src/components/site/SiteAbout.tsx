@@ -20,7 +20,7 @@ export function SiteAbout({ title, body, heroImageUrl, primaryColor }: SiteAbout
   if (!title && !body) return null;
 
   return (
-    <section id="about" className="site-section-light scroll-mt-24 border-t border-[#e8e3d8] py-24 sm:py-32">
+    <section id="about" className="site-section-light scroll-mt-24 border-t border-[#d5e0eb] py-24 sm:py-32">
       <div className="site-container grid gap-14 lg:grid-cols-2 lg:items-center lg:gap-24">
         <Reveal>
           <div>
@@ -35,7 +35,7 @@ export function SiteAbout({ title, body, heroImageUrl, primaryColor }: SiteAbout
               <h2 className="site-section-title mt-5">{title}</h2>
             )}
             {body && (
-              <p className="mt-5 whitespace-pre-line text-base leading-relaxed text-[#5c6b64] sm:text-lg">{body}</p>
+              <p className="mt-5 whitespace-pre-line text-base leading-relaxed text-[#375890] sm:text-lg">{body}</p>
             )}
           </div>
         </Reveal>
@@ -47,7 +47,7 @@ export function SiteAbout({ title, body, heroImageUrl, primaryColor }: SiteAbout
               width={900}
               height={680}
               sizes="(min-width: 1024px) 50vw, 100vw"
-              className="aspect-[4/3] w-full rounded-3xl border border-[#e8e3d8] object-cover shadow-md"
+              className="aspect-[4/3] w-full rounded-3xl border border-[#d5e0eb] object-cover shadow-md"
             />
           </Reveal>
         )}

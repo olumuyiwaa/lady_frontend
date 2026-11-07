@@ -48,7 +48,7 @@ export default function RevenueBarChart({ data = [], byBusiness = [] }: RevenueB
   }
 
   const options: ApexOptions = {
-    colors: ["#0a2e22"],
+    colors: ["#20407a"],
     chart: { fontFamily: "Outfit, sans-serif", type: "bar", height: 250, toolbar: { show: false } },
     plotOptions: {
       bar: { horizontal: false, columnWidth: "45%", borderRadius: 6, borderRadiusApplication: "end" },

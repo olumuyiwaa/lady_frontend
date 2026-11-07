@@ -25,7 +25,7 @@ type Props = {
 export function StepAddress({
   state,
   update,
-  primaryColor = "#3F6B52",
+  primaryColor = "#20407A",
   onValidateArea,
   slug,
 }: Props) {

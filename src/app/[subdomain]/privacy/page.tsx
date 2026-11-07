@@ -32,8 +32,8 @@ export default async function PrivacyPage({ params }: PageProps) {
   const { business } = data;
   const name = business.name;
   const phone = business.phone ?? null;
-  const primaryColor = business.branding?.primaryColor ?? "#0B352A";
-  const accentColor = business.branding?.accentColor ?? "#D0AA62";
+  const primaryColor = business.branding?.primaryColor ?? "#0b1a35";
+  const accentColor = business.branding?.accentColor ?? "#6bb5e4";
   const logoUrl = business.branding?.logoUrl ?? null;
 
   const sections = [

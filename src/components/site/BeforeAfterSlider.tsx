@@ -64,7 +64,7 @@ export default function BeforeAfterSlider({
   return (
       <div
           ref={trackRef}
-          className="relative aspect-[4/4] w-full select-none overflow-hidden rounded-lg border border-stone-200 shadow-[0_24px_60px_rgba(22,35,28,0.12)]"
+          className="relative aspect-[4/4] w-full select-none overflow-hidden rounded-lg border border-stone-200 shadow-[0_24px_60px_rgba(16, 25, 41, 0.12)]"
           onPointerDown={onPointerDown}
           onPointerMove={onPointerMove}
           onPointerUp={stopDragging}
@@ -106,7 +106,7 @@ export default function BeforeAfterSlider({
             <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden>
               <path
                   d="M5 3 1 8l4 5M11 3l4 5-4 5"
-                  stroke="#16231C"
+                  stroke="#101929"
                   strokeWidth="1.6"
                   strokeLinecap="round"
                   strokeLinejoin="round"

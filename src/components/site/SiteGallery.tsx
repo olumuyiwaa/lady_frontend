@@ -16,7 +16,7 @@ export function SiteGallery({ imageUrls, primaryColor, businessName }: SiteGalle
   if (images.length === 0) return null;
 
   return (
-    <section id="gallery" className="scroll-mt-24 border-t border-[#e8e3d8] bg-white py-24 sm:py-32">
+    <section id="gallery" className="scroll-mt-24 border-t border-[#d5e0eb] bg-white py-24 sm:py-32">
       <div className="site-container">
         <Reveal>
           <div className="max-w-2xl">
@@ -39,7 +39,7 @@ export function SiteGallery({ imageUrls, primaryColor, businessName }: SiteGalle
                 width={480}
                 height={480}
                 sizes="(min-width: 1024px) 25vw, (min-width: 640px) 33vw, 50vw"
-                className="aspect-square w-full rounded-2xl border border-[#e8e3d8] object-cover shadow-sm transition-transform hover:scale-[1.02]"
+                className="aspect-square w-full rounded-2xl border border-[#d5e0eb] object-cover shadow-sm transition-transform hover:scale-[1.02]"
               />
             </Reveal>
           ))}

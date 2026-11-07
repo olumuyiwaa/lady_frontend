@@ -55,7 +55,7 @@ export default function StatisticsChart({
       position: "top",
       horizontalAlign: "left",
     },
-    colors: ["#0a2e22", "#5fa37e"],
+    colors: ["#20407a", "#38a0d8"],
     chart: {
       fontFamily: "Outfit, sans-serif",
       height,
@@ -100,7 +100,7 @@ export default function StatisticsChart({
     },
     yaxis: {
       labels: {
-        style: { fontSize: "12px", colors: ["#6B7280"] },
+        style: { fontSize: "12px", colors: ["#6b7280"] },
         formatter: (val: number) =>
           formatY ? formatY(val) : String(Math.round(val)),
       },

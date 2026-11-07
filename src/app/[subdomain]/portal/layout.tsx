@@ -52,7 +52,7 @@ export default async function PortalLayout({
   return (
     <div
       style={style}
-      className="min-h-screen bg-[#F6F2ED] font-normal text-gray-900 antialiased dark:bg-gray-900 dark:text-white/90"
+      className="min-h-screen bg-[#edf2f6] font-normal text-gray-900 antialiased dark:bg-gray-900 dark:text-white/90"
     >
       {children}
     </div>

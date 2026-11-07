@@ -21,7 +21,7 @@ type Props = {
 export function StepDetails({
   state,
   update,
-  primaryColor = "#3F6B52",
+  primaryColor = "#20407A",
   onApplyCoupon,
   onApplyGiftCard,
   questions = [],

@@ -92,7 +92,7 @@ export function SiteHeader({
                     className="site-logo-fallback h-11 w-11 rounded-full sm:h-[52px] sm:w-[52px]"
                 />
             )}
-            <span className="truncate text-base font-semibold tracking-tight text-[#0a2e22] sm:text-lg">
+            <span className="truncate text-base font-semibold tracking-tight text-[#20407a] sm:text-lg">
               {businessName}
             </span>
           </a>
@@ -102,7 +102,7 @@ export function SiteHeader({
                 <a
                     key={item.href}
                     href={item.href}
-                    className="rounded-full px-3 py-2 text-sm font-semibold text-[#1a2e25] transition-colors hover:bg-[#f0ede6] hover:text-[#0a2e22] xl:px-4"
+                    className="rounded-full px-3 py-2 text-sm font-semibold text-[#142034] transition-colors hover:bg-[#e4ebf2] hover:text-[#20407a] xl:px-4"
                 >
                   {item.label}
                 </a>
@@ -113,16 +113,16 @@ export function SiteHeader({
             <LanguageSwitcher />
             <Link
                 href={portalHref}
-                className="inline-flex min-h-11 items-center rounded-full px-4 py-2 text-sm font-semibold text-[#1a2e25] transition-colors hover:bg-[#f0ede6]"
+                className="inline-flex min-h-11 items-center rounded-full px-4 py-2 text-sm font-semibold text-[#142034] transition-colors hover:bg-[#e4ebf2]"
             >
               {t("portal")}
             </Link>
             <button
                 type="button"
                 onClick={handleBook}
-                className="inline-flex min-h-11 items-center gap-2 rounded-full bg-[#0a2e22] px-5 py-2 text-sm font-semibold text-white transition-all hover:-translate-y-0.5 hover:brightness-110"
+                className="inline-flex min-h-11 items-center gap-2 rounded-full bg-[#20407a] px-5 py-2 text-sm font-semibold text-white transition-all hover:-translate-y-0.5 hover:brightness-110"
                 style={{
-                  boxShadow: "0 6px 20px rgba(10, 46, 34, .20)",
+                  boxShadow: "0 6px 20px rgba(32, 64, 122, .20)",
                 }}
             >
               {t("book")}
@@ -132,7 +132,7 @@ export function SiteHeader({
 
           <button
               type="button"
-              className="grid h-11 w-11 place-items-center rounded-full border border-[#e6e4dc] bg-[#f8f8f5] lg:hidden"
+              className="grid h-11 w-11 place-items-center rounded-full border border-[#d6e1ec] bg-[#f4f6f9] lg:hidden"
               aria-label={menuOpen ? t("closeMenu") : t("openMenu")}
               aria-expanded={menuOpen}
               aria-controls="site-mobile-menu"
@@ -140,12 +140,12 @@ export function SiteHeader({
           >
           <span className="relative block h-3 w-5">
             <span
-                className={`absolute left-0 top-0 h-[2px] w-full bg-[#171B1A] transition-transform ${
+                className={`absolute left-0 top-0 h-[2px] w-full bg-[#0e1624] transition-transform ${
                     menuOpen ? "translate-y-[5px] rotate-45" : ""
                 }`}
             />
             <span
-                className={`absolute left-0 bottom-0 h-[2px] w-full bg-[#171B1A] transition-transform ${
+                className={`absolute left-0 bottom-0 h-[2px] w-full bg-[#0e1624] transition-transform ${
                     menuOpen ? "-translate-y-[5px] -rotate-45" : ""
                 }`}
             />
@@ -160,7 +160,7 @@ export function SiteHeader({
                     <a
                         key={item.href}
                         href={item.href}
-                        className="rounded-xl px-3 py-3 text-sm font-semibold text-[#253d34] hover:bg-[#f3f0e9]"
+                        className="rounded-xl px-3 py-3 text-sm font-semibold text-[#1b2b47] hover:bg-[#e8eef4]"
                         onClick={() => setMenuOpen(false)}
                     >
                       {item.label}
@@ -169,7 +169,7 @@ export function SiteHeader({
                 <LanguageSwitcher className="mt-2 self-center" />
                 <Link
                     href={portalHref}
-                    className="mt-2 rounded-full border border-[#e6e4dc] px-4 py-3 text-center text-sm font-semibold text-[#253d34]"
+                    className="mt-2 rounded-full border border-[#d6e1ec] px-4 py-3 text-center text-sm font-semibold text-[#1b2b47]"
                     onClick={() => setMenuOpen(false)}
                 >
                   {t("portal")}
@@ -177,7 +177,7 @@ export function SiteHeader({
                 <button
                     type="button"
                     onClick={handleBook}
-                    className="mt-2 rounded-full bg-[#082e25] px-4 py-3 text-center text-sm font-semibold text-white"
+                    className="mt-2 rounded-full bg-[#08162e] px-4 py-3 text-center text-sm font-semibold text-white"
                 >
                   {t("book")}
                 </button>

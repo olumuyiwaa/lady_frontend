@@ -59,7 +59,7 @@ export function SiteFaq({ items, primaryColor }: SiteFaqProps) {
   };
 
   return (
-    <section id="faq" className="site-section-cream scroll-mt-24 border-t border-[#e8e3d8] py-24 sm:py-32">
+    <section id="faq" className="site-section-cream scroll-mt-24 border-t border-[#d5e0eb] py-24 sm:py-32">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: safeJsonLd(structuredData) }}
@@ -79,7 +79,7 @@ export function SiteFaq({ items, primaryColor }: SiteFaqProps) {
                 <h2 className="site-section-title mt-5">{t("title")}</h2>
               </div>
             </Reveal>
-            <div className="mt-10 divide-y divide-[#e3ddd1] border-y border-[#e3ddd1]">
+            <div className="mt-10 divide-y divide-[#cddae7] border-y border-[#cddae7]">
               {display.map((faq, i) => {
                 const isOpen = open === i;
                 return (
@@ -90,11 +90,11 @@ export function SiteFaq({ items, primaryColor }: SiteFaqProps) {
                           id={`faq-question-${i}`}
                           type="button"
                           onClick={() => setOpen(isOpen ? -1 : i)}
-                          className="flex w-full items-center gap-4 py-4 text-left outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-[#0B352A] sm:py-5"
+                          className="flex w-full items-center gap-4 py-4 text-left outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-[#0b1a35] sm:py-5"
                           aria-expanded={isOpen}
                           aria-controls={`faq-answer-${i}`}
                         >
-                          <span className="flex-1 text-sm font-semibold leading-snug text-[#111918] sm:text-base">
+                          <span className="flex-1 text-sm font-semibold leading-snug text-[#0c121e] sm:text-base">
                             {faq.question}
                           </span>
                           <span
@@ -118,7 +118,7 @@ export function SiteFaq({ items, primaryColor }: SiteFaqProps) {
                         hidden={!isOpen}
                         className="pb-5 pr-8 sm:pb-6"
                       >
-                        <p className="text-sm leading-relaxed text-[#5c6b64] sm:text-base">
+                        <p className="text-sm leading-relaxed text-[#375890] sm:text-base">
                           {faq.answer}
                         </p>
                       </div>
@@ -129,7 +129,7 @@ export function SiteFaq({ items, primaryColor }: SiteFaqProps) {
             </div>
           </div>
           <Reveal delay={120} className="lg:sticky lg:top-28">
-            <div className="rounded-[2rem] border border-[#e8e3d8] bg-white p-2 shadow-[0_18px_50px_rgba(17,25,24,0.09)]">
+            <div className="rounded-[2rem] border border-[#d5e0eb] bg-white p-2 shadow-[0_18px_50px_rgba(12, 18, 30, 0.09)]">
               <div className="relative aspect-[4/3] overflow-hidden rounded-[1.5rem] sm:aspect-[16/10] lg:aspect-[4/5]">
                 <SiteImage
                   src="/images/faq-interior.jpg"

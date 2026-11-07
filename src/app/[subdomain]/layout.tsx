@@ -35,7 +35,7 @@ export default async function BusinessLayout({
   return (
     <div
       id="top"
-      className={`${manrope.className} min-h-screen bg-[#F8F5F0] text-[#111918] antialiased`}
+      className={`${manrope.className} min-h-screen bg-[#f0f4f8] text-[#0c121e] antialiased`}
     >
       {children}
     </div>

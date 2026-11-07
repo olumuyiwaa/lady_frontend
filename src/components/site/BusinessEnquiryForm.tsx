@@ -69,15 +69,15 @@ export function BusinessEnquiryForm({ subdomain, primaryColor }: { subdomain: st
   }
 
   const input = (k: string) =>
-    `mt-1.5 block w-full rounded-xl border bg-white px-4 py-3 text-base text-[#102c24] outline-none transition focus:ring-4 ${
-      bad.includes(k) ? "border-red-400 focus:ring-red-500/15" : "border-[#d9d4c7] focus:border-[#102c24] focus:ring-[#102c24]/10"
+    `mt-1.5 block w-full rounded-xl border bg-white px-4 py-3 text-base text-[#101a2c] outline-none transition focus:ring-4 ${
+      bad.includes(k) ? "border-red-400 focus:ring-red-500/15" : "border-[#c0d0e0] focus:border-[#101a2c] focus:ring-[#101a2c]/10"
     }`;
-  const label = "block text-sm font-medium text-[#102c24]";
+  const label = "block text-sm font-medium text-[#101a2c]";
 
   if (status === "sent") {
     return (
       <div role="status" aria-live="polite" className="py-6 text-center">
-        <h3 className="text-xl font-semibold text-[#102c24]">{t("sentTitle")}</h3>
+        <h3 className="text-xl font-semibold text-[#101a2c]">{t("sentTitle")}</h3>
         <p className="mt-2 text-[#616963]">{t("sentBody")}</p>
         {reference && <p className="mt-3 text-sm text-[#616963]">{t("reference", { reference })}</p>}
       </div>

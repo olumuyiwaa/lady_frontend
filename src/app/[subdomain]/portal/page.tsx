@@ -661,7 +661,7 @@ export default function CustomerPortalPage() {
 
     return (
         <div
-            className="min-h-screen bg-[#F6F2ED] text-gray-800 dark:bg-gray-900 dark:text-white/90"
+            className="min-h-screen bg-[#edf2f6] text-gray-800 dark:bg-gray-900 dark:text-white/90"
             style={brandVars}
         >
             {/* ── Header ── */}
@@ -1582,7 +1582,7 @@ export default function CustomerPortalPage() {
 
             {/* Booking modal — same wizard used on the storefront */}
             {storefrontData?.assistantEnabled && (
-                <AssistantChat slug={slug} businessName={brand?.name ?? ""} primaryColor={brand?.primary || "#16a34a"} />
+                <AssistantChat slug={slug} businessName={brand?.name ?? ""} primaryColor={brand?.primary || "#164aa3"} />
             )}
             {storefrontData && (
                 <BookingWidgetModal

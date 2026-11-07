@@ -48,7 +48,7 @@ export function BookingWizard(props: BookingWizardProps) {
   const primary =
     props.business.branding?.primaryColor ||
     props.business.branding?.accentColor ||
-    "#3F6B52";
+    "#20407A";
 
   // ─── Success screen ───────────────────────────────────────────
   if (bookingResult) {

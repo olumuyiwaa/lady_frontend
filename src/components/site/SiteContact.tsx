@@ -121,18 +121,18 @@ export function SiteContact({ subdomain, businessName, primaryColor, phoneNumber
   }
 
   const inputClass = (key: FieldKey) =>
-    `mt-1.5 block w-full rounded-xl border bg-white px-4 py-3 text-base text-[#102c24] outline-none transition placeholder:text-[#9aa19c] focus:ring-4 ${
+    `mt-1.5 block w-full rounded-xl border bg-white px-4 py-3 text-base text-[#101a2c] outline-none transition placeholder:text-[#9aa19c] focus:ring-4 ${
       invalid.includes(key)
         ? "border-red-400 focus:border-red-500 focus:ring-red-500/15"
-        : "border-[#d9d4c7] focus:border-[#102c24] focus:ring-[#102c24]/10"
+        : "border-[#c0d0e0] focus:border-[#101a2c] focus:ring-[#101a2c]/10"
     }`;
 
-  const labelClass = "block text-sm font-medium text-[#102c24]";
+  const labelClass = "block text-sm font-medium text-[#101a2c]";
 
   return (
     <section
       id="contact"
-      className="site-section-cream scroll-mt-24 border-t border-[#e8e3d8] py-24 sm:py-32"
+      className="site-section-cream scroll-mt-24 border-t border-[#d5e0eb] py-24 sm:py-32"
       aria-labelledby={`${uid}-title`}
     >
       <div className="site-container grid gap-12 lg:grid-cols-[minmax(0,0.75fr)_minmax(0,1fr)] lg:gap-20">
@@ -148,14 +148,14 @@ export function SiteContact({ subdomain, businessName, primaryColor, phoneNumber
               width={720}
               height={450}
               sizes="(min-width: 1024px) 30vw, 100vw"
-              className="mt-6 aspect-[5/4] w-full rounded-2xl border border-[#e8e3d8] object-cover shadow-sm"
+              className="mt-6 aspect-[5/4] w-full rounded-2xl border border-[#d5e0eb] object-cover shadow-sm"
             />
             <h2 id={`${uid}-title`} className="site-section-title mt-5">
               {t("title")}
             </h2>
             <p className="mt-4 text-base leading-relaxed text-[#616963] sm:text-lg">{t("subtitle")}</p>
             {phoneNumber ? (
-              <p className="mt-6 text-base text-[#102c24]">
+              <p className="mt-6 text-base text-[#101a2c]">
                 {t("callInstead")}{" "}
                 <a
                   href={`tel:${phoneNumber.replace(/[^\d+]/g, "")}`}
@@ -169,7 +169,7 @@ export function SiteContact({ subdomain, businessName, primaryColor, phoneNumber
         </Reveal>
 
         <Reveal delay={80}>
-          <div className="rounded-3xl border border-[#e8e3d8] bg-white p-7 shadow-sm sm:p-10">
+          <div className="rounded-3xl border border-[#d5e0eb] bg-white p-7 shadow-sm sm:p-10">
             {status === "sent" ? (
               <div role="status" aria-live="polite" className="py-6 text-center">
                 <span
@@ -181,7 +181,7 @@ export function SiteContact({ subdomain, businessName, primaryColor, phoneNumber
                     <path d="M5 13l4 4L19 7" strokeLinecap="round" strokeLinejoin="round" />
                   </svg>
                 </span>
-                <h3 className="mt-5 text-xl font-semibold text-[#102c24]">{t("sentTitle")}</h3>
+                <h3 className="mt-5 text-xl font-semibold text-[#101a2c]">{t("sentTitle")}</h3>
                 <p className="mt-2 text-[#616963]">
                   {t("sentBody", { name: sentTo.name, business: businessName, email: sentTo.email })}
                 </p>
@@ -191,7 +191,7 @@ export function SiteContact({ subdomain, businessName, primaryColor, phoneNumber
                 <button
                   type="button"
                   onClick={() => setStatus("idle")}
-                  className="mt-6 text-sm font-semibold text-[#102c24] underline decoration-2 underline-offset-4"
+                  className="mt-6 text-sm font-semibold text-[#101a2c] underline decoration-2 underline-offset-4"
                 >
                   {t("another")}
                 </button>
@@ -332,7 +332,7 @@ export function SiteContact({ subdomain, businessName, primaryColor, phoneNumber
                 <button
                   type="submit"
                   disabled={status === "sending"}
-                  className="mt-6 inline-flex min-h-[52px] w-full items-center justify-center gap-2 rounded-xl px-6 text-base font-semibold text-white shadow-sm transition hover:opacity-95 focus:outline-none focus-visible:ring-4 focus-visible:ring-[#102c24]/25 disabled:cursor-wait disabled:opacity-70"
+                  className="mt-6 inline-flex min-h-[52px] w-full items-center justify-center gap-2 rounded-xl px-6 text-base font-semibold text-white shadow-sm transition hover:opacity-95 focus:outline-none focus-visible:ring-4 focus-visible:ring-[#101a2c]/25 disabled:cursor-wait disabled:opacity-70"
                   style={{ backgroundColor: primaryColor }}
                 >
                   {status === "sending" && (

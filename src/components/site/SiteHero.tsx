@@ -49,7 +49,7 @@ export function SiteHero({
   onBookWithPostcode,
 }: SiteHeroProps) {
   const t = useTranslations("Site.hero");
-  const accent = accentColor || "#C9983A";
+  const accent = accentColor || "#38a0d8";
   const image = heroImageUrl || "/images/after-room.jpg";
 
   const copy = t("copy", { name: businessName });

@@ -44,7 +44,7 @@ export function SiteTestimonials({ testimonials, primaryColor }: SiteTestimonial
   const display = items.length > 0 ? items : FALLBACK;
 
   return (
-    <section id="testimonials" className="site-section-cream scroll-mt-24 border-t border-[#e8e3d8] py-24 sm:py-32">
+    <section id="testimonials" className="site-section-cream scroll-mt-24 border-t border-[#d5e0eb] py-24 sm:py-32">
       <div className="site-container">
         <Reveal>
           <div className="mx-auto max-w-2xl text-center">
@@ -61,12 +61,12 @@ export function SiteTestimonials({ testimonials, primaryColor }: SiteTestimonial
         <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {display.map((t, i) => (
             <Reveal key={`${t.name}-${i}`} delay={i * 80}>
-              <figure className="flex h-full flex-col rounded-3xl border border-[#e8e3d8] bg-white p-8 shadow-sm">
-                <blockquote className="flex-1 font-serif text-[1.05rem] leading-relaxed text-[#1d3228]">
+              <figure className="flex h-full flex-col rounded-3xl border border-[#d5e0eb] bg-white p-8 shadow-sm">
+                <blockquote className="flex-1 font-serif text-[1.05rem] leading-relaxed text-[#162339]">
                   &ldquo;{t.quote}&rdquo;
                 </blockquote>
-                <figcaption className="mt-7 flex items-center gap-3 text-sm font-semibold text-[#111918]">
-                  <span className="h-px w-6 bg-[#c9983a]" aria-hidden="true" />
+                <figcaption className="mt-7 flex items-center gap-3 text-sm font-semibold text-[#0c121e]">
+                  <span className="h-px w-6 bg-[#38a0d8]" aria-hidden="true" />
                   {t.name}
                 </figcaption>
               </figure>

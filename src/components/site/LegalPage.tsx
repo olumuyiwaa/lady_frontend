@@ -62,36 +62,36 @@ export function LegalPage({
         hasFaq
       />
 
-      <main className="min-h-screen bg-[#F6F2ED]">
+      <main className="min-h-screen bg-[#edf2f6]">
         {/* Hero band */}
         <section
           className="pt-32 pb-10 sm:pt-36 sm:pb-12"
           style={{
             background: `linear-gradient(160deg, ${primaryColor}18 0%, transparent 60%)`,
-            borderBottom: "1px solid #e4dfd4",
+            borderBottom: "1px solid #d0dce8",
           }}
         >
           <div className="site-container">
             {/* Breadcrumb */}
-            <nav aria-label="Breadcrumb" className="mb-4 flex items-center gap-1.5 text-sm text-[#5a7069]">
-              <Link href="/" className="hover:text-[#102c24]">
+            <nav aria-label="Breadcrumb" className="mb-4 flex items-center gap-1.5 text-sm text-[#385992]">
+              <Link href="/" className="hover:text-[#101a2c]">
                 {businessName}
               </Link>
               <span aria-hidden="true">/</span>
-              <span className="text-[#102c24]">{title}</span>
+              <span className="text-[#101a2c]">{title}</span>
             </nav>
 
             <h1
-              className="text-3xl font-bold tracking-tight text-[#0B2820] sm:text-4xl"
+              className="text-3xl font-bold tracking-tight text-[#0b1628] sm:text-4xl"
               style={{ fontFamily: "inherit" }}
             >
               {title}
             </h1>
             {effectiveDate && (
-              <p className="mt-2 text-sm text-[#6b8078]">{effectiveDate}</p>
+              <p className="mt-2 text-sm text-[#4167aa]">{effectiveDate}</p>
             )}
             {intro && (
-              <p className="mt-4 max-w-2xl text-base leading-relaxed text-[#374b43]">
+              <p className="mt-4 max-w-2xl text-base leading-relaxed text-[#24395e]">
                 {intro}
               </p>
             )}
@@ -105,7 +105,7 @@ export function LegalPage({
               {/* Sticky sidebar TOC — hidden on mobile */}
               <aside className="hidden lg:block">
                 <nav aria-label="On this page" className="sticky top-28">
-                  <p className="mb-3 text-xs font-semibold uppercase tracking-widest text-[#6b8078]">
+                  <p className="mb-3 text-xs font-semibold uppercase tracking-widest text-[#4167aa]">
                     On this page
                   </p>
                   <ul className="space-y-1">
@@ -113,7 +113,7 @@ export function LegalPage({
                       <li key={s.id}>
                         <a
                           href={`#${s.id}`}
-                          className="block rounded-md px-2 py-1.5 text-sm text-[#4a6358] transition-colors hover:bg-[#eceae4] hover:text-[#102c24]"
+                          className="block rounded-md px-2 py-1.5 text-sm text-[#304c7d] transition-colors hover:bg-[#e0e8f0] hover:text-[#101a2c]"
                         >
                           {s.title}
                         </a>
@@ -129,12 +129,12 @@ export function LegalPage({
                   <article
                     key={s.id}
                     id={s.id}
-                    className="scroll-mt-28 rounded-2xl border border-[#e4dfd4] bg-white px-6 py-7 sm:px-8 sm:py-8"
+                    className="scroll-mt-28 rounded-2xl border border-[#d0dce8] bg-white px-6 py-7 sm:px-8 sm:py-8"
                   >
-                    <h2 className="mb-4 text-lg font-semibold text-[#0B2820]">{s.title}</h2>
+                    <h2 className="mb-4 text-lg font-semibold text-[#0b1628]">{s.title}</h2>
                     <div className="space-y-3">
                       {s.content.map((para, i) => (
-                        <p key={i} className="text-sm leading-relaxed text-[#374b43]">
+                        <p key={i} className="text-sm leading-relaxed text-[#24395e]">
                           {para}
                         </p>
                       ))}

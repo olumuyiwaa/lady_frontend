@@ -45,7 +45,7 @@ export function BookingWidgetModal({
                                      cancellationPolicy,
                                      questions,
                                      businessName,
-                                     primaryColor = "#3F6B52",
+                                     primaryColor = "#20407A",
                                      initialPostalCode,
                                    }: BookingWidgetModalProps) {
   const t = useTranslations("Site.bookModal");

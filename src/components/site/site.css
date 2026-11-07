@@ -1,13 +1,13 @@
 /* ─────────────────────────────────────────────────────────────────────────────
    Tod Cleaning Services · Storefront design system
    Premium palette:
-     Forest   #0A2E22  (primary, deep forest green)
-     Sage     #2D5A44  (mid-green hover states)
-     Gold     #C9983A  (accent, warm gold — richer than default)
-     Cream    #F8F5F0  (warm off-white section bg)
-     Paper    #FFFFFF
-     Ink      #111918  (headings)
-     Muted    #5C6B64  (body copy)
+     Forest   #20407a  (primary, deep forest green)
+     Sage     #2f6fb0  (mid-green hover states)
+     Gold     #38a0d8  (accent, warm gold — richer than default)
+     Cream    #f0f4f8  (warm off-white section bg)
+     Paper    #ffffff
+     Ink      #0c121e  (headings)
+     Muted    #375890  (body copy)
    Container: 1680px max (matches the Retailr storefront)
 ───────────────────────────────────────────────────────────────────────────── */
 
@@ -68,12 +68,12 @@
 
 .site-header-pill {
   min-height: 72px;
-  border: 1px solid rgba(10, 46, 34, 0.08);
+  border: 1px solid rgba(32, 64, 122, 0.08);
   border-radius: 999px;
   background: rgba(255, 255, 255, 0.94);
   box-shadow:
-    0 2px 8px rgba(10, 46, 34, 0.06),
-    0 12px 40px rgba(10, 46, 34, 0.08);
+    0 2px 8px rgba(32, 64, 122, 0.06),
+    0 12px 40px rgba(32, 64, 122, 0.08);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   transition: box-shadow 200ms ease, background-color 200ms ease;
@@ -82,16 +82,16 @@
 .site-header-pill-scrolled {
   background: rgba(255, 255, 255, 0.98);
   box-shadow:
-    0 1px 3px rgba(10, 46, 34, 0.06),
-    0 8px 32px rgba(10, 46, 34, 0.12);
+    0 1px 3px rgba(32, 64, 122, 0.06),
+    0 8px 32px rgba(32, 64, 122, 0.12);
 }
 
 .site-mobile-menu {
   overflow: hidden;
-  border: 1px solid rgba(10, 46, 34, 0.08);
+  border: 1px solid rgba(32, 64, 122, 0.08);
   border-radius: 28px;
   background: rgba(255, 255, 255, 0.99);
-  box-shadow: 0 24px 60px rgba(10, 46, 34, 0.16);
+  box-shadow: 0 24px 60px rgba(32, 64, 122, 0.16);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
 }
@@ -113,7 +113,7 @@
 
 .site-hero {
   min-height: max(780px, 92svh);
-  background: #0a2e22;
+  background: #20407a;
 }
 
 .site-hero-photo {
@@ -131,13 +131,13 @@
   background:
     linear-gradient(
       100deg,
-      rgba(6, 26, 18, 0.92) 0%,
-      rgba(6, 26, 18, 0.78) 42%,
-      rgba(6, 26, 18, 0.18) 100%
+      rgba(6, 13, 26, 0.92) 0%,
+      rgba(6, 13, 26, 0.78) 42%,
+      rgba(6, 13, 26, 0.18) 100%
     ),
     linear-gradient(
       0deg,
-      rgba(6, 26, 18, 0.55) 0%,
+      rgba(6, 13, 26, 0.55) 0%,
       transparent 52%
     );
 }
@@ -145,8 +145,8 @@
 @media (max-width: 639px) {
   .site-hero-overlay {
     background:
-      linear-gradient(rgba(6, 26, 18, 0.82), rgba(6, 26, 18, 0.72)),
-      linear-gradient(0deg, rgba(6, 26, 18, 0.55), transparent 70%);
+      linear-gradient(rgba(6, 13, 26, 0.82), rgba(6, 13, 26, 0.72)),
+      linear-gradient(0deg, rgba(6, 13, 26, 0.55), transparent 70%);
   }
 }
 
@@ -159,9 +159,9 @@
 .site-hero .site-eyebrow {
   min-height: 34px;
   padding-inline: 14px;
-  border-color: rgba(201, 152, 58, 0.38);
-  background: rgba(8, 34, 22, 0.5);
-  color: #f0cf82;
+  border-color: rgba(56, 160, 216, 0.38);
+  background: rgba(8, 18, 34, 0.5);
+  color: #b9e0f5;
   letter-spacing: 0.18em;
   backdrop-filter: blur(8px);
 }
@@ -178,7 +178,7 @@
 }
 
 .site-hero-title-accent {
-  color: var(--site-accent, #c9983a);
+  color: var(--site-accent, #38a0d8);
 }
 
 .site-hero .site-hero-copy {
@@ -190,20 +190,20 @@
 
 /* CTA buttons inside hero */
 .site-hero .site-btn-gold {
-  border: 1px solid var(--site-accent, #c9983a);
-  background: var(--site-accent, #c9983a);
-  color: #0a2e22;
-  box-shadow: 0 8px 28px rgba(201, 152, 58, 0.3);
+  border: 1px solid var(--site-accent, #38a0d8);
+  background: var(--site-accent, #38a0d8);
+  color: #20407a;
+  box-shadow: 0 8px 28px rgba(56, 160, 216, 0.3);
 }
 
 .site-hero .site-btn-gold:hover {
   filter: brightness(1.07);
-  box-shadow: 0 14px 38px rgba(201, 152, 58, 0.4);
+  box-shadow: 0 14px 38px rgba(56, 160, 216, 0.4);
 }
 
 .site-hero .site-btn-dark {
   border-color: rgba(255, 255, 255, 0.36);
-  background: rgba(6, 26, 18, 0.25);
+  background: rgba(6, 13, 26, 0.25);
   color: #fff;
   backdrop-filter: blur(10px);
 }
@@ -232,8 +232,8 @@
   place-items: center;
   margin-right: 7px;
   border-radius: 50%;
-  background: rgba(201, 152, 58, 0.2);
-  color: #f0cf82;
+  background: rgba(56, 160, 216, 0.2);
+  color: #b9e0f5;
   font-size: 10px;
 }
 
@@ -264,7 +264,7 @@
 }
 
 .site-hero-proof-stars {
-  color: #f0cf82;
+  color: #b9e0f5;
   letter-spacing: -0.02em;
   font-size: 13px;
 }
@@ -279,7 +279,7 @@
   border-radius: 999px;
   background: rgba(255, 255, 255, 0.95);
   padding: 4px 18px 4px 6px;
-  color: #0a2e22;
+  color: #20407a;
   font-size: 14px;
   font-weight: 700;
   text-decoration: none;
@@ -297,7 +297,7 @@
   height: 38px;
   place-items: center;
   border-radius: 50%;
-  background: var(--site-accent, #c9983a);
+  background: var(--site-accent, #38a0d8);
   color: #fff;
   font-size: 17px;
 }
@@ -339,9 +339,9 @@
   padding: 0 12px;
   min-height: 32px;
   border-radius: 999px;
-  background: #eef5f0;
-  border: 1px solid rgba(45, 90, 68, 0.14);
-  color: #2d5a44;
+  background: #ebf0f8;
+  border: 1px solid rgba(47, 111, 176, 0.14);
+  color: #2f6fb0;
   font-size: 11px;
   font-weight: 800;
   letter-spacing: 0.13em;
@@ -362,13 +362,13 @@
 }
 
 .site-section-cream {
-  background: #f7f4ef;
+  background: #eff3f7;
 }
 
 /* ── Section heading ─────────────────────────────────────────── */
 
 .site-section-title {
-  color: #111918;
+  color: #0c121e;
   font-family: Georgia, "Times New Roman", serif;
   font-size: clamp(32px, 4vw, 50px);
   font-weight: 500;
@@ -405,16 +405,16 @@
 }
 
 .site-btn-secondary {
-  color: #1a2e25;
+  color: #142034;
   background: #ffffff;
-  border: 1px solid #d4dcd7;
-  box-shadow: 0 2px 8px rgba(17, 25, 24, 0.07);
+  border: 1px solid #c5d3ec;
+  box-shadow: 0 2px 8px rgba(12, 18, 30, 0.07);
 }
 
 .site-btn-secondary:hover {
   transform: translateY(-2px);
-  border-color: rgba(45, 90, 68, 0.4);
-  box-shadow: 0 6px 20px rgba(17, 25, 24, 0.1);
+  border-color: rgba(47, 111, 176, 0.4);
+  box-shadow: 0 6px 20px rgba(12, 18, 30, 0.1);
 }
 
 /* ── Service cards ───────────────────────────────────────────── */
@@ -447,20 +447,20 @@
   flex-direction: column;
   height: 100%;
   border-radius: 1.5rem;
-  border: 1px solid #e8e3d8;
+  border: 1px solid #d5e0eb;
   background: #ffffff;
   padding: 1.6rem 1.75rem 1.75rem;
   box-shadow:
-    0 1px 3px rgba(10, 46, 34, 0.04),
-    0 4px 16px rgba(10, 46, 34, 0.04);
+    0 1px 3px rgba(32, 64, 122, 0.04),
+    0 4px 16px rgba(32, 64, 122, 0.04);
   transition: border-color 200ms ease, box-shadow 200ms ease, transform 200ms ease;
 }
 
 .site-service-card:hover {
-  border-color: rgba(201, 152, 58, 0.6);
+  border-color: rgba(56, 160, 216, 0.6);
   box-shadow:
-    0 4px 12px rgba(10, 46, 34, 0.06),
-    0 16px 40px rgba(10, 46, 34, 0.1);
+    0 4px 12px rgba(32, 64, 122, 0.06),
+    0 16px 40px rgba(32, 64, 122, 0.1);
   transform: translateY(-5px);
 }
 
@@ -472,7 +472,7 @@
 }
 
 .site-service-index {
-  color: #b8935a;
+  color: #2f8ec0;
   font-size: 11px;
   font-weight: 800;
   letter-spacing: 0.18em;
@@ -490,7 +490,7 @@
 
 .site-service-name {
   margin-top: 1.1rem;
-  color: #111918;
+  color: #0c121e;
   font-size: clamp(1.15rem, 1.5vw, 1.4rem);
   font-weight: 650;
   line-height: 1.2;
@@ -500,7 +500,7 @@
 .site-service-desc {
   margin-top: 0.6rem;
   flex: 1 1 auto;
-  color: #5c6b64;
+  color: #375890;
   font-size: 0.875rem;
   line-height: 1.6;
   display: -webkit-box;
@@ -510,7 +510,7 @@
 }
 
 .site-service-desc-muted {
-  color: #9aaa9f;
+  color: #7396d0;
   font-style: italic;
 }
 
@@ -536,7 +536,7 @@
 }
 
 .site-service-price-value {
-  color: #111918;
+  color: #0c121e;
   font-size: 1.55rem;
   font-weight: 750;
   letter-spacing: -0.035em;
@@ -554,8 +554,8 @@
   align-items: center;
   gap: 0.3rem;
   border-radius: 999px;
-  background: #f2ede4;
-  color: #4a5b52;
+  background: #e4ebf2;
+  color: #2d4978;
   padding: 0.28rem 0.6rem;
   font-size: 11px;
   font-weight: 600;
@@ -570,7 +570,7 @@
   width: 100%;
   min-height: 48px;
   border-radius: 999px;
-  background: var(--service-color, #0a2e22);
+  background: var(--service-color, #20407a);
   color: #ffffff !important;
   font-size: 0.875rem;
   font-weight: 700;
@@ -582,11 +582,11 @@
 .site-service-cta:hover {
   filter: brightness(1.1);
   transform: translateY(-2px);
-  box-shadow: 0 8px 24px rgba(10, 46, 34, 0.2);
+  box-shadow: 0 8px 24px rgba(32, 64, 122, 0.2);
 }
 
 .site-service-cta:focus-visible {
-  outline: 2px solid var(--service-color, #0a2e22);
+  outline: 2px solid var(--service-color, #20407a);
   outline-offset: 3px;
 }
 
@@ -600,15 +600,15 @@
 }
 .site-service-price {
   border-radius: 999px;
-  background: #f2ede4;
+  background: #e4ebf2;
   padding: 7px 12px;
-  color: #17392f;
+  color: #16233a;
   font-size: 13px;
   font-weight: 700;
   white-space: nowrap;
 }
 .site-service-link {
-  color: var(--service-color, #0a2e22);
+  color: var(--service-color, #20407a);
   text-decoration: none;
 }
 .site-service-link:hover {
@@ -634,17 +634,17 @@
   display: grid;
   grid-template-columns: 52px minmax(0, 1fr);
   gap: 16px;
-  border-left: 2px solid rgba(201, 152, 58, 0.5);
+  border-left: 2px solid rgba(56, 160, 216, 0.5);
   padding: 12px 0 20px 20px;
   transition: border-color 200ms ease;
 }
 
 .site-process-step:hover {
-  border-color: #c9983a;
+  border-color: #38a0d8;
 }
 
 .site-process-number {
-  color: #b8935a;
+  color: #2f8ec0;
   font-size: 12px;
   font-weight: 800;
   letter-spacing: 0.1em;
@@ -655,7 +655,7 @@
 .site-cta-band {
   position: relative;
   overflow: hidden;
-  background-color: #09271d;
+  background-color: #152b52;
   background-image:
     linear-gradient(135deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
     linear-gradient(45deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
@@ -669,7 +669,7 @@
 }
 
 .site-cta-eyebrow {
-  color: #c9983a;
+  color: #38a0d8;
   font-size: 11px;
   font-weight: 800;
   letter-spacing: 0.2em;
@@ -688,20 +688,20 @@
 /* ── Footer ───────────────────────────────────────────────────── */
 
 .site-footer {
-  background: #09271d;
+  background: #152b52;
   color: #fff;
 }
 
 .site-logo-fallback {
   display: block;
   flex: none;
-  background-color: #09271d;
-  -webkit-mask: url("/images/logo/todcleaning-logo.png") center / contain no-repeat;
-  mask: url("/images/logo/todcleaning-logo.png") center / contain no-repeat;
+  background: url("/images/logo/todcleaning-logo.png") center / contain no-repeat;
 }
 
 .site-logo-fallback-light {
   background-color: #fff;
+  background-blend-mode: normal;
+  border-radius: 9999px;
 }
 
 /* ── Stat tiles (hero) ───────────────────────────────────────── */

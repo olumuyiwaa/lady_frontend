@@ -67,10 +67,10 @@ export function SiteServices({ subdomain, services, primaryColor, onBook, curren
     return (
       <section id="services" className="site-section-light scroll-mt-24 py-24 sm:py-32">
         <div className="site-container">
-          <div className="mx-auto max-w-xl rounded-3xl border border-[#e8e3d8] bg-white px-8 py-12 text-center shadow-sm">
-            <h2 className="text-xl font-semibold text-[#111918]">{t("emptyTitle")}</h2>
-            <p className="mt-3 text-sm leading-relaxed text-[#5c6b64]">{t("emptyBody")}</p>
-            <a href={paths.portal} className="mt-6 inline-flex text-sm font-semibold text-[#0a2e22] underline-offset-2 hover:underline">
+          <div className="mx-auto max-w-xl rounded-3xl border border-[#d5e0eb] bg-white px-8 py-12 text-center shadow-sm">
+            <h2 className="text-xl font-semibold text-[#0c121e]">{t("emptyTitle")}</h2>
+            <p className="mt-3 text-sm leading-relaxed text-[#375890]">{t("emptyBody")}</p>
+            <a href={paths.portal} className="mt-6 inline-flex text-sm font-semibold text-[#20407a] underline-offset-2 hover:underline">
               {t("portalLink")}
             </a>
           </div>
@@ -102,7 +102,7 @@ export function SiteServices({ subdomain, services, primaryColor, onBook, curren
               {t("eyebrow")}
             </span>
             <h2 className="site-section-title mt-5">{t("title")}</h2>
-            <p className="mx-auto mt-4 max-w-xl text-base leading-relaxed text-[#5c6b64] sm:text-lg">
+            <p className="mx-auto mt-4 max-w-xl text-base leading-relaxed text-[#375890] sm:text-lg">
               {t("subtitle")}
             </p>
           </div>
@@ -117,11 +117,11 @@ export function SiteServices({ subdomain, services, primaryColor, onBook, curren
             {trustItems.map((item) => (
               <li
                 key={item.label}
-                className="flex flex-col items-center gap-3 rounded-2xl border border-[#ece7dc] bg-[#faf7f2] px-3 py-5 text-center"
+                className="flex flex-col items-center gap-3 rounded-2xl border border-[#dbe4ed] bg-[#f3f6f9] px-3 py-5 text-center"
                 style={{ color: primaryColor }}
               >
                 {item.icon}
-                <span className="text-xs font-semibold leading-snug text-[#374b43]">
+                <span className="text-xs font-semibold leading-snug text-[#24395e]">
                   {item.label}
                 </span>
               </li>

@@ -12,7 +12,7 @@ type Props = {
   cancellationPolicy?: StorefrontCancellationPolicy | null;
 };
 
-export function StickySummary({ state, service, primaryColor = "#3F6B52", cancellationPolicy = null }: Props) {
+export function StickySummary({ state, service, primaryColor = "#20407A", cancellationPolicy = null }: Props) {
   const t = useTranslations("Booking.summary");
   const tFreq = useTranslations("Booking.frequency");
   const tPolicy = useTranslations("Booking.cancellationPolicy");

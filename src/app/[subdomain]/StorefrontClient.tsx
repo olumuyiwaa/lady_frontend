@@ -21,8 +21,8 @@ import { brandForWhiteText } from "@/lib/color";
 import { resolveSectionOrder, type SectionKey } from "@/lib/sections";
 import { captureReferralFromUrl } from "@/lib/referral";
 
-const DEFAULT_PRIMARY = "#0B352A";
-const DEFAULT_ACCENT = "#D0AA62";
+const DEFAULT_PRIMARY = "#0b1a35";
+const DEFAULT_ACCENT = "#6bb5e4";
 
 export function StorefrontClient({
   subdomain,
@@ -110,7 +110,7 @@ export function StorefrontClient({
       {/* First tab stop: lets keyboard and screen-reader users jump past the header. Invisible until focused. */}
       <a
         href="#main-content"
-        className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[200] focus:rounded-full focus:bg-white focus:px-5 focus:py-2.5 focus:text-sm focus:font-semibold focus:text-[#171B1A] focus:shadow-lg focus:ring-2 focus:ring-[#171B1A]"
+        className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[200] focus:rounded-full focus:bg-white focus:px-5 focus:py-2.5 focus:text-sm focus:font-semibold focus:text-[#0e1624] focus:shadow-lg focus:ring-2 focus:ring-[#0e1624]"
       >
         {tNav("skipToContent")}
       </a>

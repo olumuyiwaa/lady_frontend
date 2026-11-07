@@ -72,7 +72,7 @@ export function SitePostcodeCheck({ subdomain, businessName, onBook }: Props) {
           maxLength={7}
           aria-invalid={status === "invalid"}
           aria-describedby="site-postcode-result"
-          className="h-12 flex-1 rounded-full border border-white/30 bg-white/95 px-5 text-sm text-[#171B1A] outline-none placeholder:text-[#7a817c] focus:ring-2 focus:ring-white/60"
+          className="h-12 flex-1 rounded-full border border-white/30 bg-white/95 px-5 text-sm text-[#0e1624] outline-none placeholder:text-[#7a817c] focus:ring-2 focus:ring-white/60"
         />
         <button
           type="submit"
@@ -89,7 +89,7 @@ export function SitePostcodeCheck({ subdomain, businessName, onBook }: Props) {
           <button
             type="button"
             onClick={() => onBook(checked.replace(/\s/g, ""))}
-            className="mt-2 inline-flex rounded-full bg-white px-5 py-2 text-sm font-semibold text-[#171B1A] transition hover:bg-white/90"
+            className="mt-2 inline-flex rounded-full bg-white px-5 py-2 text-sm font-semibold text-[#0e1624] transition hover:bg-white/90"
           >
             {t("book")}
           </button>
@@ -97,7 +97,7 @@ export function SitePostcodeCheck({ subdomain, businessName, onBook }: Props) {
         {status === "outside" && (
           <a
             href="#contact"
-            className="mt-2 inline-flex rounded-full bg-white px-5 py-2 text-sm font-semibold text-[#171B1A] transition hover:bg-white/90"
+            className="mt-2 inline-flex rounded-full bg-white px-5 py-2 text-sm font-semibold text-[#0e1624] transition hover:bg-white/90"
           >
             {t("contact")}
           </a>

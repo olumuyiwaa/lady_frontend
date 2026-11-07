@@ -41,7 +41,7 @@ export default function MonthlyTarget({
   const series = [Math.round(pct * 100) / 100];
 
   const options: ApexOptions = {
-    colors: ["#0a2e22"],
+    colors: ["#20407a"],
     chart: {
       fontFamily: "Outfit, sans-serif",
       type: "radialBar",
@@ -54,7 +54,7 @@ export default function MonthlyTarget({
         endAngle: 85,
         hollow: { size: "80%" },
         track: {
-          background: "#E4E7EC",
+          background: "#e4e7ec",
           strokeWidth: "100%",
           margin: 5,
         },
@@ -64,7 +64,7 @@ export default function MonthlyTarget({
             fontSize: "36px",
             fontWeight: "600",
             offsetY: -40,
-            color: "#1D2939",
+            color: "#1d2939",
             formatter: function (val) {
               return val + "%";
             },
@@ -72,7 +72,7 @@ export default function MonthlyTarget({
         },
       },
     },
-    fill: { type: "solid", colors: ["#0a2e22"] },
+    fill: { type: "solid", colors: ["#20407a"] },
     stroke: { lineCap: "round" },
     labels: ["Progress"],
   };

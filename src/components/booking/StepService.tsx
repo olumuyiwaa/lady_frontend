@@ -20,7 +20,7 @@ export function StepService({
   services,
   selectedService,
   update,
-  primaryColor = "#3F6B52",
+  primaryColor = "#20407A",
 }: Props) {
   const t = useTranslations("Booking.service");
   const tFreq = useTranslations("Booking.frequency");

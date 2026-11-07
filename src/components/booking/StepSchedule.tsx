@@ -27,7 +27,7 @@ export function StepSchedule({
   slots,
   slotsLoading,
   slotsError,
-  primaryColor = "#3F6B52",
+  primaryColor = "#20407A",
   slug,
   timezone,
 }: Props) {

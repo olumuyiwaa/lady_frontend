@@ -40,8 +40,8 @@ export default async function BusinessPage({ params }: PageProps) {
   if (!data) notFound();
   const t = await getTranslations("Site.business");
   const { business } = data;
-  const primary = business.branding?.primaryColor ?? "#0B352A";
-  const accent = business.branding?.accentColor ?? "#D0AA62";
+  const primary = business.branding?.primaryColor ?? "#0b1a35";
+  const accent = business.branding?.accentColor ?? "#6bb5e4";
   const origin = canonicalOrigin(business, subdomain);
 
   const jsonLd = {
@@ -79,27 +79,27 @@ export default async function BusinessPage({ params }: PageProps) {
         hasTestimonials
         hasFaq
       />
-      <main className="min-h-screen bg-[#F6F2ED]">
+      <main className="min-h-screen bg-[#edf2f6]">
         <section className="pt-32 pb-14 sm:pt-40 sm:pb-20" style={{ background: `linear-gradient(160deg, ${primary}1f 0%, transparent 65%)` }}>
           <div className="site-container max-w-6xl">
             <div className="grid items-center gap-8 lg:grid-cols-[1.1fr_0.9fr]">
               <div>
                 <p className="text-sm font-semibold uppercase tracking-[0.18em]" style={{ color: primary }}>{t("eyebrow")}</p>
-                <h1 className="mt-3 max-w-3xl text-4xl font-bold tracking-tight text-[#0B2820] sm:text-5xl lg:text-6xl">{t("title")}</h1>
-                <p className="mt-5 max-w-2xl text-lg leading-relaxed text-[#374b43]">{t("subtitle")}</p>
+                <h1 className="mt-3 max-w-3xl text-4xl font-bold tracking-tight text-[#0b1628] sm:text-5xl lg:text-6xl">{t("title")}</h1>
+                <p className="mt-5 max-w-2xl text-lg leading-relaxed text-[#24395e]">{t("subtitle")}</p>
                 <div className="mt-8 flex flex-wrap gap-3">
                   <a href="#enquiry" className="inline-flex min-h-12 items-center rounded-full px-7 py-3 text-base font-semibold text-white shadow-sm transition duration-200 hover:-translate-y-0.5 hover:brightness-110" style={{ backgroundColor: primary }}>
                     {t("cta")}
                   </a>
                   {business.phone && (
-                    <a href={`tel:${business.phone.replace(/[^\d+]/g, "")}`} className="inline-flex min-h-12 items-center rounded-full border border-[#d9d4c7] bg-white px-7 py-3 text-base font-semibold text-[#102c24] shadow-sm transition duration-200 hover:-translate-y-0.5 hover:border-[#c8c0ad]">
+                    <a href={`tel:${business.phone.replace(/[^\d+]/g, "")}`} className="inline-flex min-h-12 items-center rounded-full border border-[#c0d0e0] bg-white px-7 py-3 text-base font-semibold text-[#101a2c] shadow-sm transition duration-200 hover:-translate-y-0.5 hover:border-[#c8c0ad]">
                       {business.phone}
                     </a>
                   )}
                 </div>
                 <div className="mt-8 flex flex-wrap gap-3">
                   {(["invoice", "team", "portal"] as const).map((k) => (
-                    <span key={k} className="rounded-full border border-[#d7d0c3] bg-white/80 px-3 py-2 text-[10px] font-semibold tracking-[0.14em] text-[#102c24] uppercase shadow-sm backdrop-blur-sm">
+                    <span key={k} className="rounded-full border border-[#bccdde] bg-white/80 px-3 py-2 text-[10px] font-semibold tracking-[0.14em] text-[#101a2c] uppercase shadow-sm backdrop-blur-sm">
                       {t(`benefits.${k}.title`)}
                     </span>
                   ))}
@@ -108,11 +108,11 @@ export default async function BusinessPage({ params }: PageProps) {
 
               <div className="relative">
                 <div className="absolute -inset-4 rounded-[2rem] bg-white/40 blur-2xl" style={{ backgroundColor: `${primary}20` }} />
-                <div className="relative overflow-hidden rounded-[2rem] border border-[#e7e0d3] bg-white p-5 shadow-[0_20px_60px_rgba(11,40,32,0.08)] sm:p-6">
-                  <div className="flex items-center justify-between border-b border-[#efe8dd] pb-4">
+                <div className="relative overflow-hidden rounded-[2rem] border border-[#d1dde9] bg-white p-5 shadow-[0_20px_60px_rgba(11, 22, 40, 0.08)] sm:p-6">
+                  <div className="flex items-center justify-between border-b border-[#dde6ef] pb-4">
                     <div>
-                      <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#5c6d66]">Business care</p>
-                      <h2 className="mt-1 text-xl font-bold text-[#102c24]">{business.name}</h2>
+                      <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#375892]">Business care</p>
+                      <h2 className="mt-1 text-xl font-bold text-[#101a2c]">{business.name}</h2>
                     </div>
                     <div className="rounded-full px-3 py-1 text-xs font-semibold text-white" style={{ backgroundColor: primary }}>
                       Trusted
@@ -126,18 +126,18 @@ export default async function BusinessPage({ params }: PageProps) {
                       { label: t("benefits.portal.title"), value: "Live" },
                       { label: t("benefits.reliability.title"), value: "On time" },
                     ].map((item) => (
-                      <div key={item.label} className="rounded-2xl border border-[#efe8dd] bg-[#F8F5F1] p-4">
-                        <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-[#5c6d66]">{item.label}</p>
-                        <p className="mt-2 text-lg font-bold text-[#102c24]">{item.value}</p>
+                      <div key={item.label} className="rounded-2xl border border-[#dde6ef] bg-[#f1f4f8] p-4">
+                        <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-[#375892]">{item.label}</p>
+                        <p className="mt-2 text-lg font-bold text-[#101a2c]">{item.value}</p>
                       </div>
                     ))}
                   </div>
 
-                  <div className="mt-5 rounded-2xl border border-[#dfe7e2] bg-[#f2f7f4] p-4">
+                  <div className="mt-5 rounded-2xl border border-[#d5dff1] bg-[#f2f7fd] p-4">
                     <div className="flex items-center justify-between gap-3">
                       <div>
-                        <p className="text-xs font-semibold uppercase tracking-[0.12em] text-[#5c6d66]">Service review</p>
-                        <p className="mt-1 text-sm text-[#102c24]">Monthly invoice + site updates</p>
+                        <p className="text-xs font-semibold uppercase tracking-[0.12em] text-[#375892]">Service review</p>
+                        <p className="mt-1 text-sm text-[#101a2c]">Monthly invoice + site updates</p>
                       </div>
                       <span className="inline-flex h-3 w-3 rounded-full" style={{ backgroundColor: primary }} />
                     </div>
@@ -151,27 +151,27 @@ export default async function BusinessPage({ params }: PageProps) {
         <section className="py-14 sm:py-20" aria-labelledby="benefits">
           <div className="site-container">
             <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
-              <h2 id="benefits" className="text-2xl font-bold text-[#0B2820] sm:text-3xl">{t("benefitsTitle")}</h2>
-              <p className="max-w-xl text-sm leading-relaxed text-[#4d5d55]">{t("subtitle")}</p>
+              <h2 id="benefits" className="text-2xl font-bold text-[#0b1628] sm:text-3xl">{t("benefitsTitle")}</h2>
+              <p className="max-w-xl text-sm leading-relaxed text-[#2f4b7b]">{t("subtitle")}</p>
             </div>
             <div className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
               {BENEFITS.map((k) => (
-                <article key={k} className="group rounded-2xl border border-[#e4dfd4] bg-white p-6 shadow-sm transition duration-200 hover:-translate-y-1 hover:border-[#d7d0c3] hover:shadow-md">
+                <article key={k} className="group rounded-2xl border border-[#d0dce8] bg-white p-6 shadow-sm transition duration-200 hover:-translate-y-1 hover:border-[#bccdde] hover:shadow-md">
                   <span className="mb-3 block h-1.5 w-12 rounded-full" style={{ backgroundColor: accent }} />
-                  <h3 className="text-lg font-semibold text-[#0B2820]">{t(`benefits.${k}.title`)}</h3>
-                  <p className="mt-2 text-sm leading-relaxed text-[#374b43]">{t(`benefits.${k}.body`)}</p>
+                  <h3 className="text-lg font-semibold text-[#0b1628]">{t(`benefits.${k}.title`)}</h3>
+                  <p className="mt-2 text-sm leading-relaxed text-[#24395e]">{t(`benefits.${k}.body`)}</p>
                 </article>
               ))}
             </div>
           </div>
         </section>
 
-        <section className="border-y border-[#e4dfd4] bg-white py-14 sm:py-20" aria-labelledby="audience">
+        <section className="border-y border-[#d0dce8] bg-white py-14 sm:py-20" aria-labelledby="audience">
           <div className="site-container">
-            <h2 id="audience" className="text-2xl font-bold text-[#0B2820] sm:text-3xl">{t("audienceTitle")}</h2>
+            <h2 id="audience" className="text-2xl font-bold text-[#0b1628] sm:text-3xl">{t("audienceTitle")}</h2>
             <ul className="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
               {AUDIENCE.map((k) => (
-                <li key={k} className="rounded-xl border border-[#ebe3d7] bg-[#F6F2ED] px-5 py-4 text-sm font-medium text-[#102c24] shadow-sm transition duration-200 hover:-translate-y-0.5 hover:border-[#d7d0c3] hover:bg-white">{t(`audience.${k}`)}</li>
+                <li key={k} className="rounded-xl border border-[#d6e1ec] bg-[#edf2f6] px-5 py-4 text-sm font-medium text-[#101a2c] shadow-sm transition duration-200 hover:-translate-y-0.5 hover:border-[#bccdde] hover:bg-white">{t(`audience.${k}`)}</li>
               ))}
             </ul>
           </div>
@@ -179,13 +179,13 @@ export default async function BusinessPage({ params }: PageProps) {
 
         <section className="py-14 sm:py-20" aria-labelledby="steps">
           <div className="site-container">
-            <h2 id="steps" className="text-2xl font-bold text-[#0B2820] sm:text-3xl">{t("stepsTitle")}</h2>
+            <h2 id="steps" className="text-2xl font-bold text-[#0b1628] sm:text-3xl">{t("stepsTitle")}</h2>
             <ol className="mt-8 grid gap-5 md:grid-cols-3">
               {STEPS.map((k, i) => (
-                <li key={k} className="rounded-2xl border border-[#e4dfd4] bg-white p-6 shadow-sm transition duration-200 hover:-translate-y-1 hover:border-[#d7d0c3] hover:shadow-md">
+                <li key={k} className="rounded-2xl border border-[#d0dce8] bg-white p-6 shadow-sm transition duration-200 hover:-translate-y-1 hover:border-[#bccdde] hover:shadow-md">
                   <span className="grid h-9 w-9 place-items-center rounded-full text-sm font-bold text-white" style={{ backgroundColor: primary }}>{i + 1}</span>
-                  <h3 className="mt-4 text-lg font-semibold text-[#0B2820]">{t(`steps.${k}.title`)}</h3>
-                  <p className="mt-2 text-sm leading-relaxed text-[#374b43]">{t(`steps.${k}.body`)}</p>
+                  <h3 className="mt-4 text-lg font-semibold text-[#0b1628]">{t(`steps.${k}.title`)}</h3>
+                  <p className="mt-2 text-sm leading-relaxed text-[#24395e]">{t(`steps.${k}.body`)}</p>
                 </li>
               ))}
             </ol>
@@ -194,20 +194,20 @@ export default async function BusinessPage({ params }: PageProps) {
 
         <section id="enquiry" className="scroll-mt-24 py-14 sm:py-20" aria-labelledby="enquiry-title">
           <div className="site-container max-w-6xl">
-            <h2 id="enquiry-title" className="text-2xl font-bold text-[#0B2820] sm:text-3xl">{t("enquiryTitle")}</h2>
-            <p className="mt-3 text-[#374b43]">{t("enquirySubtitle")}</p>
+            <h2 id="enquiry-title" className="text-2xl font-bold text-[#0b1628] sm:text-3xl">{t("enquiryTitle")}</h2>
+            <p className="mt-3 text-[#24395e]">{t("enquirySubtitle")}</p>
             <div className="mt-8 grid gap-8 lg:grid-cols-[1.2fr_0.8fr]">
-              <div className="rounded-3xl border border-[#e8e3d8] bg-white p-7 shadow-sm sm:p-10">
+              <div className="rounded-3xl border border-[#d5e0eb] bg-white p-7 shadow-sm sm:p-10">
                 <BusinessEnquiryForm subdomain={subdomain} primaryColor={primary} />
               </div>
 
-              <aside className="rounded-3xl border border-[#e8e3d8] bg-white p-7 shadow-sm sm:p-8">
-                <h3 className="text-xl font-bold text-[#0B2820]">{t("faqTitle")}</h3>
+              <aside className="rounded-3xl border border-[#d5e0eb] bg-white p-7 shadow-sm sm:p-8">
+                <h3 className="text-xl font-bold text-[#0b1628]">{t("faqTitle")}</h3>
                 <dl className="mt-6 space-y-5">
                   {FAQ.map((k) => (
                     <div key={k}>
-                      <dt className="font-semibold text-[#0B2820]">{t(`faq.${k}.q`)}</dt>
-                      <dd className="mt-1 text-sm leading-relaxed text-[#374b43]">{t(`faq.${k}.a`)}</dd>
+                      <dt className="font-semibold text-[#0b1628]">{t(`faq.${k}.q`)}</dt>
+                      <dd className="mt-1 text-sm leading-relaxed text-[#24395e]">{t(`faq.${k}.a`)}</dd>
                     </div>
                   ))}
                 </dl>

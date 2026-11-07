@@ -17,7 +17,7 @@ const inputClass =
   "w-full rounded-lg border border-gray-300 px-3 py-2.5 text-sm focus:outline-none focus:ring-2";
 
 /** The business's own questions, rendered by type. */
-export function CustomQuestions({ questions, answers, onChange, primaryColor = "#3F6B52" }: Props) {
+export function CustomQuestions({ questions, answers, onChange, primaryColor = "#20407A" }: Props) {
   const t = useTranslations("Booking.questions");
   const base = useId();
   if (questions.length === 0) return null;

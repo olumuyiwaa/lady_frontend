@@ -22,7 +22,7 @@ type Props = {
 export function StepReview({
   state,
   service,
-  primaryColor = "#3F6B52",
+  primaryColor = "#20407A",
   submitting,
   submitError,
   captchaToken = null,
