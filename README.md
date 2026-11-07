@@ -41,6 +41,21 @@ opens `BookingWidgetModal`. The portal's "Book again" and "Book a cleaning"
 buttons do the same. Both use the same `BookingWizard` component (with
 `compact={true}` inside the modal).
 
+## Business accounts
+
+- **Staff:** People > Business accounts (`/business-accounts`) lists every company with the month's
+  rating, checklist, punctuality, complaints, spend and overdue invoices; open one for the per-branch
+  report, a PDF, and its team logins.
+- **Portal:** a company admin gets a Team panel to add members as admin or branch manager (chosen
+  locations only). Branch managers get a reduced portal: their locations' bookings, report and
+  complaints, with no statement, referral or preferences. The backend enforces this; the UI only reflects it.
+- Shared team editor: `src/components/b2b/MembersEditor.tsx`.
+
+## Other dashboard and site features
+
+Leave (`/leave`) for cleaner time off, an AI assistant chat on the storefront and in the portal
+(shown when the backend reports `assistantEnabled`), and language and WhatsApp preferences in the portal.
+
 ## Languages and SEO
 
 Public pages (`/`, `/business`, `/terms`, `/privacy`, `/cookies`) exist in English
