@@ -3,6 +3,7 @@
 import { useCallback, useEffect, useState, type CSSProperties, type ReactNode } from "react";
 import { useTranslations } from "next-intl";
 import type { StorefrontResponse } from "@/app/api/widget.api";
+import { AssistantChat } from "@/components/assistant/AssistantChat";
 import { setActiveCurrency } from "@/app/services/currency";
 import { SiteHeader } from "@/components/site/SiteHeader";
 import { SiteHero } from "@/components/site/SiteHero";
@@ -164,6 +165,8 @@ export function StorefrontClient({
         accentColor={accentColor}
         legal={business.legal}
       />
+
+      {data.assistantEnabled && <AssistantChat slug={subdomain} businessName={name} primaryColor={safePrimary} />}
 
       <BookingWidgetModal
         open={bookOpen}

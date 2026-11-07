@@ -2,7 +2,7 @@
 
 import { useEffect, useMemo, useState } from "react";
 import { useLocale, useTranslations } from "next-intl";
-import { fetchPortalB2BFile, getPortalB2BSummary, type B2BSummary } from "@/app/api/portal.api";
+import { fetchPortalB2BBlob, fetchPortalB2BFile, getPortalB2BSummary, type B2BSummary } from "@/app/api/portal.api";
 
 type Props = {
     slug: string;
@@ -28,7 +28,7 @@ export function B2BPanel({ slug, token, companyName, money, onUnauthorized }: Pr
     const [month, setMonth] = useState<string | undefined>(undefined);
     const [data, setData] = useState<B2BSummary | null>(null);
     const [failed, setFailed] = useState(false);
-    const [busy, setBusy] = useState<"csv" | "statement" | null>(null);
+    const [busy, setBusy] = useState<"csv" | "statement" | "quality" | null>(null);
 
     useEffect(() => {
         let stopped = false;
@@ -69,6 +69,24 @@ export function B2BPanel({ slug, token, companyName, money, onUnauthorized }: Pr
             const a = document.createElement("a");
             a.href = url;
             a.download = `visits-${data.month}.csv`;
+            a.click();
+            setTimeout(() => URL.revokeObjectURL(url), 10_000);
+        } catch (e) {
+            if ((e as { status?: number } | null)?.status === 401) onUnauthorized();
+        } finally {
+            setBusy(null);
+        }
+    };
+
+    const downloadQuality = async () => {
+        if (busy) return;
+        setBusy("quality");
+        try {
+            const blob = await fetchPortalB2BBlob(slug, token, `/b2b/quality.pdf?month=${data.month}`);
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement("a");
+            a.href = url;
+            a.download = `quality-${data.month}.pdf`;
             a.click();
             setTimeout(() => URL.revokeObjectURL(url), 10_000);
         } catch (e) {
@@ -172,6 +190,9 @@ export function B2BPanel({ slug, token, companyName, money, onUnauthorized }: Pr
                 </button>
                 <button type="button" onClick={download} disabled={busy !== null} className="rounded-xl border border-gray-200 px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50 disabled:opacity-60 dark:border-gray-700 dark:text-gray-300 dark:hover:bg-white/5">
                     {t("exportCsv")}
+                </button>
+                <button type="button" onClick={downloadQuality} disabled={busy !== null} className="rounded-xl border border-gray-200 px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50 disabled:opacity-60 dark:border-gray-700 dark:text-gray-300 dark:hover:bg-white/5">
+                    {t("qualityReport")}
                 </button>
             </div>
         </section>

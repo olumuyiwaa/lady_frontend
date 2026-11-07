@@ -152,6 +152,8 @@ export type StorefrontResponse = {
   /** The business's own booking-form questions. */
   questions?: import("@/lib/bookingQuestions").BookingQuestion[];
   onboardingComplete?: boolean;
+  /** The AI assistant is configured and may be shown. */
+  assistantEnabled?: boolean;
   payment?: StorefrontPayment;
   cancellationPolicy?: StorefrontCancellationPolicy;
 };
@@ -227,6 +229,10 @@ export type SubmitBookingPayload = {
   lastName: string;
   email?: string;
   phone: string;
+  /** Site language; becomes the customer's language for messages. */
+  language?: "nl" | "en";
+  /** WhatsApp consent from the booking form checkbox. */
+  whatsappOptIn?: boolean;
   addressLine1: string;
   addressLine2?: string;
   city: string;
@@ -263,6 +269,17 @@ export type JoinWaitlistPayload = {
 };
 
 // ─── API functions ──────────────────────────────────────────────
+
+export type AssistantTurn = { role: "user" | "assistant"; content: string };
+
+/** Asks the AI assistant; the whole conversation so far is sent each time. */
+export async function askAssistant(slug: string, messages: AssistantTurn[], language: "nl" | "en") {
+  const result = await widgetFetch(slug, "/assistant", {
+    method: "POST",
+    body: JSON.stringify({ messages, language }),
+  });
+  return result.data as { reply: string; language: "nl" | "en" };
+}
 
 export async function getStorefront(slug: string) {
   const result = await widgetFetch(slug, "/storefront", { method: "GET" });

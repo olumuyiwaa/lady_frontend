@@ -14,7 +14,7 @@ export const ADMIN_SEGMENTS = new Set([
   "signin", "forgot-password", "reset-password", "verify-email", "onboarding",
   "audit-trail", "booking-questions", "bookings", "business-settings", "calendar",
   "checklist-templates", "cleaner-documents", "cleaners", "compliance", "coupons",
-  "customers", "dashboard", "dispatch", "gift-cards", "inventory", "messages",
+  "customers", "dashboard", "dispatch", "gift-cards", "inventory", "leave", "messages",
   "notifications", "payroll", "pricing", "profile", "recurring-schedules", "reports",
   "reviews", "services", "support-tickets", "team", "transactions", "waitlist", "website",
 ]);

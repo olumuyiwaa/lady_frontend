@@ -1,6 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { useLocale } from "next-intl";
 import {
   getQuote,
   getSlots,
@@ -27,6 +28,8 @@ import {
 } from "./types";
 
 export function useBookingState({ slug, services, questions, initialPostalCode }: BookingWizardProps) {
+  // The site language becomes the customer's language for emails, SMS and WhatsApp.
+  const locale = useLocale();
   const [state, setState] = useState<BookingFormState>(() => {
     const first = services[0];
     return {
@@ -258,6 +261,8 @@ export function useBookingState({ slug, services, questions, initialPostalCode }
         lastName: state.lastName.trim(),
         email: state.email.trim() || undefined,
         phone: state.phone.trim(),
+        language: locale.toLowerCase().startsWith("nl") ? "nl" : "en",
+        whatsappOptIn: state.whatsappOptIn || undefined,
         addressLine1: state.addressLine1.trim(),
         addressLine2: state.addressLine2.trim() || undefined,
         city: state.city.trim(),

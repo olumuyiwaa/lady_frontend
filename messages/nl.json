@@ -105,7 +105,8 @@
       "giftCardCodePlaceholder": "GC-XXXXXXXX",
       "giftCardApplied": "Cadeaubon toegepast: {applied} (saldo: {balance})",
       "giftCardOff": "{amount} korting",
-      "giftCardInvalid": "Cadeaubon: {reason}"
+      "giftCardInvalid": "Cadeaubon: {reason}",
+      "whatsappOptIn": "Stuur mij boekingsupdates via WhatsApp (antwoord STOP om je op elk moment af te melden)"
     },
     "review": {
       "heading": "Controleren & bevestigen",
@@ -269,7 +270,8 @@
       "platform": "Platform",
       "overview": "Overzicht",
       "businesses": "Bedrijven",
-      "subscriptions": "Abonnementen"
+      "subscriptions": "Abonnementen",
+      "leave": "Verlof"
     },
     "navGroups": {
       "operations": "Operatie",
@@ -1867,6 +1869,46 @@
       },
       "addPhotos": "Foto’s toevoegen",
       "saveContent": "Website-inhoud opslaan"
+    },
+    "leave": {
+      "title": "Verlof",
+      "subtitle": "Verlofaanvragen van schoonmakers. Goedgekeurd verlof blokkeert toewijzingen en haalt de schoonmaker uit matching, dagplanning en boekbare tijdsloten.",
+      "loadFailed": "Verlof laden mislukt",
+      "actionFailed": "Dat is niet gelukt, probeer het opnieuw",
+      "empty": "Geen verlof gevonden",
+      "status": "Status",
+      "allStatuses": "Alle",
+      "statuses": {
+        "PENDING": "In afwachting",
+        "APPROVED": "Goedgekeurd",
+        "REJECTED": "Afgewezen",
+        "CANCELLED": "Geannuleerd"
+      },
+      "types": {
+        "VACATION": "Vakantie",
+        "SICK": "Ziek",
+        "PERSONAL": "Persoonlijk",
+        "OTHER": "Overig"
+      },
+      "cleaner": "Schoonmaker",
+      "chooseCleaner": "Kies een schoonmaker",
+      "type": "Type",
+      "dates": "Datums",
+      "from": "Van",
+      "to": "Tot",
+      "reason": "Reden (optioneel)",
+      "record": "Verlof registreren",
+      "saveApproved": "Opslaan als goedgekeurd",
+      "recordHelp": "Verlof dat je zelf registreert is direct goedgekeurd.",
+      "approve": "Goedkeuren",
+      "reject": "Afwijzen",
+      "cancel": "Verlof annuleren",
+      "approveNote": "Voeg een opmerking toe voor de schoonmaker (optioneel)",
+      "rejectNote": "Waarom wordt dit niet goedgekeurd? (zichtbaar voor de schoonmaker)",
+      "cancelConfirm": "Dit verlof annuleren? De schoonmaker is dan weer beschikbaar.",
+      "actionsFor": "Acties voor verlof van {name}",
+      "conflictsTitle": "{count, plural, one {# geplande afspraak valt binnen dit verlof} other {# geplande afspraken vallen binnen dit verlof}}",
+      "conflictsHelp": "Ze blijven toegewezen totdat je ze opnieuw toewijst via Planning."
     }
   },
   "Portal": {
@@ -2393,7 +2435,8 @@
       "byService": "Per dienst",
       "locationLine": "{visits} bezoeken · {amount}",
       "statement": "Maandoverzicht",
-      "exportCsv": "Bezoeken exporteren (CSV)"
+      "exportCsv": "Bezoeken exporteren (CSV)",
+      "qualityReport": "Kwaliteitsrapport (PDF)"
     },
     "complaint": {
       "open": "Is er iets misgegaan? Meld een probleem",
@@ -2432,6 +2475,28 @@
         "CANCELLED": "Deze boeking is geannuleerd, dus de chat is gesloten.",
         "CLOSED": "De chat sluit 48 uur na de schoonmaak."
       }
+    },
+    "preferences": {
+      "title": "Berichtvoorkeuren",
+      "language": "Taal van onze berichten",
+      "dutch": "Nederlands",
+      "english": "English",
+      "whatsapp": "Stuur boekingsupdates via WhatsApp",
+      "whatsappHelp": "Antwoord STOP op een WhatsApp-bericht om je op elk moment af te melden.",
+      "saved": "Opgeslagen",
+      "failed": "Opslaan mislukt, probeer het opnieuw"
     }
+  },
+  "Assistant": {
+    "open": "Vraag het {business}",
+    "title": "Vraag het {business}",
+    "close": "Sluiten",
+    "placeholder": "Vraag naar diensten, prijzen of werkgebied…",
+    "send": "Versturen",
+    "greeting": "Hoi! Ik beantwoord graag vragen over onze schoonmaakdiensten, prijzen, werkgebied en boeken. Wat wil je weten?",
+    "thinking": "Even denken…",
+    "error": "Sorry, ik kan nu niet antwoorden. Probeer het zo meteen opnieuw.",
+    "limit": "Je hebt in korte tijd veel vragen gesteld. Probeer het over een paar minuten opnieuw.",
+    "disclaimer": "AI-assistent. Controleer belangrijke details bij ons voordat je erop vertrouwt."
   }
 }

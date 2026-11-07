@@ -15,6 +15,7 @@ import {
 import { referralLink } from "@/lib/referral";
 import { cleanerName } from "./portalSession";
 import { B2BPanel } from "./B2BPanel";
+import { PortalPreferencesCard } from "./PortalPreferencesCard";
 
 type Props = {
     slug: string;
@@ -323,6 +324,9 @@ export function PortalHome({
                 )}
             </div>
         </section>
+        {overview.preferences && (
+            <PortalPreferencesCard slug={slug} token={token} initial={overview.preferences} onUnauthorized={onUnauthorized} />
+        )}
         </div>
     );
 }

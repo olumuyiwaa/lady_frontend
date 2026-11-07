@@ -37,6 +37,7 @@ import { StatCard, ActionBtn, Modal, ModalActions, DetailRow, PlusIcon, CheckIco
 import { PortalHome } from "./PortalHome";
 import { BookingTimeline } from "./BookingTimeline";
 import { BookingChat } from "./BookingChat";
+import { AssistantChat } from "@/components/assistant/AssistantChat";
 import { ComplaintForm } from "./ComplaintForm";
 type Step = "phone" | "code" | "bookings";
 
@@ -1580,6 +1581,9 @@ export default function CustomerPortalPage() {
             )}
 
             {/* Booking modal — same wizard used on the storefront */}
+            {storefrontData?.assistantEnabled && (
+                <AssistantChat slug={slug} businessName={brand?.name ?? ""} primaryColor={brand?.primary || "#16a34a"} />
+            )}
             {storefrontData && (
                 <BookingWidgetModal
                     open={bookOpen}

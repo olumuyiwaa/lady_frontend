@@ -105,7 +105,8 @@
       "giftCardCodePlaceholder": "GC-XXXXXXXX",
       "giftCardApplied": "Gift card applied: {applied} (balance: {balance})",
       "giftCardOff": "{amount} off",
-      "giftCardInvalid": "Gift card: {reason}"
+      "giftCardInvalid": "Gift card: {reason}",
+      "whatsappOptIn": "Send me booking updates on WhatsApp (reply STOP at any time to opt out)"
     },
     "review": {
       "heading": "Review & confirm",
@@ -269,7 +270,8 @@
       "platform": "Platform",
       "overview": "Overview",
       "businesses": "Businesses",
-      "subscriptions": "Subscriptions"
+      "subscriptions": "Subscriptions",
+      "leave": "Leave"
     },
     "navGroups": {
       "operations": "Operations",
@@ -1867,6 +1869,46 @@
       },
       "addPhotos": "Add photos",
       "saveContent": "Save website content"
+    },
+    "leave": {
+      "title": "Leave",
+      "subtitle": "Time-off requests from cleaners. Approved leave blocks assignments and removes the cleaner from matching, the day planner and booking slots.",
+      "loadFailed": "Failed to load leave",
+      "actionFailed": "That didn't work, please try again",
+      "empty": "No leave found",
+      "status": "Status",
+      "allStatuses": "All",
+      "statuses": {
+        "PENDING": "Pending",
+        "APPROVED": "Approved",
+        "REJECTED": "Rejected",
+        "CANCELLED": "Cancelled"
+      },
+      "types": {
+        "VACATION": "Vacation",
+        "SICK": "Sick",
+        "PERSONAL": "Personal",
+        "OTHER": "Other"
+      },
+      "cleaner": "Cleaner",
+      "chooseCleaner": "Choose a cleaner",
+      "type": "Type",
+      "dates": "Dates",
+      "from": "From",
+      "to": "To",
+      "reason": "Reason (optional)",
+      "record": "Record leave",
+      "saveApproved": "Save as approved",
+      "recordHelp": "Leave you record is approved straight away.",
+      "approve": "Approve",
+      "reject": "Reject",
+      "cancel": "Cancel leave",
+      "approveNote": "Add a note for the cleaner (optional)",
+      "rejectNote": "Why is this not approved? (shown to the cleaner)",
+      "cancelConfirm": "Cancel this leave? The cleaner becomes available again.",
+      "actionsFor": "Actions for leave of {name}",
+      "conflictsTitle": "{count, plural, one {# booked visit falls inside this leave} other {# booked visits fall inside this leave}}",
+      "conflictsHelp": "They stay assigned until you reassign them from Dispatch."
     }
   },
   "Portal": {
@@ -2393,7 +2435,8 @@
       "byService": "By service",
       "locationLine": "{visits} visits · {amount}",
       "statement": "Monthly statement",
-      "exportCsv": "Export visits (CSV)"
+      "exportCsv": "Export visits (CSV)",
+      "qualityReport": "Quality report (PDF)"
     },
     "complaint": {
       "open": "Something wrong? Report a problem",
@@ -2432,6 +2475,28 @@
         "CANCELLED": "This booking was cancelled, so chat is closed.",
         "CLOSED": "Chat closes 48 hours after the clean."
       }
+    },
+    "preferences": {
+      "title": "Message preferences",
+      "language": "Language of our messages",
+      "dutch": "Nederlands",
+      "english": "English",
+      "whatsapp": "Send booking updates on WhatsApp",
+      "whatsappHelp": "Reply STOP to a WhatsApp message at any time to opt out.",
+      "saved": "Saved",
+      "failed": "Couldn't save, please try again"
     }
+  },
+  "Assistant": {
+    "open": "Ask {business}",
+    "title": "Ask {business}",
+    "close": "Close",
+    "placeholder": "Ask about services, prices or areas…",
+    "send": "Send",
+    "greeting": "Hi! I can answer questions about our cleaning services, prices, areas and booking. What would you like to know?",
+    "thinking": "Thinking…",
+    "error": "Sorry, I can't answer right now. Please try again in a moment.",
+    "limit": "You've asked a lot of questions in a short time. Please try again in a few minutes.",
+    "disclaimer": "AI assistant. Check important details with us before you rely on them."
   }
 }

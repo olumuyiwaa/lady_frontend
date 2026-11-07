@@ -125,6 +125,11 @@ const AppSidebar: React.FC = () => {
             name: t("waitlist"),
             path: "/waitlist",
           },
+          {
+            icon: <CalenderIcon />,
+            name: t("leave"),
+            path: "/leave",
+          },
         ],
       },
       {

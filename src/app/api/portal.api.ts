@@ -267,12 +267,25 @@ export type PortalCleaners = {
   cleaners: PortalCleanerChoice[];
 };
 
+export type PortalPreferences = { language: "nl" | "en"; whatsappOptIn: boolean };
+
+export async function setPortalPreferences(
+  slug: string | null,
+  token: string,
+  prefs: Partial<PortalPreferences>
+) {
+  const result = await portalFetch(slug, `/preferences`, { method: "PUT", body: JSON.stringify(prefs) }, token);
+  return result.data as PortalPreferences;
+}
+
 export type PortalOverview = {
   /** Set when the customer is a business account. */
   company: { name: string; paymentTermsDays: number | null } | null;
   nextBooking: PortalBooking | null;
   counts: { upcoming: number; completed: number; total: number };
   unreadMessages: number;
+  /** How we message this customer. */
+  preferences?: PortalPreferences;
   preferredCleaner: PortalCleanerChoice | null;
   referral: {
     code: string;
@@ -462,6 +475,20 @@ export async function getPortalB2BSummary(slug: string | null, token: string, mo
   const qs = month ? `?month=${encodeURIComponent(month)}` : "";
   const result = await portalFetch(slug, `/b2b/summary${qs}`, { method: "GET" }, token);
   return result.data as B2BSummary;
+}
+
+/** Fetches a binary B2B file (the quality report PDF) with the portal token. */
+export async function fetchPortalB2BBlob(slug: string | null, token: string, path: string): Promise<Blob> {
+  const base = slug
+    ? `${API_BASE_URL}/portal-embed/${encodeURIComponent(slug)}`
+    : `${API_BASE_URL}/portal`;
+  const res = await fetch(`${base}${path}`, { headers: { Authorization: `Bearer ${token}`, Accept: "application/pdf" } });
+  if (!res.ok) {
+    const err = new Error("Request failed") as Error & { status?: number };
+    err.status = res.status;
+    throw err;
+  }
+  return res.blob();
 }
 
 /** Fetches a B2B file (CSV or statement HTML) with the portal token. */

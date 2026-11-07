@@ -38,6 +38,8 @@ export type BookingFormState = {
   lastName: string;
   email: string;
   phone: string;
+  /** Consent to receive booking messages on WhatsApp. Off unless ticked. */
+  whatsappOptIn: boolean;
   notes: string;
   /** Answers to the business's custom questions, keyed by question id. */
   answers: Answers;
@@ -94,6 +96,7 @@ export const INITIAL_STATE: BookingFormState = {
   lastName: "",
   email: "",
   phone: "",
+  whatsappOptIn: false,
   notes: "",
   answers: {},
   couponCode: "",
