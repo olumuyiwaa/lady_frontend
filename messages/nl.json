@@ -1382,6 +1382,7 @@
       "loadFailed": "Documenten van schoonmakers laden is mislukt",
       "uploadFailed": "Uploaden is mislukt",
       "types": {
+        "VOG": "Verklaring Omtrent het Gedrag (VOG)",
         "ID_CARD": "Identiteitsbewijs",
         "BACKGROUND_CHECK": "Achtergrondcontrole",
         "CERTIFICATION": "Certificaat",
@@ -1775,6 +1776,7 @@
         "URGENT": "Urgent"
       },
       "categories": {
+        "BOOKING": "Boeking",
         "QUALITY": "Kwaliteit van de schoonmaak",
         "NO_SHOW": "Schoonmaker kwam niet opdagen",
         "LATE": "Schoonmaker was te laat",

@@ -1382,6 +1382,7 @@
       "loadFailed": "Failed to load cleaner documents",
       "uploadFailed": "Upload failed",
       "types": {
+        "VOG": "Certificate of conduct",
         "ID_CARD": "ID card",
         "BACKGROUND_CHECK": "Background check",
         "CERTIFICATION": "Certification",
@@ -1775,6 +1776,7 @@
         "URGENT": "Urgent"
       },
       "categories": {
+        "BOOKING": "Booking",
         "QUALITY": "Quality of the clean",
         "NO_SHOW": "Cleaner did not show up",
         "LATE": "Cleaner was late",
